@@ -1,0 +1,21 @@
+<nav class="navbar">
+  <a class="logo" routerLink="/products">Shop</a>
+
+  <div class="links">
+    <a routerLink="/products">Products</a>
+    <a *ngIf="authService.isLoggedIn()" routerLink="/profile">Profile</a>
+    <a
+      *ngIf="authService.isLoggedIn() && authService.getRole() === 'admin'"
+      routerLink="/admin"
+      >Admin</a
+    >
+  </div>
+
+  <div class="actions">
+    <a *ngIf="!authService.isLoggedIn()" routerLink="/login">Login</a>
+    <a *ngIf="!authService.isLoggedIn()" routerLink="/register">Register</a>
+    <button *ngIf="authService.isLoggedIn()" (click)="onLogout()">
+      Logout
+    </button>
+  </div>
+</nav>
