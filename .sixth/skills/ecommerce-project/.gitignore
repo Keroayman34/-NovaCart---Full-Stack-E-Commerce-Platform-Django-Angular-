@@ -1,0 +1,17 @@
+
+
+.env
+
+.env.example
+
+.gitignore
+
+__pycache__/
+
+__init__.py
+
+*.pyc
+
+migrations/
+
+my-tasks.md
