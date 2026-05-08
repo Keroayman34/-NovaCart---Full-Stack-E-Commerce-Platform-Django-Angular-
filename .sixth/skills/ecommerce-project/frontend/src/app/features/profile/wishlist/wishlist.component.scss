@@ -1,0 +1,46 @@
+.page {
+  padding: 1.5rem;
+}
+
+.card {
+  padding: 1.25rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.content {
+  margin-bottom: 0.75rem;
+}
+
+.name {
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+
+.price {
+  color: #2d3748;
+}
+
+button.danger {
+  background: #fed7d7;
+}
+
+.error {
+  color: #c53030;
+}
