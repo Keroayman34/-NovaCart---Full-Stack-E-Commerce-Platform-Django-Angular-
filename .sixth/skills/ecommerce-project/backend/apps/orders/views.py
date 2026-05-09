@@ -33,6 +33,22 @@ class PlaceOrderView(generics.GenericAPIView):
 	permission_classes = [permissions.IsAuthenticated]
 	serializer_class = OrderSerializer
 
+	def get_queryset(self):
+		return (
+			Order.objects.filter(user=self.request.user)
+			.prefetch_related("items__product")
+			.order_by("-created_at")
+		)
+
+	def get(self, request, *args, **kwargs):
+		queryset = self.get_queryset()
+		status_filter = request.query_params.get("status")
+		if status_filter:
+			queryset = queryset.filter(status=status_filter)
+
+		serializer = self.get_serializer(queryset, many=True)
+		return Response(serializer.data, status=status.HTTP_200_OK)
+
 	def post(self, request, *args, **kwargs):
 		cart_item_model = _get_cart_item_model()
 		cart_items = list(
@@ -78,6 +94,19 @@ class PlaceOrderView(generics.GenericAPIView):
 
 		serializer = self.get_serializer(order)
 		return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class OrderDetailView(generics.RetrieveAPIView):
+	permission_classes = [permissions.IsAuthenticated]
+	serializer_class = OrderSerializer
+	lookup_field = "pk"
+
+	def get_queryset(self):
+		return (
+			Order.objects.filter(user=self.request.user)
+			.prefetch_related("items__product")
+			.order_by("-created_at")
+		)
 
 
 class OrderStatusUpdateSerializer(serializers.Serializer):
