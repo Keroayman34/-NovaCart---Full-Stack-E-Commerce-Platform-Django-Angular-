@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from .models import Order, OrderItem
 from .serializers import OrderSerializer
 from .permissions import CanUpdateOrderStatus
+from .utils import send_order_confirmation
 
 
 def _get_cart_item_model():
@@ -92,8 +93,15 @@ class PlaceOrderView(generics.GenericAPIView):
 			order.save(update_fields=["total_price"])
 			cart_item_model.objects.filter(user=request.user).delete()
 
-		serializer = self.get_serializer(order)
-		return Response(serializer.data, status=status.HTTP_201_CREATED)
+			# send confirmation email after transaction completes
+			try:
+				send_order_confirmation(order)
+			except Exception:
+				# swallow email errors so checkout is not blocked
+				pass
+
+			serializer = self.get_serializer(order)
+			return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class OrderDetailView(generics.RetrieveAPIView):
