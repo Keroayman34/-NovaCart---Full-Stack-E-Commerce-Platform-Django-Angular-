@@ -1,15 +1,70 @@
 <section class="checkout-page">
-  <h2>Checkout</h2>
+  <div class="checkout-container">
+    <h1>Checkout</h1>
 
-  <div class="checkout-grid">
-    <div class="checkout-form-panel">
-      <h3>Checkout Form</h3>
-      <p>Shipping and payment forms will be added here.</p>
+    <!-- Error Alert -->
+    <div *ngIf="errorMessage" class="alert alert-error">
+      <span>{{ errorMessage }}</span>
     </div>
 
-    <aside class="order-summary-panel">
-      <h3>Order Summary</h3>
-      <p>Your order summary will be shown here.</p>
-    </aside>
-  </div>
+    <!-- Success Alert -->
+    <div *ngIf="successMessage" class="alert alert-success">
+      <span>{{ successMessage }}</span>
+    </div>
+
+    <div class="checkout-grid">
+      <!-- Left Panel: Forms -->
+      <div class="checkout-form-panel">
+        <!-- Guest Checkout (for non-logged-in users) -->
+        <ng-container *ngIf="!isLoggedIn">
+          <app-guest-checkout
+            (guestDataSubmitted)="onGuestDataSubmitted($event)"
+            (loginRequested)="onLoginRequested()"
+          ></app-guest-checkout>
+
+          <!-- Payment Form (only show after guest provides email/shipping) -->
+          <div *ngIf="guestData" class="form-section">
+            <h2>Payment Method</h2>
+            <app-payment-method></app-payment-method>
+          </div>
+
+          <!-- Submit Button (only show after guest provides info) -->
+          <button
+            *ngIf="guestData"
+            (click)="onSubmit()"
+            [disabled]="isProcessing"
+            class="btn-submit"
+          >
+            <span *ngIf="!isProcessing">Place Order</span>
+            <span *ngIf="isProcessing">Processing...</span>
+          </button>
+        </ng-container>
+
+        <!-- Regular Checkout (for logged-in users) -->
+        <ng-container *ngIf="isLoggedIn">
+          <!-- Shipping Form -->
+          <div class="form-section">
+            <h2>Shipping Address</h2>
+            <app-shipping-form></app-shipping-form>
+          </div>
+
+          <!-- Payment Form -->
+          <div class="form-section">
+            <h2>Payment Method</h2>
+            <app-payment-method></app-payment-method>
+          </div>
+
+          <!-- Submit Button -->
+          <button (click)="onSubmit()" [disabled]="isProcessing" class="btn-submit">
+            <span *ngIf="!isProcessing">Place Order</span>
+            <span *ngIf="isProcessing">Processing...</span>
+          </button>
+        </ng-container>
+      </div>
+
+      <!-- Right Panel: Order Summary -->
+      <aside class="order-summary-panel">
+        <app-order-summary></app-order-summary>
+      </aside>
+    </div>
 </section>

@@ -4,6 +4,7 @@ import { ProductListComponent } from "./features/products/product-list/product-l
 import { ProfilePageComponent } from "./features/profile/profile-page/profile-page.component";
 import { AdminDashboardComponent } from "./features/admin/dashboard/dashboard.component";
 import { CheckoutComponent } from "./features/checkout/checkout.component";
+import { OrderConfirmationComponent } from "./features/checkout/order-confirmation/order-confirmation.component";
 import { AuthGuard } from "./core/guards/auth.guard";
 import { RoleGuard } from "./core/guards/role.guard";
 
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: "", redirectTo: "products", pathMatch: "full" },
   { path: "products", component: ProductListComponent },
   { path: "checkout", component: CheckoutComponent },
+  { path: "order-confirmation/:id", component: OrderConfirmationComponent },
   {
     path: "profile",
     component: ProfilePageComponent,
