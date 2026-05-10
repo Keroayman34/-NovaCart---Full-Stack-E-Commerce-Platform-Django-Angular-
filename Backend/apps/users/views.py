@@ -10,7 +10,6 @@ from .serializers import LoginSerializer, RegisterSerializer, UserSerializer
 class RegisterView(APIView):
 	permission_classes = [AllowAny]
 
-	# create new user
 	def post(self, request):
 		serializer = RegisterSerializer(data=request.data)
 		serializer.is_valid(raise_exception=True)
@@ -23,11 +22,12 @@ class RegisterView(APIView):
 class LoginView(APIView):
 	permission_classes = [AllowAny]
 
-	# generate JWT token
 	def post(self, request):
 		serializer = LoginSerializer(data=request.data)
 		serializer.is_valid(raise_exception=True)
 		user = serializer.validated_data["user"]
+
+		self._merge_guest_cart_if_exists(request, user)
 
 		refresh = RefreshToken.for_user(user)
 		return Response(
@@ -38,3 +38,28 @@ class LoginView(APIView):
 			},
 			status=status.HTTP_200_OK,
 		)
+
+	def _merge_guest_cart_if_exists(self, request, user):
+		"""Merge guest cart into user cart after successful login."""
+		from apps.cart.models import Cart
+		from apps.cart.services import CartService
+
+		session_key = request.session.session_key
+		if not session_key:
+			return
+
+		guest_cart = Cart.objects.filter(
+			session_key=session_key,
+			user_id=None,
+		).first()
+
+		if not guest_cart:
+			return
+
+		user_cart, _ = Cart.objects.get_or_create(user=user, defaults={})
+
+		try:
+			CartService.merge_cart(guest_cart=guest_cart, user_cart=user_cart)
+		except Exception:
+			pass
+

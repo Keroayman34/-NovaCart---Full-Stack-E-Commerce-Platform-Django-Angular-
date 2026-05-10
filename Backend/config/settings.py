@@ -111,8 +111,11 @@ REST_FRAMEWORK = {
 	],
 	"DEFAULT_THROTTLE_RATES": {
 		"anon": "100/hour",
-		"user": "1000/hour"
+		"user": "1000/hour",
+		"cart_user": "100/minute",
+		"cart_anon": "30/minute",
 	},
+	"EXCEPTION_HANDLER": "core.exceptions.cart_exception_handler",
 }
 
 SIMPLE_JWT = {
