@@ -1,0 +1,26 @@
+<div class="page">
+  <h2>Wishlist</h2>
+
+  <div class="card" *ngIf="isLoading">Loading wishlist...</div>
+
+  <div class="card" *ngIf="!isLoading && errorMessage">
+    <p class="error">{{ errorMessage }}</p>
+  </div>
+
+  <div class="card" *ngIf="!isLoading && !wishlist.length">
+    <p>No wishlist items yet.</p>
+  </div>
+
+  <div class="wishlist-grid" *ngIf="!isLoading && wishlist.length">
+    <div class="card" *ngFor="let item of wishlist">
+      <img *ngIf="item.image" [src]="item.image" [alt]="item.name" />
+      <div class="content">
+        <a class="name" [routerLink]="['/products', item.id]">
+          {{ item.name }}
+        </a>
+        <p class="price">${{ item.price }}</p>
+      </div>
+      <button class="danger" (click)="onRemoveItem(item.id)">Remove</button>
+    </div>
+  </div>
+</div>

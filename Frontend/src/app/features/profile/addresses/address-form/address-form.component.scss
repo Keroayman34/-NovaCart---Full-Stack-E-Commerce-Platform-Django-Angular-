@@ -1,0 +1,21 @@
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 0.5rem;
+  border: 1px solid #cbd5f5;
+  border-radius: 6px;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+button.ghost {
+  background: transparent;
+  border: 1px solid #e2e8f0;
+}
