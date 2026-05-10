@@ -1,7 +1,7 @@
 from django.utils import timezone
 from rest_framework import serializers
 
-from orders.models import Order
+from apps.orders.models import Order
 
 from .models import Payment
 
@@ -18,6 +18,8 @@ class PaymentSerializer(serializers.ModelSerializer):
 		request = self.context.get("request")
 		if request and order.user_id != request.user.id:
 			raise serializers.ValidationError("You can only pay for your own order.")
+		if hasattr(order, "payment"):
+			raise serializers.ValidationError("Payment already exists for this order.")
 		return order
 
 	def create(self, validated_data):
