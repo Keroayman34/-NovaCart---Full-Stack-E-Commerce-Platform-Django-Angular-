@@ -1,0 +1,57 @@
+<section class="shipping-form">
+  <div class="header-row">
+    <h3>Shipping Address</h3>
+    <button
+      type="button"
+      class="saved-address-btn"
+      *ngIf="isLoggedIn"
+      (click)="useSavedAddress()"
+    >
+      Use saved address
+    </button>
+  </div>
+
+  <form [formGroup]="shippingForm" novalidate>
+    <div class="form-grid">
+      <label>
+        <span>Name</span>
+        <input type="text" formControlName="name" />
+        <small *ngIf="controlInvalid('name')">Name is required.</small>
+      </label>
+
+      <label>
+        <span>Phone</span>
+        <input type="tel" formControlName="phone" />
+        <small *ngIf="controlInvalid('phone')">
+          Enter a valid phone number.
+        </small>
+      </label>
+
+      <label class="full-row">
+        <span>Address</span>
+        <input type="text" formControlName="address" />
+        <small *ngIf="controlInvalid('address')">Address is required.</small>
+      </label>
+
+      <label>
+        <span>City</span>
+        <input type="text" formControlName="city" />
+        <small *ngIf="controlInvalid('city')">City is required.</small>
+      </label>
+
+      <label>
+        <span>Country</span>
+        <input type="text" formControlName="country" />
+        <small *ngIf="controlInvalid('country')">Country is required.</small>
+      </label>
+
+      <label>
+        <span>Postal Code</span>
+        <input type="text" formControlName="postalCode" />
+        <small *ngIf="controlInvalid('postalCode')">
+          Postal code is required.
+        </small>
+      </label>
+    </div>
+  </form>
+</section>
