@@ -1,0 +1,64 @@
+<div class="seller-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.open]="sidebarOpen">
+    <div class="sidebar-header">
+      <h2 class="logo">
+        <span class="logo-icon">🏪</span>
+        <span class="logo-text">SellerHub</span>
+      </h2>
+      <button class="btn-close-sidebar" (click)="closeSidebar()" *ngIf="sidebarOpen">×</button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a
+        *ngFor="let item of navItems"
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: false }"
+        class="nav-item"
+        (click)="closeSidebar()"
+      >
+        <span class="nav-icon">{{ item.icon }}</span>
+        <span class="nav-label">{{ item.label }}</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-profile" *ngIf="userProfile">
+        <div class="user-avatar">
+          <img *ngIf="userProfile.avatar" [src]="userProfile.avatar" [alt]="userProfile.name" />
+          <span *ngIf="!userProfile.avatar" class="avatar-placeholder">
+            {{ userProfile.name?.charAt(0) || 'S' }}
+          </span>
+        </div>
+        <div class="user-info">
+          <p class="user-name">{{ userProfile.name }}</p>
+          <p class="user-email">{{ userProfile.email }}</p>
+        </div>
+      </div>
+      <button class="btn-logout" (click)="logout()">Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <button class="btn-toggle-sidebar" (click)="toggleSidebar()">
+        <span class="hamburger">☰</span>
+      </button>
+      <div class="top-bar-title">
+        <h1>Seller Dashboard</h1>
+      </div>
+      <div class="top-bar-actions">
+        <button class="btn-icon" title="Notifications">🔔</button>
+        <button class="btn-icon" title="Help">❓</button>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
