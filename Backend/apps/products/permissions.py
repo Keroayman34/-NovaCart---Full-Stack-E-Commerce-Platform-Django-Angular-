@@ -29,6 +29,10 @@ class IsSellerOrAdmin(BasePermission):
     """
 
     def has_permission(self, request, view):
+        # Allow read operations for everyone
+        if request.method in ["GET", "HEAD", "OPTIONS"]:
+            return True
+
         if not (request.user and request.user.is_authenticated):
             return False
 
@@ -36,9 +40,6 @@ class IsSellerOrAdmin(BasePermission):
         if request.method in ["POST"]:
             return request.user.role in ["seller", "admin"]
 
-        # Allow read operations for all authenticated users
-        if request.method in ["GET", "HEAD", "OPTIONS"]:
-            return True
 
         # Allow update/delete for sellers and admins
         if request.method in ["PUT", "PATCH", "DELETE"]:
@@ -71,9 +72,12 @@ class IsCategoryAdmin(BasePermission):
     """
 
     def has_permission(self, request, view):
-        # Read operations allowed for all authenticated users
+        # Allow read operations for everyone
         if request.method in ["GET", "HEAD", "OPTIONS"]:
-            return bool(request.user and request.user.is_authenticated)
+            return True
+
+        if not (request.user and request.user.is_authenticated):
+            return False
 
         # Write operations only for admins
         return bool(

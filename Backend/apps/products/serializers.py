@@ -133,7 +133,7 @@ class ProductSerializer(serializers.ModelSerializer):
     )
     seller_name = serializers.CharField(source="seller.email", read_only=True)
     seller_id = serializers.PrimaryKeyRelatedField(
-        queryset=None,  # Will be set in __init__
+        queryset=__import__("django.contrib.auth", fromlist=["get_user_model"]).get_user_model().objects.none(),  # Will be updated in __init__
         source="seller",
         write_only=True,
         required=False,

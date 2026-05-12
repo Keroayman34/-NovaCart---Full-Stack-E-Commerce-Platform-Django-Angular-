@@ -1,12 +1,27 @@
+from datetime import timedelta
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "change-me"
-DEBUG = True
-ALLOWED_HOSTS = []
+load_dotenv()
 
+SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+
+DATABASES = {
+    'default': {
+        'ENGINE': os.getenv('DB_ENGINE'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '5432'),
+    }
+}
 INSTALLED_APPS = [
 	"django.contrib.admin",
 	"django.contrib.auth",
@@ -17,6 +32,7 @@ INSTALLED_APPS = [
 	"rest_framework",
 	"rest_framework_simplejwt",
 	"django_filters",
+    "corsheaders",
 	"apps.users",
 	"apps.products",
 	"apps.cart",
@@ -28,6 +44,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
 	"django.middleware.security.SecurityMiddleware",
 	"django.contrib.sessions.middleware.SessionMiddleware",
 	"django.middleware.common.CommonMiddleware",
@@ -56,12 +73,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-DATABASES = {
-	"default": {
-		"ENGINE": "django.db.backends.sqlite3",
-		"NAME": BASE_DIR / "db.sqlite3",
-	}
-}
 
 AUTH_PASSWORD_VALIDATORS = [
 	{
@@ -77,6 +88,13 @@ AUTH_PASSWORD_VALIDATORS = [
 		"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
 	},
 ]
+
+DATABASES = {
+    'default': {
+        'ENGINE': os.getenv('DB_ENGINE'),
+        'NAME': BASE_DIR / os.getenv('DB_NAME'),
+    }
+}
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
@@ -96,7 +114,7 @@ REST_FRAMEWORK = {
 		"rest_framework_simplejwt.authentication.JWTAuthentication",
 	),
 	"DEFAULT_PERMISSION_CLASSES": (
-		"rest_framework.permissions.IsAuthenticated",
+		"rest_framework.permissions.IsAuthenticatedOrReadOnly",
 	),
 	"DEFAULT_FILTER_BACKENDS": [
 		"django_filters.rest_framework.DjangoFilterBackend",
@@ -119,5 +137,26 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-	"AUTH_HEADER_TYPES": ("Bearer",),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'AUTH_HEADER_TYPES': ('Bearer',)
 }
+
+CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', '').split(',')
+FRONTEND_URL = os.getenv('FRONTEND_URL')
+
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')
