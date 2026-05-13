@@ -1,106 +1,51 @@
-"""Serializers for cart APIs."""
-
-from __future__ import annotations
-
-from decimal import Decimal
-from typing import Any
-
-from django.db.models import F, Sum
 from rest_framework import serializers
-
-from apps.products.models import Product
-
 from .models import Cart, CartItem
-
-
-class ProductInCartSerializer(serializers.ModelSerializer):
-    """Minimal nested product representation for cart responses."""
-
-    class Meta:
-        model = Product
-        fields = ["id", "name", "slug", "price", "stock_quantity", "is_active"]
-        read_only_fields = fields
+from apps.products.models import Product
 
 
 class CartItemSerializer(serializers.ModelSerializer):
-    """Cart item with nested product and calculated line subtotal."""
-
-    product = ProductInCartSerializer(read_only=True)
-    line_subtotal = serializers.SerializerMethodField()
-
-    class Meta:
-        model = CartItem
-        fields = ["id", "product", "quantity", "line_subtotal"]
-
-    def get_line_subtotal(self, obj: CartItem) -> Decimal:
-        return obj.product.price * obj.quantity
-
-
-class CartSerializer(serializers.ModelSerializer):
-    """Cart serializer including calculated totals."""
-
-    items = CartItemSerializer(many=True, read_only=True)
-
-    subtotal = serializers.SerializerMethodField()
-    tax = serializers.SerializerMethodField()
-    shipping = serializers.SerializerMethodField()
+    product_name = serializers.CharField(source='product.name', read_only=True)
+    product_price = serializers.DecimalField(
+        source='product.price',
+        max_digits=10,
+        decimal_places=2,
+        read_only=True
+    )
     total = serializers.SerializerMethodField()
 
     class Meta:
+        model = CartItem
+        fields = ['id', 'product', 'product_name', 'product_price', 'quantity', 'total']
+
+    def get_total(self, obj):
+        return obj.quantity * obj.product.price
+
+
+class CartSerializer(serializers.ModelSerializer):
+    items = CartItemSerializer(many=True, read_only=True)
+    total_price = serializers.SerializerMethodField()
+    total_items = serializers.SerializerMethodField()
+
+    class Meta:
         model = Cart
-        fields = [
-            "id",
-            "coupon_code",
-            "created_at",
-            "updated_at",
-            "items",
-            "subtotal",
-            "tax",
-            "shipping",
-            "total",
-        ]
+        fields = ['id', 'items', 'total_price', 'total_items', 'coupon_code']
 
-    def _totals(self) -> dict[str, Decimal]:
-        cart: Cart = self.instance
-        subtotal = (
-            cart.items.select_related("product")
-            .aggregate(sum_subtotal=Sum(F("product__price") * F("quantity")))
-            .get("sum_subtotal")
-        )
-        subtotal = subtotal or Decimal("0")
-        tax = subtotal * Decimal("0.14")
-        shipping = Decimal("0") if subtotal > Decimal("1000") else Decimal("50")
-        total = subtotal + tax + shipping
-        return {
-            "subtotal": subtotal,
-            "tax": tax,
-            "shipping": shipping,
-            "total": total,
-        }
+    def get_total_price(self, obj):
+        return sum(item.quantity * item.product.price for item in obj.items.all())
 
-    def get_subtotal(self, obj: Cart) -> Decimal:
-        return self._totals()["subtotal"]
-
-    def get_tax(self, obj: Cart) -> Decimal:
-        return self._totals()["tax"]
-
-    def get_shipping(self, obj: Cart) -> Decimal:
-        return self._totals()["shipping"]
-
-    def get_total(self, obj: Cart) -> Decimal:
-        return self._totals()["total"]
+    def get_total_items(self, obj):
+        return sum(item.quantity for item in obj.items.all())
 
 
 class AddToCartSerializer(serializers.Serializer):
-    """Validate add-to-cart request."""
+    product_id = serializers.IntegerField()
+    quantity = serializers.IntegerField(min_value=1, default=1)
 
-    product_id = serializers.IntegerField(min_value=1)
-    quantity = serializers.IntegerField(min_value=1)
+    def validate_product_id(self, value):
+        if not Product.objects.filter(id=value).exists():
+            raise serializers.ValidationError("Product not found.")
+        return value
 
 
 class UpdateCartItemSerializer(serializers.Serializer):
-    """Validate quantity update request."""
-
     quantity = serializers.IntegerField(min_value=1)
-
-

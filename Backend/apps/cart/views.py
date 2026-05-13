@@ -1,184 +1,129 @@
-"""Cart API views for NovaCart."""
-
-from __future__ import annotations
-
-from rest_framework import status, viewsets
-from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
-
-from apps.products.models import Product
-from core.utils import api_response
-from core.exceptions import CartException, CartOwnershipException
-
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework import status
 from .models import Cart, CartItem
-from .permissions import IsCartOwner, IsCartItemOwner
-from .serializers import (
-    AddToCartSerializer,
-    CartItemSerializer,
-    CartSerializer,
-    UpdateCartItemSerializer,
-)
-from .services import CartService
-from .throttles import CartUserThrottle, CartAnonThrottle
+from .serializers import CartSerializer, AddToCartSerializer, UpdateCartItemSerializer
+from apps.products.models import Product
 
 
-class CartViewSet(viewsets.ViewSet):
-    """Cart endpoints."""
+class CartView(APIView):
+    permission_classes = [AllowAny]
 
-    permission_classes = []
-    throttle_classes = [CartUserThrottle, CartAnonThrottle]
+    def get_cart(self, request):
+        if request.user.is_authenticated:
+            cart, _ = Cart.objects.get_or_create(user=request.user)
+        else:
+            if not request.session.session_key:
+                request.session.create()
+            cart, _ = Cart.objects.get_or_create(session_key=request.session.session_key)
+        return cart
 
-    def _get_request_cart(self) -> Cart:
-        return CartService.get_or_create_cart(self.request)
-
-    def list(self, request):
-        cart = self._get_request_cart()
-        cart = (
-            Cart.objects.select_related("user")
-            .prefetch_related("items__product")
-            .get(id=cart.id)
-        )
-
-        if not self._is_cart_owner(cart):
-            raise CartOwnershipException()
-
+    def get(self, request):
+        cart = self.get_cart(request)
         serializer = CartSerializer(cart)
-        return api_response(
-            success=True,
-            data=serializer.data,
-        )
+        return Response(serializer.data)
 
-    @action(detail=False, methods=["delete"])
-    def clear(self, request):
-        cart = self._get_request_cart()
-
-        if not self._is_cart_owner(cart):
-            raise CartOwnershipException()
-
-        CartService.clear_cart(cart)
-        return api_response(success=True, data={})
-
-    def _is_cart_owner(self, cart: Cart) -> bool:
-        """Check if request user/session owns cart."""
-        if self.request.user and self.request.user.is_authenticated:
-            return cart.user_id == self.request.user.id
-
-        session_key = self.request.session.session_key
-        return bool(session_key) and cart.session_key == session_key
-
-
-class CartItemViewSet(viewsets.ViewSet):
-    """Cart item endpoints."""
-
-    throttle_classes = [CartUserThrottle, CartAnonThrottle]
-
-    def _get_request_cart(self) -> Cart:
-        return CartService.get_or_create_cart(self.request)
-
-    def _is_item_owner(self, item: CartItem) -> bool:
-        """Check if request user/session owns cart item."""
-        if self.request.user and self.request.user.is_authenticated:
-            return item.cart.user_id == self.request.user.id
-
-        session_key = self.request.session.session_key
-        return bool(session_key) and item.cart.session_key == session_key
-
-    def _get_fresh_cart(self, cart: Cart) -> Cart:
-        """Retrieve cart with optimized queries."""
-        return (
-            Cart.objects.prefetch_related("items__product")
-            .select_related("user")
-            .get(id=cart.id)
-        )
-
-    def create(self, request):
+    def post(self, request):
         serializer = AddToCartSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        cart = self._get_request_cart()
+        cart = self.get_cart(request)
+        product = Product.objects.get(id=serializer.validated_data['product_id'])
+        quantity = serializer.validated_data['quantity']
 
-        try:
-            CartService.add_item(
-                cart,
-                product_id=serializer.validated_data["product_id"],
-                quantity=serializer.validated_data["quantity"],
-            )
-        except CartException as e:
-            return api_response(
-                success=False,
-                message=str(e.detail),
-                status_code=status.HTTP_400_BAD_REQUEST,
-            )
+        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+        if not created:
+            cart_item.quantity += quantity
+        else:
+            cart_item.quantity = quantity
+        cart_item.save()
 
-        cart = self._get_fresh_cart(cart)
-        cart_serializer = CartSerializer(cart)
-        return api_response(
-            success=True,
-            data=cart_serializer.data,
-            status_code=status.HTTP_201_CREATED,
-        )
+        return Response(CartSerializer(cart).data, status=status.HTTP_201_CREATED)
 
-    def partial_update(self, request, pk=None):
-        item_id = int(pk)
+
+class CartItemView(APIView):
+    permission_classes = [AllowAny]
+
+    def get_cart(self, request):
+        if request.user.is_authenticated:
+            cart, _ = Cart.objects.get_or_create(user=request.user)
+        else:
+            if not request.session.session_key:
+                request.session.create()
+            cart, _ = Cart.objects.get_or_create(session_key=request.session.session_key)
+        return cart
+
+    def patch(self, request, pk):
         serializer = UpdateCartItemSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        cart = self._get_request_cart()
+        cart = self.get_cart(request)
+        try:
+            cart_item = CartItem.objects.get(id=pk, cart=cart)
+        except CartItem.DoesNotExist:
+            return Response({"error": "Item not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        cart_item.quantity = serializer.validated_data['quantity']
+        cart_item.save()
+        return Response(CartSerializer(cart).data)
+
+    def delete(self, request, pk):
+        cart = self.get_cart(request)
+        try:
+            cart_item = CartItem.objects.get(id=pk, cart=cart)
+        except CartItem.DoesNotExist:
+            return Response({"error": "Item not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        cart_item.delete()
+        return Response({"message": "Item removed."})
+
+
+class ClearCartView(APIView):
+    permission_classes = [AllowAny]
+
+    def get_cart(self, request):
+        if request.user.is_authenticated:
+            cart, _ = Cart.objects.get_or_create(user=request.user)
+        else:
+            if not request.session.session_key:
+                request.session.create()
+            cart, _ = Cart.objects.get_or_create(session_key=request.session.session_key)
+        return cart
+
+    def delete(self, request):
+        cart = self.get_cart(request)
+        cart.items.all().delete()
+        return Response({"message": "Cart cleared."})
+
+
+class MergeCartView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        session_key = request.data.get('session_key')
+        if not session_key:
+            return Response({"error": "session_key is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            item = CartItem.objects.select_related("cart").get(
-                id=item_id,
-                cart=cart,
+            guest_cart = Cart.objects.get(session_key=session_key)
+        except Cart.DoesNotExist:
+            return Response({"error": "Guest cart not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        user_cart, _ = Cart.objects.get_or_create(user=request.user)
+
+        for guest_item in guest_cart.items.all():
+            user_item, created = CartItem.objects.get_or_create(
+                cart=user_cart,
+                product=guest_item.product
             )
-            if not self._is_item_owner(item):
-                raise CartOwnershipException()
+            if not created:
+                user_item.quantity += guest_item.quantity
+            else:
+                user_item.quantity = guest_item.quantity
+            user_item.save()
 
-            CartService.update_quantity(
-                cart,
-                item_id=item_id,
-                quantity=serializer.validated_data["quantity"],
-            )
-        except CartItem.DoesNotExist:
-            return api_response(
-                success=False,
-                message="Cart item not found",
-                status_code=status.HTTP_404_NOT_FOUND,
-            )
-        except CartException as e:
-            return api_response(
-                success=False,
-                message=str(e.detail),
-                status_code=status.HTTP_400_BAD_REQUEST,
-            )
-
-        cart = self._get_fresh_cart(cart)
-        return api_response(
-            success=True,
-            data=CartSerializer(cart).data,
-        )
-
-    def destroy(self, request, pk=None):
-        item_id = int(pk)
-        cart = self._get_request_cart()
-
-        try:
-            item = CartItem.objects.select_related("cart").get(
-                id=item_id,
-                cart=cart,
-            )
-            if not self._is_item_owner(item):
-                raise CartOwnershipException()
-
-            CartService.remove_item(cart, item_id=item_id)
-        except CartItem.DoesNotExist:
-            return api_response(
-                success=False,
-                message="Cart item not found",
-                status_code=status.HTTP_404_NOT_FOUND,
-            )
-
-        return api_response(success=True, data={})
-
-
+        guest_cart.delete()
+        return Response(CartSerializer(user_cart).data)

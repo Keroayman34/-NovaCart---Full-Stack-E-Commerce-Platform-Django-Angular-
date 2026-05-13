@@ -1,15 +1,9 @@
-"""URL routing for cart APIs."""
-
-from django.urls import include, path
-from rest_framework.routers import DefaultRouter
-
-from .views import CartItemViewSet, CartViewSet
-
-router = DefaultRouter()
-router.register(r"cart", CartViewSet, basename="cart")
-router.register(r"cart/items", CartItemViewSet, basename="cart-items")
+from django.urls import path
+from .views import CartView, CartItemView, ClearCartView, MergeCartView
 
 urlpatterns = [
-    path("", include(router.urls)),
+    path('cart/', CartView.as_view(), name='cart'),
+    path('cart/clear/', ClearCartView.as_view(), name='cart-clear'),
+    path('cart/merge/', MergeCartView.as_view(), name='cart-merge'),
+    path('cart/<int:pk>/', CartItemView.as_view(), name='cart-item'),
 ]
-

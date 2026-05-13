@@ -1,0 +1,398 @@
+================================================================================
+E-COMMERCE DATABASE SCHEMA DOCUMENTATION
+================================================================================
+
+Generated: 2026-05-12
+
+This document describes the complete database schema for the E-Commerce platform.
+The database uses Django ORM with SQLite backend.
+
+================================================================================
+1. USERS TABLE
+================================================================================
+
+Model: User (apps/users/models.py)
+Fields:
+  - id (BigAutoField): Primary key
+  - password (CharField): Hashed password
+  - last_login (DateTimeField): Last login timestamp
+  - is_superuser (BooleanField): Admin privilege flag
+  - email (EmailField, unique): User email address
+  - first_name (CharField): First name
+  - last_name (CharField): Last name
+  - is_staff (BooleanField): Staff status for admin access
+  - is_active (BooleanField): Account active flag
+  - date_joined (DateTimeField): Registration date
+  - phone (CharField): Phone number (optional)
+  - role (CharField): User role - choices: 'customer', 'seller', 'admin'
+  - is_verified (BooleanField): Email verification status
+  - avatar (ImageField): Profile picture (optional)
+
+Relations:
+  - One-to-Many with Product (as seller)
+  - One-to-Many with Cart
+  - One-to-Many with Order
+  - One-to-Many with Review
+  - One-to-One with Wishlist
+  - One-to-Many with Notification
+
+Current Data: 22 users total
+  - 1 Admin
+  - 5 Sellers
+  - 16 Customers
+
+================================================================================
+2. CATEGORIES TABLE
+================================================================================
+
+Model: Category (apps/products/models.py)
+Fields:
+  - id (BigAutoField): Primary key
+  - name (CharField, unique, indexed): Category name
+  - slug (SlugField, unique, auto-generated): URL-friendly identifier
+  - description (TextField): Category description (optional)
+  - image (ImageField): Category icon/image (optional)
+  - is_active (BooleanField, indexed): Active status
+  - created_at (DateTimeField): Creation timestamp
+  - updated_at (DateTimeField): Last update timestamp
+
+Relations:
+  - One-to-Many with Product
+
+Current Data: 8 categories
+  1. Electronics
+  2. Fashion
+  3. Home & Garden
+  4. Sports
+  5. Books
+  6. Beauty
+  7. Toys & Games
+  8. Automotive
+
+================================================================================
+3. PRODUCTS TABLE
+================================================================================
+
+Model: Product (apps/products/models.py)
+Fields:
+  - id (BigAutoField): Primary key
+  - category_id (ForeignKey): Reference to Category
+  - seller_id (ForeignKey): Reference to User (seller)
+  - name (CharField, indexed): Product name
+  - slug (SlugField, unique, auto-generated): URL-friendly identifier
+  - description (TextField): Detailed product description
+  - sku (CharField, unique, indexed): Stock Keeping Unit
+  - price (DecimalField): Product price (max 10 digits, 2 decimals, min 0.01)
+  - stock_quantity (PositiveIntegerField): Available inventory
+  - is_active (BooleanField, indexed): Visibility to customers
+  - is_deleted (BooleanField, indexed): Soft delete flag
+  - created_at (DateTimeField): Creation timestamp
+  - updated_at (DateTimeField): Last update timestamp
+
+Relations:
+  - Many-to-One with Category
+  - Many-to-One with User (seller)
+  - One-to-Many with ProductImage
+  - One-to-Many with CartItem
+  - One-to-Many with OrderItem
+  - One-to-Many with Review
+  - Many-to-Many with Wishlist
+
+Current Data: 35 products distributed across 8 categories
+  - Electronics: 10 products
+  - Fashion: 8 products
+  - Home & Garden: 6 products
+  - Sports: 5 products
+  - Books: 2 products
+  - Beauty: 2 products
+  - Toys & Games: 2 products
+  
+Price range: $20.00 - $1,199.99
+Stock quantity range: 20 - 200 units per product
+
+================================================================================
+4. PRODUCT IMAGES TABLE
+================================================================================
+
+Model: ProductImage (apps/products/models.py)
+Fields:
+  - id (BigAutoField): Primary key
+  - product_id (ForeignKey): Reference to Product
+  - image (ImageField): Product image file
+  - is_primary (BooleanField, indexed): Primary image flag
+  - alt_text (CharField): Alternative text for accessibility
+  - created_at (DateTimeField): Upload timestamp
+
+Relations:
+  - Many-to-One with Product
+
+Ordering: Primary images first, then by creation date
+
+================================================================================
+5. CARTS TABLE
+================================================================================
+
+Model: Cart (apps/cart/models.py)
+Fields:
+  - id (BigAutoField): Primary key
+  - user_id (ForeignKey, nullable): Reference to User for authenticated users
+  - session_key (CharField, nullable, indexed): Django session key for guest users
+  - coupon_code (CharField, nullable): Promotional coupon code
+  - created_at (DateTimeField): Cart creation timestamp
+  - updated_at (DateTimeField): Last update timestamp
+
+Constraints:
+  - One active cart per user (unique constraint on user_id when not null)
+  - One active cart per session (unique constraint on session_key when not null)
+
+Relations:
+  - One-to-Many with CartItem
+  - Many-to-One with User (nullable)
+
+Current Data: 10 carts with 35 items total
+  - Average items per cart: 3.5
+  - Items per cart range: 2-5
+
+================================================================================
+6. CART ITEMS TABLE
+================================================================================
+
+Model: CartItem (apps/cart/models.py)
+Fields:
+  - id (BigAutoField): Primary key
+  - cart_id (ForeignKey): Reference to Cart
+  - product_id (ForeignKey): Reference to Product
+  - quantity (PositiveIntegerField): Item quantity
+
+Constraints:
+  - Unique constraint on (cart_id, product_id) - one product per cart
+
+Relations:
+  - Many-to-One with Cart
+  - Many-to-One with Product
+
+Current Data: 35 cart items
+  - Quantity per item range: 1-3
+
+================================================================================
+7. ORDERS TABLE
+================================================================================
+
+Model: Order (apps/orders/models.py)
+Fields:
+  - id (BigAutoField): Primary key
+  - user_id (ForeignKey): Reference to User (customer)
+  - status (CharField): Order status - choices:
+      * pending: Initial order state
+      * confirmed: Order confirmed by seller
+      * shipped: Order in transit
+      * delivered: Order delivered
+      * cancelled: Order cancelled
+  - total_price (DecimalField): Order total (default 0.00)
+  - address (TextField): Delivery address
+  - created_at (DateTimeField): Order creation timestamp
+  - updated_at (DateTimeField): Last update timestamp
+
+Relations:
+  - Many-to-One with User
+  - One-to-Many with OrderItem
+
+Current Data: 38 orders
+  - Status distribution: Randomly distributed across all statuses
+  - Total items: 115 order items
+  - Average items per order: 3
+
+Ordering: Most recent orders first
+
+================================================================================
+8. ORDER ITEMS TABLE
+================================================================================
+
+Model: OrderItem (apps/orders/models.py)
+Fields:
+  - id (BigAutoField): Primary key
+  - order_id (ForeignKey): Reference to Order
+  - product_id (ForeignKey): Reference to Product
+  - quantity (PositiveIntegerField): Ordered quantity
+  - price (DecimalField): Price per unit at time of order
+
+Relations:
+  - Many-to-One with Order
+  - Many-to-One with Product
+
+Current Data: 115 order items
+  - Quantity per item range: 1-3
+
+================================================================================
+9. REVIEWS TABLE
+================================================================================
+
+Model: Review (apps/reviews/models.py)
+Fields:
+  - id (BigAutoField): Primary key
+  - user_id (ForeignKey): Reference to User (reviewer)
+  - product_id (ForeignKey): Reference to Product
+  - rating (PositiveSmallIntegerField): Rating value (typically 1-5)
+  - comment (TextField): Review text (optional)
+  - created_at (DateTimeField): Review creation timestamp
+
+Constraints:
+  - Unique constraint on (user_id, product_id) - one review per product per user
+
+Relations:
+  - Many-to-One with User
+  - Many-to-One with Product
+
+Current Data: 58 reviews
+  - Rating range: 3-5 stars
+  - Average ratings per product: varies by product
+
+Ordering: Most recent reviews first
+
+================================================================================
+10. WISHLISTS TABLE
+================================================================================
+
+Model: Wishlist (apps/wishlist/models.py)
+Fields:
+  - id (BigAutoField): Primary key
+  - user_id (OneToOneField): Reference to User (unique)
+  - products (ManyToMany): Reference to Products
+  - created_at (DateTimeField): Wishlist creation timestamp
+
+Relations:
+  - One-to-One with User
+  - Many-to-Many with Product
+
+Current Data: 16 wishlists (one per customer)
+  - Average items per wishlist: 5.3
+  - Items per wishlist range: 3-7
+
+================================================================================
+11. NOTIFICATIONS TABLE
+================================================================================
+
+Model: Notification (apps/notifications/models.py)
+Fields:
+  - id (BigAutoField): Primary key
+  - user_id (ForeignKey): Reference to User (recipient)
+  - type (CharField): Notification type - choices:
+      * order_confirmed: Order confirmation
+      * order_shipped: Shipment notification
+      * order_delivered: Delivery confirmation
+      * order_cancelled: Cancellation notice
+  - message (TextField): Notification message
+  - is_read (BooleanField): Read status
+  - created_at (DateTimeField): Notification creation timestamp
+
+Relations:
+  - Many-to-One with User
+
+Current Data: 53 notifications
+  - Status: Mix of read and unread
+  - Average notifications per customer: 3.3
+
+Ordering: Most recent notifications first
+
+================================================================================
+DATABASE STATISTICS
+================================================================================
+
+Total Records by Table:
+  - Users: 22
+  - Categories: 8
+  - Products: 35
+  - Product Images: 0 (not currently populated)
+  - Carts: 10
+  - Cart Items: 35
+  - Orders: 38
+  - Order Items: 115
+  - Reviews: 58
+  - Wishlists: 16
+  - Notifications: 53
+
+Total Database Size: Approximately 1-2 MB (SQLite)
+
+================================================================================
+INDEXING STRATEGY
+================================================================================
+
+The following fields are indexed for optimal query performance:
+
+Users:
+  - email (unique)
+
+Categories:
+  - name (unique, indexed)
+  - slug (unique, indexed)
+  - is_active, created_at
+
+Products:
+  - slug (unique)
+  - sku (unique)
+  - seller, is_deleted
+  - is_active, is_deleted, created_at
+  - category, is_active, is_deleted
+
+Carts:
+  - session_key (indexed)
+  - user, created_at
+  - session_key, created_at
+
+Orders:
+  - user, created_at
+
+Reviews:
+  - user, product (unique constraint)
+
+================================================================================
+KEY RELATIONSHIPS
+================================================================================
+
+User Roles:
+  - Admin: Full access to system, can manage all users and products
+  - Seller: Can create and manage their own products
+  - Customer: Can browse, purchase, and review products
+
+Data Flow Examples:
+
+1. Shopping Flow:
+   User (Customer) → Browse Categories → View Products → Add to Cart (CartItem) 
+   → Create Order (OrderItem) → Post Review
+
+2. Inventory Flow:
+   User (Seller) → Create Product → Set Price/Stock → Update via Orders
+
+3. Notification Flow:
+   Order Status Change → Create Notification → Send to User
+
+================================================================================
+CONSTRAINTS & BUSINESS RULES
+================================================================================
+
+1. Product Management:
+   - Each product must have a seller (Foreign Key NOT NULL)
+   - Each product must belong to a category (Foreign Key PROTECT on delete)
+   - SKU must be unique
+   - Price minimum: 0.01
+   - Stock quantity minimum: 0
+
+2. Cart Management:
+   - Only one product per cart (enforced by unique constraint)
+   - Cart can be for user OR session (not both)
+   - One active cart per user
+
+3. Order Management:
+   - Each order belongs to exactly one customer
+   - Order items capture price at time of purchase
+   - Status transitions: pending → confirmed → shipped → delivered
+
+4. Reviews:
+   - One review per user per product
+   - Rating values typically 1-5
+
+5. Wishlists:
+   - One wishlist per user (OneToOne relationship)
+   - Can have multiple products
+
+================================================================================
