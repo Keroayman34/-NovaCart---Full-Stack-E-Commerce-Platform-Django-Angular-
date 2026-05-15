@@ -1,0 +1,105 @@
+<div class="admin-categories">
+  <div class="page-header">
+    <div class="header-content">
+      <h1>Categories</h1>
+      <p class="subtitle">Manage product categories</p>
+    </div>
+    <button class="btn-add-category" (click)="openAddForm()">+ Add Category</button>
+  </div>
+
+  <!-- Alerts -->
+  <div class="alert alert-error" *ngIf="errorMessage">{{ errorMessage }}</div>
+  <div class="alert alert-success" *ngIf="successMessage">{{ successMessage }}</div>
+
+  <!-- Loading State -->
+  <div class="loading-state" *ngIf="loading && categories.length === 0">
+    <div class="spinner"></div>
+    <p>Loading categories...</p>
+  </div>
+
+  <!-- Search -->
+  <div class="search-section" *ngIf="!loading || categories.length > 0">
+    <div class="search-group">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Search categories..."
+        class="search-input"
+      />
+      <button class="btn-search" (click)="onSearch()">Search</button>
+      <button class="btn-reset" (click)="resetSearch()" *ngIf="searchTerm">Reset</button>
+    </div>
+  </div>
+
+  <!-- Categories Table -->
+  <div class="table-container" *ngIf="!loading || categories.length > 0">
+    <div *ngIf="categories.length === 0" class="empty-state">
+      <p>No categories found. Create one to get started!</p>
+    </div>
+
+    <table class="categories-table" *ngIf="categories.length > 0">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Slug</th>
+          <th>Products</th>
+          <th>Created</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <td class="name-cell">{{ category.name }}</td>
+          <td class="description-cell">{{ category.description || 'N/A' }}</td>
+          <td class="slug-cell">{{ category.slug }}</td>
+          <td class="count-cell">
+            <span class="product-count">{{ category.product_count }}</span>
+          </td>
+          <td class="date-cell">{{ category.created_at | date: 'short' }}</td>
+          <td class="actions-cell">
+            <button class="btn-action btn-edit" (click)="openEditForm(category)">Edit</button>
+            <button class="btn-action btn-delete" (click)="deleteCategory(category)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination-section" *ngIf="categories.length > 0">
+    <button class="btn-pagination" (click)="previousPage()" [disabled]="currentPage === 1">
+      ← Previous
+    </button>
+
+    <div class="page-buttons">
+      <button
+        *ngFor="let pageNum of pageNumbers"
+        class="btn-page"
+        [class.active]="pageNum === currentPage"
+        (click)="goToPage(pageNum)"
+      >
+        {{ pageNum }}
+      </button>
+    </div>
+
+    <button class="btn-pagination" (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Next →
+    </button>
+
+    <span class="page-info">Page {{ currentPage }} of {{ totalPages }}</span>
+  </div>
+
+  <!-- Category Form Modal -->
+  <div *ngIf="showForm" class="modal-overlay" (click)="closeForm()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <app-category-form
+        [mode]="formMode"
+        [category]="selectedCategory"
+        (formSubmitted)="onFormSubmit()"
+        (formCancelled)="closeForm()"
+      >
+      </app-category-form>
+    </div>
+  </div>
+</div>

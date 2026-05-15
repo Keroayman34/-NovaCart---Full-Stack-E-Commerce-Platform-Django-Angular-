@@ -1,0 +1,157 @@
+<div class="guest-checkout">
+  <!-- Choice Screen -->
+  <div *ngIf="!isGuestMode" class="choice-screen">
+    <h2>Proceed to Checkout</h2>
+    <p class="subtitle">Choose how you'd like to continue</p>
+
+    <div class="choice-buttons">
+      <button (click)="continueAsGuest()" class="btn btn-guest">
+        <span class="btn-icon">👤</span>
+        <span class="btn-text">
+          <strong>Continue as Guest</strong>
+          <small>No account needed</small>
+        </span>
+      </button>
+
+      <button (click)="goToLogin()" class="btn btn-login">
+        <span class="btn-icon">🔐</span>
+        <span class="btn-text">
+          <strong>Sign In</strong>
+          <small>Use existing account</small>
+        </span>
+      </button>
+    </div>
+
+    <div class="divider">or</div>
+
+    <p class="signup-prompt">
+      Don't have an account?
+      <a href="/register" class="link">Create one here</a>
+    </p>
+  </div>
+
+  <!-- Guest Form Screen -->
+  <div *ngIf="isGuestMode" class="guest-form-screen">
+    <button (click)="backToChoice()" class="btn-back">← Back</button>
+
+    <h2>Guest Checkout</h2>
+    <p class="subtitle">Enter your email and shipping information</p>
+
+    <form [formGroup]="guestForm" (ngSubmit)="submitGuestForm()" class="guest-form">
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email Address <span class="required">*</span></label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="your@email.com"
+          [class.invalid]="controlInvalid('email')"
+        />
+        <span *ngIf="controlInvalid('email')" class="error-message">
+          Please enter a valid email
+        </span>
+      </div>
+
+      <!-- Name -->
+      <div class="form-group">
+        <label for="name">Full Name <span class="required">*</span></label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="John Doe"
+          [class.invalid]="controlInvalid('name')"
+        />
+        <span *ngIf="controlInvalid('name')" class="error-message">
+          Name is required
+        </span>
+      </div>
+
+      <!-- Phone -->
+      <div class="form-group">
+        <label for="phone">Phone Number <span class="required">*</span></label>
+        <input
+          id="phone"
+          type="tel"
+          formControlName="phone"
+          placeholder="+1 (555) 123-4567"
+          [class.invalid]="controlInvalid('phone')"
+        />
+        <span *ngIf="controlInvalid('phone')" class="error-message">
+          Please enter a valid phone number
+        </span>
+      </div>
+
+      <!-- Address -->
+      <div class="form-group">
+        <label for="address">Street Address <span class="required">*</span></label>
+        <input
+          id="address"
+          type="text"
+          formControlName="address"
+          placeholder="123 Main St"
+          [class.invalid]="controlInvalid('address')"
+        />
+        <span *ngIf="controlInvalid('address')" class="error-message">
+          Address is required
+        </span>
+      </div>
+
+      <!-- City -->
+      <div class="form-group">
+        <label for="city">City <span class="required">*</span></label>
+        <input
+          id="city"
+          type="text"
+          formControlName="city"
+          placeholder="New York"
+          [class.invalid]="controlInvalid('city')"
+        />
+        <span *ngIf="controlInvalid('city')" class="error-message">
+          City is required
+        </span>
+      </div>
+
+      <!-- Country -->
+      <div class="form-group">
+        <label for="country">Country <span class="required">*</span></label>
+        <input
+          id="country"
+          type="text"
+          formControlName="country"
+          placeholder="United States"
+          [class.invalid]="controlInvalid('country')"
+        />
+        <span *ngIf="controlInvalid('country')" class="error-message">
+          Country is required
+        </span>
+      </div>
+
+      <!-- Postal Code -->
+      <div class="form-group">
+        <label for="postalCode">Postal Code <span class="required">*</span></label>
+        <input
+          id="postalCode"
+          type="text"
+          formControlName="postalCode"
+          placeholder="10001"
+          [class.invalid]="controlInvalid('postalCode')"
+        />
+        <span *ngIf="controlInvalid('postalCode')" class="error-message">
+          Postal code is required (min 3 characters)
+        </span>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn-submit" [disabled]="guestForm.invalid">
+        Continue to Payment
+      </button>
+    </form>
+
+    <p class="guest-info">
+      <strong>Note:</strong> We'll send an order confirmation to your email. You can create an
+      account later to track your order.
+    </p>
+  </div>
+</div>

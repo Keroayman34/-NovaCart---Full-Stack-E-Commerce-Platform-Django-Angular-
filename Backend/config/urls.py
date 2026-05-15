@@ -12,6 +12,7 @@ apps = [
     'wishlist',
     'reviews',
     'notifications',
+    'payments',
 ]
 
 api_urlpatterns = [path('', include(f'apps.{app}.urls')) for app in apps] + [

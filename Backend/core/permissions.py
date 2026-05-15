@@ -2,18 +2,40 @@ from rest_framework.permissions import BasePermission
 
 
 class IsAdmin(BasePermission):
-	# allow admin users
+	"""Allow admin users."""
+
 	def has_permission(self, request, view):
-		return bool(request.user and request.user.is_authenticated and request.user.role == "admin")
+		user = getattr(request, "user", None)
+		return bool(user and user.is_authenticated and getattr(user, "role", None) == "admin")
 
 
 class IsSeller(BasePermission):
-	# allow seller users
+	"""Allow seller users."""
+
 	def has_permission(self, request, view):
-		return bool(request.user and request.user.is_authenticated and request.user.role == "seller")
+		user = getattr(request, "user", None)
+		return bool(user and user.is_authenticated and getattr(user, "role", None) == "seller")
 
 
 class IsCustomer(BasePermission):
-	# allow customer users
+	"""Allow customer users."""
+
 	def has_permission(self, request, view):
-		return bool(request.user and request.user.is_authenticated and request.user.role == "customer")
+		user = getattr(request, "user", None)
+		return bool(user and user.is_authenticated and getattr(user, "role", None) == "customer")
+
+
+class IsAdminUser(BasePermission):
+	"""Allow access only to admin users (staff/superuser/role=admin)."""
+
+	message = "Admin privileges are required."
+
+	def has_permission(self, request, view):
+		user = getattr(request, "user", None)
+		if not user or not user.is_authenticated:
+			return False
+		return bool(
+			getattr(user, "is_staff", False)
+			or getattr(user, "is_superuser", False)
+			or getattr(user, "role", None) == "admin"
+		)

@@ -1,0 +1,130 @@
+<div class="admin-orders">
+  <div class="page-header">
+    <div class="header-content">
+      <h1>Orders</h1>
+      <p class="subtitle">Manage and track customer orders</p>
+    </div>
+  </div>
+
+  <!-- Alerts -->
+  <div class="alert alert-error" *ngIf="errorMessage">{{ errorMessage }}</div>
+  <div class="alert alert-success" *ngIf="successMessage">{{ successMessage }}</div>
+
+  <!-- Loading State -->
+  <div class="loading-state" *ngIf="loading && orders.length === 0">
+    <div class="spinner"></div>
+    <p>Loading orders...</p>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-section" *ngIf="!loading || orders.length > 0">
+    <div class="filter-group">
+      <label for="status-filter">Status:</label>
+      <select
+        id="status-filter"
+        [(ngModel)]="selectedStatus"
+        (change)="onStatusFilterChange()"
+        class="filter-select"
+      >
+        <option *ngFor="let opt of statusOptions" [value]="opt.value">
+          {{ opt.label }}
+        </option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="search-input">Search:</label>
+      <input
+        id="search-input"
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Order ID or customer name..."
+        class="filter-input"
+      />
+      <button class="btn-search" (click)="onSearch()">Search</button>
+    </div>
+
+    <button class="btn-reset" (click)="resetFilters()">Reset Filters</button>
+  </div>
+
+  <!-- Orders Table -->
+  <div class="table-container" *ngIf="!loading || orders.length > 0">
+    <div *ngIf="orders.length === 0" class="empty-state">
+      <p>No orders found. Try adjusting your filters.</p>
+    </div>
+
+    <table class="orders-table" *ngIf="orders.length > 0">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Email</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td class="order-id-cell">#{{ order.id }}</td>
+          <td class="customer-cell">{{ order.customer_name }}</td>
+          <td class="email-cell">{{ order.customer_email }}</td>
+          <td class="total-cell">{{ formatCurrency(order.total_amount) }}</td>
+          <td class="status-cell">
+            <span [ngClass]="getStatusBadgeClass(order.status)">
+              {{ getStatusLabel(order.status) }}
+            </span>
+          </td>
+          <td class="date-cell">{{ formatDate(order.created_at) }}</td>
+          <td class="actions-cell">
+            <button class="btn-action btn-view" (click)="viewOrderDetail(order)">
+              View Details
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination-section" *ngIf="orders.length > 0">
+    <button class="btn-pagination" (click)="previousPage()" [disabled]="currentPage === 1">
+      ← Previous
+    </button>
+
+    <div class="page-buttons">
+      <button
+        *ngFor="let pageNum of pageNumbers"
+        class="btn-page"
+        [class.active]="pageNum === currentPage"
+        (click)="goToPage(pageNum)"
+      >
+        {{ pageNum }}
+      </button>
+    </div>
+
+    <button class="btn-pagination" (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Next →
+    </button>
+
+    <span class="page-info">Page {{ currentPage }} of {{ totalPages }}</span>
+  </div>
+
+  <!-- Detail Modal -->
+  <div *ngIf="showDetailModal && selectedOrder" class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <app-order-detail
+        [order]="selectedOrder"
+        [updateStatusMode]="updateStatusMode"
+        [newStatus]="newStatus"
+        (enableStatusUpdate)="enableStatusUpdate()"
+        (statusUpdated)="saveStatusUpdate()"
+        (statusUpdateCancelled)="cancelStatusUpdate()"
+        (closeModal)="closeModal()"
+        (statusChanged)="newStatus = $event"
+      >
+      </app-order-detail>
+    </div>
+  </div>
+</div>

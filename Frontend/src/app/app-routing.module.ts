@@ -7,14 +7,18 @@ import { AddressesComponent } from "./features/profile/addresses/addresses.compo
 import { WishlistComponent } from "./features/profile/wishlist/wishlist.component";
 import { OrderHistoryComponent } from "./features/profile/order-history/order-history.component";
 import { OrderDetailComponent } from "./features/profile/order-history/order-detail/order-detail.component";
-import { AdminDashboardComponent } from "./features/admin/dashboard/dashboard.component";
+import { CheckoutComponent } from "./features/checkout/checkout.component";
+import { OrderConfirmationComponent } from "./features/checkout/order-confirmation/order-confirmation.component";
 import { AuthGuard } from "./core/guards/auth.guard";
-import { RoleGuard } from "./core/guards/role.guard";
+import { AdminGuard } from "./core/guards/admin.guard";
+import { SellerGuard } from "./features/seller/seller.guard";
 
 const routes: Routes = [
   { path: "", redirectTo: "products", pathMatch: "full" },
   { path: "products", component: ProductListComponent },
   { path: "products/:id", component: ProductDetailComponent },
+  { path: "checkout", component: CheckoutComponent },
+  { path: "order-confirmation/:id", component: OrderConfirmationComponent },
   {
     path: "profile",
     component: ProfilePageComponent,
@@ -42,9 +46,15 @@ const routes: Routes = [
   },
   {
     path: "admin",
-    component: AdminDashboardComponent,
-    canActivate: [RoleGuard],
-    data: { roles: ["admin"] },
+    loadChildren: () =>
+      import("./features/admin/admin.module").then((m) => m.AdminModule),
+    canActivate: [AdminGuard],
+  },
+  {
+    path: "seller",
+    loadChildren: () =>
+      import("./features/seller/seller.module").then((m) => m.SellerModule),
+    canActivate: [SellerGuard],
   },
   { path: "**", redirectTo: "products" },
 ];
