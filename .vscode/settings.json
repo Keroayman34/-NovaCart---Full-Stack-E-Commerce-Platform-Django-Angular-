@@ -1,0 +1,38 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/Backend/venv/bin/python",
+  "python.terminal.activateEnvInSelectedTerminal": true,
+  "python.analysis.extraPaths": ["${workspaceFolder}/Backend"],
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true,
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "Backend/venv": true,
+    "Frontend/dist": true,
+    "Frontend/.angular": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "Backend/venv": true,
+    "Frontend/dist": true
+  },
+  "emmet.includeLanguages": {
+    "django-html": "html"
+  },
+  "python.analysis.typeCheckingMode": "basic",
+  "files.associations": {
+    "*.html": "html"
+  },
+  "cSpell.words": ["simplejwt"]
+}

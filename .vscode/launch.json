@@ -1,0 +1,34 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Django: Run Server",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/Backend/manage.py",
+      "args": ["runserver", "8000"],
+      "django": true,
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/Backend",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/Backend"
+      }
+    },
+    {
+      "name": "Angular: Serve",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}/Frontend"
+    },
+    {
+      "name": "Django: Migrations",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/Backend/manage.py",
+      "args": ["migrate"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/Backend"
+    }
+  ]
+}

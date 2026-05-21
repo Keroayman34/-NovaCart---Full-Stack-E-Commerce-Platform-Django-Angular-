@@ -90,10 +90,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 DATABASES = {
-    'default': {
+	'default': {
         'ENGINE': os.getenv('DB_ENGINE'),
-        'NAME': BASE_DIR / os.getenv('DB_NAME'),
-    }
+		'NAME': os.getenv('DB_NAME'),
+		'USER': os.getenv('DB_USER'),
+		'PASSWORD': os.getenv('DB_PASSWORD'),
+		'HOST': os.getenv('DB_HOST', 'localhost'),
+		'PORT': os.getenv('DB_PORT', '5432'),
+	}
 }
 
 LANGUAGE_CODE = "en-us"

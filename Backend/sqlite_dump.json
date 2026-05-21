@@ -1,0 +1,4695 @@
+[
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$jfD3agsQuPSUXbBUQvrbjd$ag0VFOX3FdP45C4VKCI7WblCMmM7NwsdsyIx0CAisl4=",
+    "last_login": null,
+    "is_superuser": true,
+    "first_name": "Admin",
+    "last_name": "User",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:12.705Z",
+    "email": "admin@novacart.com",
+    "phone": "",
+    "role": "admin",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$CKgDM6nH4gWGY7MHpsMlhr$czh50x0vBQGuJNcol6HRO5YKLzuSbpBaTnrRYh1rABk=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Seller",
+    "last_name": "1",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:13.644Z",
+    "email": "seller1@novacart.com",
+    "phone": "",
+    "role": "seller",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$zcnxSykfmnVrERHdRrQlQJ$lE9ZYNVcvsqsui5ycDUvpLIPs0bXK1hjKtmd45/CbEQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Seller",
+    "last_name": "2",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:14.545Z",
+    "email": "seller2@novacart.com",
+    "phone": "",
+    "role": "seller",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$GelXrOsccTCGJ2atJNktYi$0rw6ZigCOOo6SmBXdX0EkamWpCkrR5y2CSBHDY4cXgI=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Seller",
+    "last_name": "3",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:15.438Z",
+    "email": "seller3@novacart.com",
+    "phone": "",
+    "role": "seller",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$YITalj6XgjVNPdgWCUXF46$kVBqsk8DXTYNT4QrtqMJ5qSvEweGpClx80Guw33Sqmg=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Seller",
+    "last_name": "4",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:16.333Z",
+    "email": "seller4@novacart.com",
+    "phone": "",
+    "role": "seller",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$a9rEzVAJLtzGF31CPdmdby$kOr7Ip3HDaJjB9nXTHVtCMNWWCrf3mihpDK8uhG4pNo=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Seller",
+    "last_name": "5",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:17.240Z",
+    "email": "seller5@novacart.com",
+    "phone": "",
+    "role": "seller",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$TB29PRAgjnk02CPaa8jvQ3$3FYtbM+seD+5V97a6pRg1BfB/LXP2Opuw/g6CjIscnM=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "John",
+    "last_name": "Doe",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:18.148Z",
+    "email": "customer1@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$QfqHSMHoiTTzhBqe1RzCXk$aHh3VGw6fx69CXQwaxXyzMuzx/GIFaylXH4pIFpZrzE=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Jane",
+    "last_name": "Smith",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:19.047Z",
+    "email": "customer2@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$nF2gef2MYEhxUBXGx427o9$ZJNO1B+rc5z94ZMrfMiZ0RyJ05QPQQqrOlECrTr0IX8=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Ahmed",
+    "last_name": "Hassan",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:19.928Z",
+    "email": "customer3@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$BaxX0IqBHOPcKYmc32qXjt$biUEfBJ9TfauRjPSJz/aBvQVB9gHEw53BBkvx3Txlqc=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Maria",
+    "last_name": "Garcia",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:20.822Z",
+    "email": "customer4@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$6kDdCSgyTiVnSoNh2mUimQ$a1rbMcN5DRS8JhK/iEO4Ke81r25vRmmzf13nw6yF9MA=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "David",
+    "last_name": "Johnson",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:21.708Z",
+    "email": "customer5@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 12,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$0rZUMnoUHwdPuwJeTMyqSc$ZlkMjxQ21gRKCWBff0zEWqgG06+AQzZsmPEtfq1XcF8=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Sarah",
+    "last_name": "Williams",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:22.614Z",
+    "email": "customer6@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 13,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$NAUi6zTXVIAhYMmm7HEJ3q$nbC1hZGiuEHufwfti0vHL26PVPJk7SlsaVLbK1goF5Q=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Ali",
+    "last_name": "Khan",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:23.516Z",
+    "email": "customer7@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 14,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$NIcbQIjAVlovFyUWFqcQTJ$ThmwieR9uZ0YGk6ql3x9ZZD9aQnm+7bYi5TINBk8JBo=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Emma",
+    "last_name": "Brown",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:24.423Z",
+    "email": "customer8@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 15,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$T50q7eo9rPaEs3GxRCCiq6$q7m9ONFUD+CTLmDd8cZT2caSMYtDlDGvk/hBI9Yrztg=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Michael",
+    "last_name": "Davis",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:25.318Z",
+    "email": "customer9@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 16,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$t69KJXSxmfADBq569ui1r2$lXKTa0n+PJePh3ozWBG6QPqinoMxkGR6P0d4/GejL3k=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Lisa",
+    "last_name": "Rodriguez",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:26.201Z",
+    "email": "customer10@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 17,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$L1GvxSv4IaawNYRjPV5cdu$9zxMEnhfijMvOHE2u2zSJhbxWQzgfQrNGNuhIojFOF4=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Omar",
+    "last_name": "Ibrahim",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:27.101Z",
+    "email": "customer11@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 18,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$It62fzq5dkaXDcHnCaXMvZ$kOMQiLcl2ttL05O3SEjy+WH/vKw7ypYEiOYNSRZNDvw=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Sofia",
+    "last_name": "Martinez",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:27.999Z",
+    "email": "customer12@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 19,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$eOLV7eKz2FC92ghdo4FAF3$kjWlL8xTt/fjn1aVZ9OZ+QM2H7UAtMEppREJ7IbJs7o=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "James",
+    "last_name": "Taylor",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:28.904Z",
+    "email": "customer13@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 20,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$9PGq3QznBuJSdFoQeTpEG9$u30fb16uECYQtDKFtn6/nRA0ED6ABrxoAu/ctMxqUhc=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Anna",
+    "last_name": "Anderson",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:29.801Z",
+    "email": "customer14@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 21,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$YCcKm2ZWYS9kAiZKm43hCP$8Ebpy5Dc+7bAJaI6E7Xr2jWrSkQtx8PwdBaW6T2b8j4=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Hassan",
+    "last_name": "Mohamed",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:30.699Z",
+    "email": "customer15@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 22,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$FvcGUSIEytQmiC9flxEZzP$H6VkiW2JwbFGp/7TBSiL8Kk7veqpQf2g2FTUK7eUT/k=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Olivia",
+    "last_name": "Thomas",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-12T22:04:31.592Z",
+    "email": "customer16@novacart.com",
+    "phone": "",
+    "role": "customer",
+    "is_verified": true,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "products.category",
+  "pk": 1,
+  "fields": {
+    "name": "Electronics",
+    "slug": "electronics",
+    "description": "Gadgets, phones, laptops and more",
+    "image": "",
+    "is_active": true,
+    "created_at": "2026-05-12T22:04:32.500Z",
+    "updated_at": "2026-05-12T22:04:32.500Z"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 2,
+  "fields": {
+    "name": "Fashion",
+    "slug": "fashion",
+    "description": "Clothing, shoes and accessories",
+    "image": "",
+    "is_active": true,
+    "created_at": "2026-05-12T22:04:32.505Z",
+    "updated_at": "2026-05-12T22:04:32.505Z"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 3,
+  "fields": {
+    "name": "Home & Garden",
+    "slug": "home-garden",
+    "description": "Furniture, decor and garden equipment",
+    "image": "",
+    "is_active": true,
+    "created_at": "2026-05-12T22:04:32.510Z",
+    "updated_at": "2026-05-12T22:04:32.510Z"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 4,
+  "fields": {
+    "name": "Sports",
+    "slug": "sports",
+    "description": "Fitness gear and outdoor equipment",
+    "image": "",
+    "is_active": true,
+    "created_at": "2026-05-12T22:04:32.515Z",
+    "updated_at": "2026-05-12T22:04:32.515Z"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 5,
+  "fields": {
+    "name": "Books",
+    "slug": "books",
+    "description": "Physical and digital books",
+    "image": "",
+    "is_active": true,
+    "created_at": "2026-05-12T22:04:32.519Z",
+    "updated_at": "2026-05-12T22:04:32.519Z"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 6,
+  "fields": {
+    "name": "Beauty",
+    "slug": "beauty",
+    "description": "Cosmetics, skincare and personal care",
+    "image": "",
+    "is_active": true,
+    "created_at": "2026-05-12T22:04:32.526Z",
+    "updated_at": "2026-05-12T22:04:32.526Z"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 7,
+  "fields": {
+    "name": "Toys & Games",
+    "slug": "toys-games",
+    "description": "Toys, games and entertainment",
+    "image": "",
+    "is_active": true,
+    "created_at": "2026-05-12T22:04:32.531Z",
+    "updated_at": "2026-05-12T22:04:32.531Z"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 8,
+  "fields": {
+    "name": "Automotive",
+    "slug": "automotive",
+    "description": "Car accessories and parts",
+    "image": "",
+    "is_active": true,
+    "created_at": "2026-05-12T22:04:32.535Z",
+    "updated_at": "2026-05-12T22:04:32.536Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "seller": 4,
+    "name": "iPhone 15 Pro",
+    "slug": "iphone-15-pro",
+    "description": "Latest Apple flagship phone",
+    "sku": "IPH15P001",
+    "price": "999.99",
+    "stock_quantity": 83,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.541Z",
+    "updated_at": "2026-05-12T22:04:32.541Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "category": 1,
+    "seller": 6,
+    "name": "Samsung Galaxy S24",
+    "slug": "samsung-galaxy-s24",
+    "description": "Premium Android smartphone",
+    "sku": "SGS24001",
+    "price": "899.99",
+    "stock_quantity": 42,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.547Z",
+    "updated_at": "2026-05-12T22:04:32.547Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "category": 1,
+    "seller": 3,
+    "name": "MacBook Air M3",
+    "slug": "macbook-air-m3",
+    "description": "Powerful laptop for professionals",
+    "sku": "MBA3M001",
+    "price": "1199.99",
+    "stock_quantity": 55,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.556Z",
+    "updated_at": "2026-05-12T22:04:32.556Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "category": 1,
+    "seller": 3,
+    "name": "iPad Pro 12.9",
+    "slug": "ipad-pro-129",
+    "description": "Large-screen tablet",
+    "sku": "IPADP12901",
+    "price": "1099.99",
+    "stock_quantity": 111,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.562Z",
+    "updated_at": "2026-05-12T22:04:32.562Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "category": 1,
+    "seller": 4,
+    "name": "Wireless Headphones",
+    "slug": "wireless-headphones",
+    "description": "Premium noise-cancelling headphones",
+    "sku": "WHP001",
+    "price": "199.99",
+    "stock_quantity": 71,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.568Z",
+    "updated_at": "2026-05-12T22:04:32.568Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 6,
+  "fields": {
+    "category": 1,
+    "seller": 4,
+    "name": "USB-C Hub",
+    "slug": "usb-c-hub",
+    "description": "Multi-port connectivity hub",
+    "sku": "USBCH001",
+    "price": "79.99",
+    "stock_quantity": 130,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.574Z",
+    "updated_at": "2026-05-12T22:04:32.574Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 7,
+  "fields": {
+    "category": 1,
+    "seller": 2,
+    "name": "Mechanical Keyboard",
+    "slug": "mechanical-keyboard",
+    "description": "High-performance gaming keyboard",
+    "sku": "MECH001",
+    "price": "149.99",
+    "stock_quantity": 189,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.579Z",
+    "updated_at": "2026-05-12T22:04:32.579Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 8,
+  "fields": {
+    "category": 1,
+    "seller": 3,
+    "name": "Gaming Mouse",
+    "slug": "gaming-mouse",
+    "description": "Precision gaming mouse",
+    "sku": "GMOUSE001",
+    "price": "89.99",
+    "stock_quantity": 147,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.589Z",
+    "updated_at": "2026-05-12T22:04:32.589Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 9,
+  "fields": {
+    "category": 1,
+    "seller": 6,
+    "name": "4K Webcam",
+    "slug": "4k-webcam",
+    "description": "Ultra HD webcam for streaming",
+    "sku": "WEBCAM4K001",
+    "price": "129.99",
+    "stock_quantity": 141,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.595Z",
+    "updated_at": "2026-05-12T22:04:32.595Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 10,
+  "fields": {
+    "category": 1,
+    "seller": 6,
+    "name": "Smart Watch",
+    "slug": "smart-watch",
+    "description": "Feature-rich smartwatch",
+    "sku": "SWATCH001",
+    "price": "399.99",
+    "stock_quantity": 157,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.600Z",
+    "updated_at": "2026-05-12T22:04:32.600Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 11,
+  "fields": {
+    "category": 2,
+    "seller": 6,
+    "name": "Leather Jacket",
+    "slug": "leather-jacket",
+    "description": "Premium genuine leather jacket",
+    "sku": "LJ001",
+    "price": "250.00",
+    "stock_quantity": 80,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.606Z",
+    "updated_at": "2026-05-12T22:04:32.606Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 12,
+  "fields": {
+    "category": 2,
+    "seller": 6,
+    "name": "Running Shoes",
+    "slug": "running-shoes",
+    "description": "Professional running footwear",
+    "sku": "RS001",
+    "price": "120.00",
+    "stock_quantity": 200,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.615Z",
+    "updated_at": "2026-05-12T22:04:32.615Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 13,
+  "fields": {
+    "category": 2,
+    "seller": 3,
+    "name": "Canvas Backpack",
+    "slug": "canvas-backpack",
+    "description": "Durable canvas backpack",
+    "sku": "CB001",
+    "price": "45.00",
+    "stock_quantity": 154,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.622Z",
+    "updated_at": "2026-05-12T22:04:32.622Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 14,
+  "fields": {
+    "category": 2,
+    "seller": 2,
+    "name": "Winter Coat",
+    "slug": "winter-coat",
+    "description": "Warm winter outerwear",
+    "sku": "WC001",
+    "price": "180.00",
+    "stock_quantity": 29,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.627Z",
+    "updated_at": "2026-05-12T22:04:32.627Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 15,
+  "fields": {
+    "category": 2,
+    "seller": 3,
+    "name": "Jeans",
+    "slug": "jeans",
+    "description": "Classic denim jeans",
+    "sku": "JEANS001",
+    "price": "70.00",
+    "stock_quantity": 136,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.635Z",
+    "updated_at": "2026-05-12T22:04:32.635Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 16,
+  "fields": {
+    "category": 2,
+    "seller": 6,
+    "name": "Dress Shoes",
+    "slug": "dress-shoes",
+    "description": "Elegant formal shoes",
+    "sku": "DS001",
+    "price": "95.00",
+    "stock_quantity": 158,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.641Z",
+    "updated_at": "2026-05-12T22:04:32.641Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 17,
+  "fields": {
+    "category": 2,
+    "seller": 6,
+    "name": "Casual Tee",
+    "slug": "casual-tee",
+    "description": "Comfortable casual t-shirt",
+    "sku": "TEE001",
+    "price": "25.00",
+    "stock_quantity": 118,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.647Z",
+    "updated_at": "2026-05-12T22:04:32.647Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 18,
+  "fields": {
+    "category": 2,
+    "seller": 4,
+    "name": "Wool Sweater",
+    "slug": "wool-sweater",
+    "description": "Cozy wool sweater",
+    "sku": "WS001",
+    "price": "60.00",
+    "stock_quantity": 198,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.653Z",
+    "updated_at": "2026-05-12T22:04:32.653Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 19,
+  "fields": {
+    "category": 3,
+    "seller": 3,
+    "name": "Coffee Table",
+    "slug": "coffee-table",
+    "description": "Modern coffee table",
+    "sku": "CT001",
+    "price": "150.00",
+    "stock_quantity": 79,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.659Z",
+    "updated_at": "2026-05-12T22:04:32.659Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 20,
+  "fields": {
+    "category": 3,
+    "seller": 2,
+    "name": "Ergonomic Chair",
+    "slug": "ergonomic-chair",
+    "description": "Office ergonomic chair",
+    "sku": "EC001",
+    "price": "300.00",
+    "stock_quantity": 164,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.668Z",
+    "updated_at": "2026-05-12T22:04:32.668Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 21,
+  "fields": {
+    "category": 3,
+    "seller": 3,
+    "name": "Desk Lamp",
+    "slug": "desk-lamp",
+    "description": "LED desk lamp",
+    "sku": "DL001",
+    "price": "45.00",
+    "stock_quantity": 43,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.674Z",
+    "updated_at": "2026-05-12T22:04:32.674Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 22,
+  "fields": {
+    "category": 3,
+    "seller": 3,
+    "name": "Bookshelf",
+    "slug": "bookshelf",
+    "description": "Wooden bookshelf",
+    "sku": "BS001",
+    "price": "120.00",
+    "stock_quantity": 46,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.680Z",
+    "updated_at": "2026-05-12T22:04:32.680Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 23,
+  "fields": {
+    "category": 3,
+    "seller": 2,
+    "name": "Garden Tools Set",
+    "slug": "garden-tools-set",
+    "description": "Complete garden tools",
+    "sku": "GTS001",
+    "price": "55.00",
+    "stock_quantity": 144,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.686Z",
+    "updated_at": "2026-05-12T22:04:32.686Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 24,
+  "fields": {
+    "category": 3,
+    "seller": 2,
+    "name": "Bed Frame",
+    "slug": "bed-frame",
+    "description": "Queen size bed frame",
+    "sku": "BF001",
+    "price": "400.00",
+    "stock_quantity": 194,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.695Z",
+    "updated_at": "2026-05-12T22:04:32.695Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 25,
+  "fields": {
+    "category": 4,
+    "seller": 3,
+    "name": "Yoga Mat",
+    "slug": "yoga-mat",
+    "description": "Non-slip yoga mat",
+    "sku": "YM001",
+    "price": "25.00",
+    "stock_quantity": 189,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.704Z",
+    "updated_at": "2026-05-12T22:04:32.704Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 26,
+  "fields": {
+    "category": 4,
+    "seller": 2,
+    "name": "Dumbbell Set",
+    "slug": "dumbbell-set",
+    "description": "Adjustable dumbbell set",
+    "sku": "DS001B",
+    "price": "80.00",
+    "stock_quantity": 143,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.714Z",
+    "updated_at": "2026-05-12T22:04:32.714Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 27,
+  "fields": {
+    "category": 4,
+    "seller": 5,
+    "name": "Treadmill",
+    "slug": "treadmill",
+    "description": "Home treadmill",
+    "sku": "TM001",
+    "price": "600.00",
+    "stock_quantity": 119,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.722Z",
+    "updated_at": "2026-05-12T22:04:32.722Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 28,
+  "fields": {
+    "category": 4,
+    "seller": 4,
+    "name": "Resistance Bands",
+    "slug": "resistance-bands",
+    "description": "Set of resistance bands",
+    "sku": "RB001",
+    "price": "30.00",
+    "stock_quantity": 89,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.732Z",
+    "updated_at": "2026-05-12T22:04:32.732Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 29,
+  "fields": {
+    "category": 4,
+    "seller": 5,
+    "name": "Bicycle",
+    "slug": "bicycle",
+    "description": "Mountain bike",
+    "sku": "BIKE001",
+    "price": "350.00",
+    "stock_quantity": 163,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.740Z",
+    "updated_at": "2026-05-12T22:04:32.740Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 30,
+  "fields": {
+    "category": 5,
+    "seller": 5,
+    "name": "Python Programming",
+    "slug": "python-programming",
+    "description": "Learn Python programming",
+    "sku": "PYPROG001",
+    "price": "45.00",
+    "stock_quantity": 185,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.748Z",
+    "updated_at": "2026-05-12T22:04:32.748Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 31,
+  "fields": {
+    "category": 5,
+    "seller": 3,
+    "name": "Clean Code",
+    "slug": "clean-code",
+    "description": "Guide to writing clean code",
+    "sku": "CC001",
+    "price": "42.00",
+    "stock_quantity": 196,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.759Z",
+    "updated_at": "2026-05-12T22:04:32.759Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 32,
+  "fields": {
+    "category": 6,
+    "seller": 4,
+    "name": "Face Moisturizer",
+    "slug": "face-moisturizer",
+    "description": "Hydrating face moisturizer",
+    "sku": "FM001",
+    "price": "35.00",
+    "stock_quantity": 166,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.767Z",
+    "updated_at": "2026-05-12T22:04:32.767Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 33,
+  "fields": {
+    "category": 6,
+    "seller": 5,
+    "name": "Lipstick Set",
+    "slug": "lipstick-set",
+    "description": "Multi-shade lipstick set",
+    "sku": "LS001",
+    "price": "25.00",
+    "stock_quantity": 111,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.776Z",
+    "updated_at": "2026-05-12T22:04:32.776Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 34,
+  "fields": {
+    "category": 7,
+    "seller": 3,
+    "name": "Board Game",
+    "slug": "board-game",
+    "description": "Popular board game",
+    "sku": "BG001",
+    "price": "40.00",
+    "stock_quantity": 51,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.784Z",
+    "updated_at": "2026-05-12T22:04:32.784Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 35,
+  "fields": {
+    "category": 7,
+    "seller": 6,
+    "name": "Puzzle Set",
+    "slug": "puzzle-set",
+    "description": "1000-piece puzzle",
+    "sku": "PZ001",
+    "price": "20.00",
+    "stock_quantity": 104,
+    "is_active": true,
+    "is_deleted": false,
+    "created_at": "2026-05-12T22:04:32.791Z",
+    "updated_at": "2026-05-12T22:04:32.791Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 1,
+  "fields": {
+    "user": 7,
+    "session_key": null,
+    "coupon_code": null,
+    "created_at": "2026-05-12T22:04:32.802Z",
+    "updated_at": "2026-05-12T22:04:32.802Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 2,
+  "fields": {
+    "user": 8,
+    "session_key": null,
+    "coupon_code": null,
+    "created_at": "2026-05-12T22:04:32.830Z",
+    "updated_at": "2026-05-12T22:04:32.830Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 3,
+  "fields": {
+    "user": 9,
+    "session_key": null,
+    "coupon_code": null,
+    "created_at": "2026-05-12T22:04:32.863Z",
+    "updated_at": "2026-05-12T22:04:32.863Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 4,
+  "fields": {
+    "user": 10,
+    "session_key": null,
+    "coupon_code": null,
+    "created_at": "2026-05-12T22:04:32.884Z",
+    "updated_at": "2026-05-12T22:04:32.884Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 5,
+  "fields": {
+    "user": 11,
+    "session_key": null,
+    "coupon_code": null,
+    "created_at": "2026-05-12T22:04:32.915Z",
+    "updated_at": "2026-05-12T22:04:32.915Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 6,
+  "fields": {
+    "user": 12,
+    "session_key": null,
+    "coupon_code": null,
+    "created_at": "2026-05-12T22:04:32.929Z",
+    "updated_at": "2026-05-12T22:04:32.929Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 7,
+  "fields": {
+    "user": 13,
+    "session_key": null,
+    "coupon_code": null,
+    "created_at": "2026-05-12T22:04:32.951Z",
+    "updated_at": "2026-05-12T22:04:32.951Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 8,
+  "fields": {
+    "user": 14,
+    "session_key": null,
+    "coupon_code": null,
+    "created_at": "2026-05-12T22:04:32.966Z",
+    "updated_at": "2026-05-12T22:04:32.966Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 9,
+  "fields": {
+    "user": 15,
+    "session_key": null,
+    "coupon_code": null,
+    "created_at": "2026-05-12T22:04:32.989Z",
+    "updated_at": "2026-05-12T22:04:32.989Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 10,
+  "fields": {
+    "user": 16,
+    "session_key": null,
+    "coupon_code": null,
+    "created_at": "2026-05-12T22:04:33.008Z",
+    "updated_at": "2026-05-12T22:04:33.008Z"
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 1,
+  "fields": {
+    "cart": 1,
+    "product": 31,
+    "quantity": 2
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 2,
+  "fields": {
+    "cart": 1,
+    "product": 18,
+    "quantity": 1
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 3,
+  "fields": {
+    "cart": 1,
+    "product": 16,
+    "quantity": 2
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 4,
+  "fields": {
+    "cart": 1,
+    "product": 17,
+    "quantity": 1
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 5,
+  "fields": {
+    "cart": 2,
+    "product": 7,
+    "quantity": 2
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 6,
+  "fields": {
+    "cart": 2,
+    "product": 10,
+    "quantity": 1
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 7,
+  "fields": {
+    "cart": 2,
+    "product": 2,
+    "quantity": 1
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 8,
+  "fields": {
+    "cart": 2,
+    "product": 16,
+    "quantity": 1
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 9,
+  "fields": {
+    "cart": 2,
+    "product": 14,
+    "quantity": 1
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 10,
+  "fields": {
+    "cart": 3,
+    "product": 16,
+    "quantity": 2
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 11,
+  "fields": {
+    "cart": 3,
+    "product": 13,
+    "quantity": 3
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 12,
+  "fields": {
+    "cart": 3,
+    "product": 31,
+    "quantity": 3
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 13,
+  "fields": {
+    "cart": 4,
+    "product": 1,
+    "quantity": 2
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 14,
+  "fields": {
+    "cart": 4,
+    "product": 24,
+    "quantity": 1
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 15,
+  "fields": {
+    "cart": 4,
+    "product": 8,
+    "quantity": 1
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 16,
+  "fields": {
+    "cart": 4,
+    "product": 11,
+    "quantity": 2
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 17,
+  "fields": {
+    "cart": 4,
+    "product": 29,
+    "quantity": 2
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 18,
+  "fields": {
+    "cart": 5,
+    "product": 12,
+    "quantity": 1
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 19,
+  "fields": {
+    "cart": 5,
+    "product": 22,
+    "quantity": 2
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 20,
+  "fields": {
+    "cart": 6,
+    "product": 17,
+    "quantity": 3
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 21,
+  "fields": {
+    "cart": 6,
+    "product": 34,
+    "quantity": 1
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 22,
+  "fields": {
+    "cart": 6,
+    "product": 20,
+    "quantity": 3
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 23,
+  "fields": {
+    "cart": 7,
+    "product": 29,
+    "quantity": 1
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 24,
+  "fields": {
+    "cart": 7,
+    "product": 12,
+    "quantity": 1
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 25,
+  "fields": {
+    "cart": 8,
+    "product": 35,
+    "quantity": 2
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 26,
+  "fields": {
+    "cart": 8,
+    "product": 22,
+    "quantity": 3
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 27,
+  "fields": {
+    "cart": 8,
+    "product": 3,
+    "quantity": 3
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 28,
+  "fields": {
+    "cart": 9,
+    "product": 2,
+    "quantity": 2
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 29,
+  "fields": {
+    "cart": 9,
+    "product": 16,
+    "quantity": 3
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 30,
+  "fields": {
+    "cart": 9,
+    "product": 17,
+    "quantity": 3
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 31,
+  "fields": {
+    "cart": 10,
+    "product": 12,
+    "quantity": 3
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 32,
+  "fields": {
+    "cart": 10,
+    "product": 6,
+    "quantity": 2
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 33,
+  "fields": {
+    "cart": 10,
+    "product": 20,
+    "quantity": 2
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 34,
+  "fields": {
+    "cart": 10,
+    "product": 14,
+    "quantity": 1
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 35,
+  "fields": {
+    "cart": 10,
+    "product": 27,
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 1,
+  "fields": {
+    "user": 7,
+    "status": "pending",
+    "total_price": "1560.00",
+    "address": "6611 Main Street, City 41, Country",
+    "created_at": "2026-05-12T22:04:33.041Z",
+    "updated_at": "2026-05-12T22:04:33.055Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 2,
+  "fields": {
+    "user": 7,
+    "status": "pending",
+    "total_price": "689.99",
+    "address": "4882 Main Street, City 48, Country",
+    "created_at": "2026-05-12T22:04:33.059Z",
+    "updated_at": "2026-05-12T22:04:33.071Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 3,
+  "fields": {
+    "user": 8,
+    "status": "cancelled",
+    "total_price": "2804.98",
+    "address": "9556 Main Street, City 17, Country",
+    "created_at": "2026-05-12T22:04:33.075Z",
+    "updated_at": "2026-05-12T22:04:33.093Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 4,
+  "fields": {
+    "user": 8,
+    "status": "delivered",
+    "total_price": "3359.95",
+    "address": "4217 Main Street, City 42, Country",
+    "created_at": "2026-05-12T22:04:33.097Z",
+    "updated_at": "2026-05-12T22:04:33.112Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 5,
+  "fields": {
+    "user": 9,
+    "status": "pending",
+    "total_price": "3459.95",
+    "address": "1296 Main Street, City 23, Country",
+    "created_at": "2026-05-12T22:04:33.119Z",
+    "updated_at": "2026-05-12T22:04:33.130Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 6,
+  "fields": {
+    "user": 9,
+    "status": "delivered",
+    "total_price": "3619.97",
+    "address": "9340 Main Street, City 33, Country",
+    "created_at": "2026-05-12T22:04:33.134Z",
+    "updated_at": "2026-05-12T22:04:33.146Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 7,
+  "fields": {
+    "user": 9,
+    "status": "confirmed",
+    "total_price": "3459.98",
+    "address": "6064 Main Street, City 33, Country",
+    "created_at": "2026-05-12T22:04:33.153Z",
+    "updated_at": "2026-05-12T22:04:33.173Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 8,
+  "fields": {
+    "user": 10,
+    "status": "cancelled",
+    "total_price": "590.00",
+    "address": "7350 Main Street, City 8, Country",
+    "created_at": "2026-05-12T22:04:33.177Z",
+    "updated_at": "2026-05-12T22:04:33.191Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 9,
+  "fields": {
+    "user": 10,
+    "status": "confirmed",
+    "total_price": "1800.00",
+    "address": "8797 Main Street, City 43, Country",
+    "created_at": "2026-05-12T22:04:33.195Z",
+    "updated_at": "2026-05-12T22:04:33.207Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 10,
+  "fields": {
+    "user": 10,
+    "status": "shipped",
+    "total_price": "1180.00",
+    "address": "5517 Main Street, City 14, Country",
+    "created_at": "2026-05-12T22:04:33.210Z",
+    "updated_at": "2026-05-12T22:04:33.233Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 11,
+  "fields": {
+    "user": 11,
+    "status": "shipped",
+    "total_price": "3364.93",
+    "address": "8126 Main Street, City 2, Country",
+    "created_at": "2026-05-12T22:04:33.237Z",
+    "updated_at": "2026-05-12T22:04:33.264Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 12,
+  "fields": {
+    "user": 11,
+    "status": "delivered",
+    "total_price": "1599.95",
+    "address": "912 Main Street, City 46, Country",
+    "created_at": "2026-05-12T22:04:33.269Z",
+    "updated_at": "2026-05-12T22:04:33.280Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 13,
+  "fields": {
+    "user": 11,
+    "status": "shipped",
+    "total_price": "666.97",
+    "address": "4909 Main Street, City 20, Country",
+    "created_at": "2026-05-12T22:04:33.285Z",
+    "updated_at": "2026-05-12T22:04:33.312Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 14,
+  "fields": {
+    "user": 12,
+    "status": "shipped",
+    "total_price": "3125.97",
+    "address": "7128 Main Street, City 11, Country",
+    "created_at": "2026-05-12T22:04:33.317Z",
+    "updated_at": "2026-05-12T22:04:33.330Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 15,
+  "fields": {
+    "user": 12,
+    "status": "pending",
+    "total_price": "2344.97",
+    "address": "8379 Main Street, City 45, Country",
+    "created_at": "2026-05-12T22:04:33.334Z",
+    "updated_at": "2026-05-12T22:04:33.360Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 16,
+  "fields": {
+    "user": 12,
+    "status": "cancelled",
+    "total_price": "830.00",
+    "address": "3722 Main Street, City 3, Country",
+    "created_at": "2026-05-12T22:04:33.365Z",
+    "updated_at": "2026-05-12T22:04:33.384Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 17,
+  "fields": {
+    "user": 13,
+    "status": "cancelled",
+    "total_price": "1049.99",
+    "address": "4242 Main Street, City 6, Country",
+    "created_at": "2026-05-12T22:04:33.388Z",
+    "updated_at": "2026-05-12T22:04:33.404Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 18,
+  "fields": {
+    "user": 13,
+    "status": "pending",
+    "total_price": "2794.99",
+    "address": "4475 Main Street, City 11, Country",
+    "created_at": "2026-05-12T22:04:33.408Z",
+    "updated_at": "2026-05-12T22:04:33.434Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 19,
+  "fields": {
+    "user": 14,
+    "status": "shipped",
+    "total_price": "289.99",
+    "address": "7635 Main Street, City 20, Country",
+    "created_at": "2026-05-12T22:04:33.439Z",
+    "updated_at": "2026-05-12T22:04:33.450Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 20,
+  "fields": {
+    "user": 15,
+    "status": "cancelled",
+    "total_price": "334.98",
+    "address": "5182 Main Street, City 46, Country",
+    "created_at": "2026-05-12T22:04:33.455Z",
+    "updated_at": "2026-05-12T22:04:33.468Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 21,
+  "fields": {
+    "user": 15,
+    "status": "delivered",
+    "total_price": "749.97",
+    "address": "1893 Main Street, City 44, Country",
+    "created_at": "2026-05-12T22:04:33.472Z",
+    "updated_at": "2026-05-12T22:04:33.487Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 22,
+  "fields": {
+    "user": 15,
+    "status": "delivered",
+    "total_price": "2134.99",
+    "address": "3375 Main Street, City 25, Country",
+    "created_at": "2026-05-12T22:04:33.495Z",
+    "updated_at": "2026-05-12T22:04:33.518Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 23,
+  "fields": {
+    "user": 16,
+    "status": "delivered",
+    "total_price": "334.99",
+    "address": "7645 Main Street, City 40, Country",
+    "created_at": "2026-05-12T22:04:33.522Z",
+    "updated_at": "2026-05-12T22:04:33.538Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 24,
+  "fields": {
+    "user": 17,
+    "status": "confirmed",
+    "total_price": "2191.99",
+    "address": "3223 Main Street, City 18, Country",
+    "created_at": "2026-05-12T22:04:33.542Z",
+    "updated_at": "2026-05-12T22:04:33.561Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 25,
+  "fields": {
+    "user": 17,
+    "status": "confirmed",
+    "total_price": "239.99",
+    "address": "9772 Main Street, City 28, Country",
+    "created_at": "2026-05-12T22:04:33.569Z",
+    "updated_at": "2026-05-12T22:04:33.581Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 26,
+  "fields": {
+    "user": 18,
+    "status": "shipped",
+    "total_price": "424.97",
+    "address": "9952 Main Street, City 41, Country",
+    "created_at": "2026-05-12T22:04:33.586Z",
+    "updated_at": "2026-05-12T22:04:33.604Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 27,
+  "fields": {
+    "user": 18,
+    "status": "cancelled",
+    "total_price": "1524.99",
+    "address": "9655 Main Street, City 25, Country",
+    "created_at": "2026-05-12T22:04:33.608Z",
+    "updated_at": "2026-05-12T22:04:33.627Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 28,
+  "fields": {
+    "user": 19,
+    "status": "pending",
+    "total_price": "2289.97",
+    "address": "6506 Main Street, City 25, Country",
+    "created_at": "2026-05-12T22:04:33.631Z",
+    "updated_at": "2026-05-12T22:04:33.653Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 29,
+  "fields": {
+    "user": 19,
+    "status": "confirmed",
+    "total_price": "2899.97",
+    "address": "474 Main Street, City 3, Country",
+    "created_at": "2026-05-12T22:04:33.657Z",
+    "updated_at": "2026-05-12T22:04:33.669Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 30,
+  "fields": {
+    "user": 19,
+    "status": "confirmed",
+    "total_price": "1174.97",
+    "address": "3792 Main Street, City 23, Country",
+    "created_at": "2026-05-12T22:04:33.677Z",
+    "updated_at": "2026-05-12T22:04:33.696Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 31,
+  "fields": {
+    "user": 20,
+    "status": "cancelled",
+    "total_price": "249.97",
+    "address": "9204 Main Street, City 4, Country",
+    "created_at": "2026-05-12T22:04:33.700Z",
+    "updated_at": "2026-05-12T22:04:33.716Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 32,
+  "fields": {
+    "user": 20,
+    "status": "pending",
+    "total_price": "1789.95",
+    "address": "4788 Main Street, City 27, Country",
+    "created_at": "2026-05-12T22:04:33.721Z",
+    "updated_at": "2026-05-12T22:04:33.746Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 33,
+  "fields": {
+    "user": 20,
+    "status": "confirmed",
+    "total_price": "1139.97",
+    "address": "8373 Main Street, City 49, Country",
+    "created_at": "2026-05-12T22:04:33.751Z",
+    "updated_at": "2026-05-12T22:04:33.762Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 34,
+  "fields": {
+    "user": 21,
+    "status": "confirmed",
+    "total_price": "2129.97",
+    "address": "344 Main Street, City 50, Country",
+    "created_at": "2026-05-12T22:04:33.766Z",
+    "updated_at": "2026-05-12T22:04:33.781Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 35,
+  "fields": {
+    "user": 21,
+    "status": "confirmed",
+    "total_price": "145.00",
+    "address": "567 Main Street, City 1, Country",
+    "created_at": "2026-05-12T22:04:33.785Z",
+    "updated_at": "2026-05-12T22:04:33.797Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 36,
+  "fields": {
+    "user": 22,
+    "status": "shipped",
+    "total_price": "1494.97",
+    "address": "4519 Main Street, City 38, Country",
+    "created_at": "2026-05-12T22:04:33.801Z",
+    "updated_at": "2026-05-12T22:04:33.826Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 37,
+  "fields": {
+    "user": 22,
+    "status": "confirmed",
+    "total_price": "1440.00",
+    "address": "9915 Main Street, City 47, Country",
+    "created_at": "2026-05-12T22:04:33.830Z",
+    "updated_at": "2026-05-12T22:04:33.842Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 38,
+  "fields": {
+    "user": 22,
+    "status": "delivered",
+    "total_price": "1369.95",
+    "address": "3232 Main Street, City 26, Country",
+    "created_at": "2026-05-12T22:04:33.849Z",
+    "updated_at": "2026-05-12T22:04:33.866Z"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 1,
+  "fields": {
+    "order": 1,
+    "product": 22,
+    "quantity": 3,
+    "price": "120.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 2,
+  "fields": {
+    "order": 1,
+    "product": 24,
+    "quantity": 3,
+    "price": "400.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 3,
+  "fields": {
+    "order": 2,
+    "product": 20,
+    "quantity": 2,
+    "price": "300.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 4,
+  "fields": {
+    "order": 2,
+    "product": 8,
+    "quantity": 1,
+    "price": "89.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 5,
+  "fields": {
+    "order": 3,
+    "product": 12,
+    "quantity": 3,
+    "price": "120.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 6,
+  "fields": {
+    "order": 3,
+    "product": 21,
+    "quantity": 1,
+    "price": "45.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 7,
+  "fields": {
+    "order": 3,
+    "product": 3,
+    "quantity": 2,
+    "price": "1199.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 8,
+  "fields": {
+    "order": 4,
+    "product": 1,
+    "quantity": 2,
+    "price": "999.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 9,
+  "fields": {
+    "order": 4,
+    "product": 4,
+    "quantity": 1,
+    "price": "1099.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 10,
+  "fields": {
+    "order": 4,
+    "product": 9,
+    "quantity": 2,
+    "price": "129.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 11,
+  "fields": {
+    "order": 5,
+    "product": 4,
+    "quantity": 3,
+    "price": "1099.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 12,
+  "fields": {
+    "order": 5,
+    "product": 6,
+    "quantity": 2,
+    "price": "79.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 13,
+  "fields": {
+    "order": 6,
+    "product": 3,
+    "quantity": 3,
+    "price": "1199.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 14,
+  "fields": {
+    "order": 6,
+    "product": 35,
+    "quantity": 1,
+    "price": "20.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 15,
+  "fields": {
+    "order": 7,
+    "product": 20,
+    "quantity": 2,
+    "price": "300.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 16,
+  "fields": {
+    "order": 7,
+    "product": 24,
+    "quantity": 1,
+    "price": "400.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 17,
+  "fields": {
+    "order": 7,
+    "product": 28,
+    "quantity": 2,
+    "price": "30.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 18,
+  "fields": {
+    "order": 7,
+    "product": 3,
+    "quantity": 2,
+    "price": "1199.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 19,
+  "fields": {
+    "order": 8,
+    "product": 19,
+    "quantity": 3,
+    "price": "150.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 20,
+  "fields": {
+    "order": 8,
+    "product": 15,
+    "quantity": 2,
+    "price": "70.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 21,
+  "fields": {
+    "order": 9,
+    "product": 27,
+    "quantity": 2,
+    "price": "600.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 22,
+  "fields": {
+    "order": 9,
+    "product": 20,
+    "quantity": 2,
+    "price": "300.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 23,
+  "fields": {
+    "order": 10,
+    "product": 19,
+    "quantity": 2,
+    "price": "150.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 24,
+  "fields": {
+    "order": 10,
+    "product": 26,
+    "quantity": 3,
+    "price": "80.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 25,
+  "fields": {
+    "order": 10,
+    "product": 35,
+    "quantity": 2,
+    "price": "20.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 26,
+  "fields": {
+    "order": 10,
+    "product": 20,
+    "quantity": 2,
+    "price": "300.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 27,
+  "fields": {
+    "order": 11,
+    "product": 6,
+    "quantity": 2,
+    "price": "79.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 28,
+  "fields": {
+    "order": 11,
+    "product": 19,
+    "quantity": 1,
+    "price": "150.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 29,
+  "fields": {
+    "order": 11,
+    "product": 9,
+    "quantity": 2,
+    "price": "129.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 30,
+  "fields": {
+    "order": 11,
+    "product": 2,
+    "quantity": 3,
+    "price": "899.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 31,
+  "fields": {
+    "order": 11,
+    "product": 16,
+    "quantity": 1,
+    "price": "95.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 32,
+  "fields": {
+    "order": 12,
+    "product": 10,
+    "quantity": 3,
+    "price": "399.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 33,
+  "fields": {
+    "order": 12,
+    "product": 5,
+    "quantity": 2,
+    "price": "199.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 34,
+  "fields": {
+    "order": 13,
+    "product": 25,
+    "quantity": 2,
+    "price": "25.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 35,
+  "fields": {
+    "order": 13,
+    "product": 31,
+    "quantity": 1,
+    "price": "42.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 36,
+  "fields": {
+    "order": 13,
+    "product": 16,
+    "quantity": 3,
+    "price": "95.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 37,
+  "fields": {
+    "order": 13,
+    "product": 6,
+    "quantity": 2,
+    "price": "79.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 38,
+  "fields": {
+    "order": 13,
+    "product": 9,
+    "quantity": 1,
+    "price": "129.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 39,
+  "fields": {
+    "order": 14,
+    "product": 31,
+    "quantity": 3,
+    "price": "42.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 40,
+  "fields": {
+    "order": 14,
+    "product": 1,
+    "quantity": 3,
+    "price": "999.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 41,
+  "fields": {
+    "order": 15,
+    "product": 11,
+    "quantity": 1,
+    "price": "250.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 42,
+  "fields": {
+    "order": 15,
+    "product": 19,
+    "quantity": 1,
+    "price": "150.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 43,
+  "fields": {
+    "order": 15,
+    "product": 10,
+    "quantity": 3,
+    "price": "399.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 44,
+  "fields": {
+    "order": 15,
+    "product": 29,
+    "quantity": 2,
+    "price": "350.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 45,
+  "fields": {
+    "order": 15,
+    "product": 21,
+    "quantity": 1,
+    "price": "45.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 46,
+  "fields": {
+    "order": 16,
+    "product": 11,
+    "quantity": 2,
+    "price": "250.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 47,
+  "fields": {
+    "order": 16,
+    "product": 32,
+    "quantity": 3,
+    "price": "35.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 48,
+  "fields": {
+    "order": 16,
+    "product": 21,
+    "quantity": 3,
+    "price": "45.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 49,
+  "fields": {
+    "order": 16,
+    "product": 30,
+    "quantity": 2,
+    "price": "45.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 50,
+  "fields": {
+    "order": 17,
+    "product": 25,
+    "quantity": 2,
+    "price": "25.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 51,
+  "fields": {
+    "order": 17,
+    "product": 1,
+    "quantity": 1,
+    "price": "999.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 52,
+  "fields": {
+    "order": 18,
+    "product": 11,
+    "quantity": 1,
+    "price": "250.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 53,
+  "fields": {
+    "order": 18,
+    "product": 14,
+    "quantity": 1,
+    "price": "180.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 54,
+  "fields": {
+    "order": 18,
+    "product": 23,
+    "quantity": 3,
+    "price": "55.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 55,
+  "fields": {
+    "order": 18,
+    "product": 27,
+    "quantity": 2,
+    "price": "600.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 56,
+  "fields": {
+    "order": 18,
+    "product": 1,
+    "quantity": 1,
+    "price": "999.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 57,
+  "fields": {
+    "order": 19,
+    "product": 30,
+    "quantity": 2,
+    "price": "45.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 58,
+  "fields": {
+    "order": 19,
+    "product": 5,
+    "quantity": 1,
+    "price": "199.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 59,
+  "fields": {
+    "order": 20,
+    "product": 32,
+    "quantity": 1,
+    "price": "35.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 60,
+  "fields": {
+    "order": 20,
+    "product": 7,
+    "quantity": 2,
+    "price": "149.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 61,
+  "fields": {
+    "order": 21,
+    "product": 14,
+    "quantity": 2,
+    "price": "180.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 62,
+  "fields": {
+    "order": 21,
+    "product": 7,
+    "quantity": 2,
+    "price": "149.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 63,
+  "fields": {
+    "order": 21,
+    "product": 8,
+    "quantity": 1,
+    "price": "89.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 64,
+  "fields": {
+    "order": 22,
+    "product": 17,
+    "quantity": 3,
+    "price": "25.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 65,
+  "fields": {
+    "order": 22,
+    "product": 15,
+    "quantity": 3,
+    "price": "70.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 66,
+  "fields": {
+    "order": 22,
+    "product": 4,
+    "quantity": 1,
+    "price": "1099.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 67,
+  "fields": {
+    "order": 22,
+    "product": 20,
+    "quantity": 2,
+    "price": "300.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 68,
+  "fields": {
+    "order": 22,
+    "product": 19,
+    "quantity": 1,
+    "price": "150.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 69,
+  "fields": {
+    "order": 23,
+    "product": 21,
+    "quantity": 3,
+    "price": "45.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 70,
+  "fields": {
+    "order": 23,
+    "product": 5,
+    "quantity": 1,
+    "price": "199.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 71,
+  "fields": {
+    "order": 24,
+    "product": 31,
+    "quantity": 1,
+    "price": "42.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 72,
+  "fields": {
+    "order": 24,
+    "product": 27,
+    "quantity": 1,
+    "price": "600.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 73,
+  "fields": {
+    "order": 24,
+    "product": 4,
+    "quantity": 1,
+    "price": "1099.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 74,
+  "fields": {
+    "order": 24,
+    "product": 19,
+    "quantity": 3,
+    "price": "150.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 75,
+  "fields": {
+    "order": 25,
+    "product": 5,
+    "quantity": 1,
+    "price": "199.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 76,
+  "fields": {
+    "order": 25,
+    "product": 35,
+    "quantity": 2,
+    "price": "20.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 77,
+  "fields": {
+    "order": 26,
+    "product": 15,
+    "quantity": 2,
+    "price": "70.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 78,
+  "fields": {
+    "order": 26,
+    "product": 30,
+    "quantity": 1,
+    "price": "45.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 79,
+  "fields": {
+    "order": 26,
+    "product": 6,
+    "quantity": 3,
+    "price": "79.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 80,
+  "fields": {
+    "order": 27,
+    "product": 26,
+    "quantity": 3,
+    "price": "80.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 81,
+  "fields": {
+    "order": 27,
+    "product": 35,
+    "quantity": 1,
+    "price": "20.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 82,
+  "fields": {
+    "order": 27,
+    "product": 23,
+    "quantity": 3,
+    "price": "55.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 83,
+  "fields": {
+    "order": 27,
+    "product": 4,
+    "quantity": 1,
+    "price": "1099.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 84,
+  "fields": {
+    "order": 28,
+    "product": 1,
+    "quantity": 2,
+    "price": "999.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 85,
+  "fields": {
+    "order": 28,
+    "product": 5,
+    "quantity": 1,
+    "price": "199.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 86,
+  "fields": {
+    "order": 28,
+    "product": 13,
+    "quantity": 1,
+    "price": "45.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 87,
+  "fields": {
+    "order": 28,
+    "product": 30,
+    "quantity": 1,
+    "price": "45.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 88,
+  "fields": {
+    "order": 29,
+    "product": 2,
+    "quantity": 2,
+    "price": "899.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 89,
+  "fields": {
+    "order": 29,
+    "product": 4,
+    "quantity": 1,
+    "price": "1099.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 90,
+  "fields": {
+    "order": 30,
+    "product": 9,
+    "quantity": 3,
+    "price": "129.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 91,
+  "fields": {
+    "order": 30,
+    "product": 16,
+    "quantity": 3,
+    "price": "95.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 92,
+  "fields": {
+    "order": 30,
+    "product": 33,
+    "quantity": 2,
+    "price": "25.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 93,
+  "fields": {
+    "order": 30,
+    "product": 19,
+    "quantity": 3,
+    "price": "150.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 94,
+  "fields": {
+    "order": 31,
+    "product": 8,
+    "quantity": 1,
+    "price": "89.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 95,
+  "fields": {
+    "order": 31,
+    "product": 6,
+    "quantity": 2,
+    "price": "79.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 96,
+  "fields": {
+    "order": 32,
+    "product": 9,
+    "quantity": 3,
+    "price": "129.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 97,
+  "fields": {
+    "order": 32,
+    "product": 17,
+    "quantity": 2,
+    "price": "25.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 98,
+  "fields": {
+    "order": 32,
+    "product": 5,
+    "quantity": 2,
+    "price": "199.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 99,
+  "fields": {
+    "order": 32,
+    "product": 20,
+    "quantity": 3,
+    "price": "300.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 100,
+  "fields": {
+    "order": 32,
+    "product": 33,
+    "quantity": 2,
+    "price": "25.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 101,
+  "fields": {
+    "order": 33,
+    "product": 6,
+    "quantity": 3,
+    "price": "79.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 102,
+  "fields": {
+    "order": 33,
+    "product": 20,
+    "quantity": 3,
+    "price": "300.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 103,
+  "fields": {
+    "order": 34,
+    "product": 9,
+    "quantity": 1,
+    "price": "129.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 104,
+  "fields": {
+    "order": 34,
+    "product": 1,
+    "quantity": 2,
+    "price": "999.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 105,
+  "fields": {
+    "order": 35,
+    "product": 23,
+    "quantity": 2,
+    "price": "55.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 106,
+  "fields": {
+    "order": 35,
+    "product": 32,
+    "quantity": 1,
+    "price": "35.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 107,
+  "fields": {
+    "order": 36,
+    "product": 16,
+    "quantity": 1,
+    "price": "95.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 108,
+  "fields": {
+    "order": 36,
+    "product": 1,
+    "quantity": 1,
+    "price": "999.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 109,
+  "fields": {
+    "order": 36,
+    "product": 26,
+    "quantity": 3,
+    "price": "80.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 110,
+  "fields": {
+    "order": 36,
+    "product": 6,
+    "quantity": 2,
+    "price": "79.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 111,
+  "fields": {
+    "order": 37,
+    "product": 27,
+    "quantity": 2,
+    "price": "600.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 112,
+  "fields": {
+    "order": 37,
+    "product": 26,
+    "quantity": 3,
+    "price": "80.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 113,
+  "fields": {
+    "order": 38,
+    "product": 8,
+    "quantity": 3,
+    "price": "89.99"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 114,
+  "fields": {
+    "order": 38,
+    "product": 19,
+    "quantity": 2,
+    "price": "150.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 115,
+  "fields": {
+    "order": 38,
+    "product": 10,
+    "quantity": 2,
+    "price": "399.99"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 1,
+  "fields": {
+    "user": 7,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.345Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 2,
+  "fields": {
+    "user": 7,
+    "type": "order_confirmed",
+    "message": "Your order has been confirmed and will be shipped soon.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.349Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 3,
+  "fields": {
+    "user": 7,
+    "type": "order_delivered",
+    "message": "Your order has been delivered. Thank you for shopping!",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.353Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 4,
+  "fields": {
+    "user": 7,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.356Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 5,
+  "fields": {
+    "user": 7,
+    "type": "order_delivered",
+    "message": "Your order has been delivered. Thank you for shopping!",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.363Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 6,
+  "fields": {
+    "user": 8,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.367Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 7,
+  "fields": {
+    "user": 8,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.370Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 8,
+  "fields": {
+    "user": 8,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.382Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 9,
+  "fields": {
+    "user": 8,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.386Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 10,
+  "fields": {
+    "user": 8,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.390Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 11,
+  "fields": {
+    "user": 9,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.394Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 12,
+  "fields": {
+    "user": 9,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.398Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 13,
+  "fields": {
+    "user": 9,
+    "type": "order_delivered",
+    "message": "Your order has been delivered. Thank you for shopping!",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.402Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 14,
+  "fields": {
+    "user": 10,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.406Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 15,
+  "fields": {
+    "user": 10,
+    "type": "order_delivered",
+    "message": "Your order has been delivered. Thank you for shopping!",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.410Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 16,
+  "fields": {
+    "user": 10,
+    "type": "order_delivered",
+    "message": "Your order has been delivered. Thank you for shopping!",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.414Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 17,
+  "fields": {
+    "user": 11,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.422Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 18,
+  "fields": {
+    "user": 11,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.426Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 19,
+  "fields": {
+    "user": 11,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.430Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 20,
+  "fields": {
+    "user": 11,
+    "type": "order_delivered",
+    "message": "Your order has been delivered. Thank you for shopping!",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.434Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 21,
+  "fields": {
+    "user": 11,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.437Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 22,
+  "fields": {
+    "user": 12,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.441Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 23,
+  "fields": {
+    "user": 12,
+    "type": "order_delivered",
+    "message": "Your order has been delivered. Thank you for shopping!",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.445Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 24,
+  "fields": {
+    "user": 13,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.449Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 25,
+  "fields": {
+    "user": 13,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.457Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 26,
+  "fields": {
+    "user": 14,
+    "type": "order_delivered",
+    "message": "Your order has been delivered. Thank you for shopping!",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.461Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 27,
+  "fields": {
+    "user": 14,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.465Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 28,
+  "fields": {
+    "user": 14,
+    "type": "order_confirmed",
+    "message": "Your order has been confirmed and will be shipped soon.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.469Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 29,
+  "fields": {
+    "user": 14,
+    "type": "order_delivered",
+    "message": "Your order has been delivered. Thank you for shopping!",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.473Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 30,
+  "fields": {
+    "user": 15,
+    "type": "order_confirmed",
+    "message": "Your order has been confirmed and will be shipped soon.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.477Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 31,
+  "fields": {
+    "user": 15,
+    "type": "order_confirmed",
+    "message": "Your order has been confirmed and will be shipped soon.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.481Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 32,
+  "fields": {
+    "user": 15,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.485Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 33,
+  "fields": {
+    "user": 16,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.491Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 34,
+  "fields": {
+    "user": 16,
+    "type": "order_confirmed",
+    "message": "Your order has been confirmed and will be shipped soon.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.495Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 35,
+  "fields": {
+    "user": 17,
+    "type": "order_delivered",
+    "message": "Your order has been delivered. Thank you for shopping!",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.499Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 36,
+  "fields": {
+    "user": 17,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.502Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 37,
+  "fields": {
+    "user": 17,
+    "type": "order_delivered",
+    "message": "Your order has been delivered. Thank you for shopping!",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.506Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 38,
+  "fields": {
+    "user": 18,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.510Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 39,
+  "fields": {
+    "user": 18,
+    "type": "order_confirmed",
+    "message": "Your order has been confirmed and will be shipped soon.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.514Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 40,
+  "fields": {
+    "user": 18,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.518Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 41,
+  "fields": {
+    "user": 19,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.525Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 42,
+  "fields": {
+    "user": 19,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.529Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 43,
+  "fields": {
+    "user": 19,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.533Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 44,
+  "fields": {
+    "user": 19,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.538Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 45,
+  "fields": {
+    "user": 20,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.542Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 46,
+  "fields": {
+    "user": 20,
+    "type": "order_confirmed",
+    "message": "Your order has been confirmed and will be shipped soon.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.545Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 47,
+  "fields": {
+    "user": 21,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.550Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 48,
+  "fields": {
+    "user": 21,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.554Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 49,
+  "fields": {
+    "user": 22,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.558Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 50,
+  "fields": {
+    "user": 22,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": true,
+    "created_at": "2026-05-12T22:04:34.565Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 51,
+  "fields": {
+    "user": 22,
+    "type": "order_cancelled",
+    "message": "Your order has been cancelled.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.569Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 52,
+  "fields": {
+    "user": 22,
+    "type": "order_shipped",
+    "message": "Your order has been shipped! Track it now.",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.573Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 53,
+  "fields": {
+    "user": 22,
+    "type": "order_delivered",
+    "message": "Your order has been delivered. Thank you for shopping!",
+    "is_read": false,
+    "created_at": "2026-05-12T22:04:34.577Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 1,
+  "fields": {
+    "user": 7,
+    "product": 6,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:33.871Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 2,
+  "fields": {
+    "user": 7,
+    "product": 7,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:33.876Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 3,
+  "fields": {
+    "user": 8,
+    "product": 27,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:33.881Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 4,
+  "fields": {
+    "user": 8,
+    "product": 25,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:33.888Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 5,
+  "fields": {
+    "user": 8,
+    "product": 10,
+    "rating": 4,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:33.892Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 6,
+  "fields": {
+    "user": 8,
+    "product": 15,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:33.897Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 7,
+  "fields": {
+    "user": 9,
+    "product": 26,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:33.901Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 8,
+  "fields": {
+    "user": 9,
+    "product": 16,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:33.906Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 9,
+  "fields": {
+    "user": 9,
+    "product": 14,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:33.911Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 10,
+  "fields": {
+    "user": 9,
+    "product": 27,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:33.915Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 11,
+  "fields": {
+    "user": 9,
+    "product": 5,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:33.924Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 12,
+  "fields": {
+    "user": 10,
+    "product": 15,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:33.929Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 13,
+  "fields": {
+    "user": 10,
+    "product": 13,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:33.934Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 14,
+  "fields": {
+    "user": 10,
+    "product": 29,
+    "rating": 4,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:33.939Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 15,
+  "fields": {
+    "user": 11,
+    "product": 17,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:33.944Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 16,
+  "fields": {
+    "user": 11,
+    "product": 6,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:33.948Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 17,
+  "fields": {
+    "user": 11,
+    "product": 2,
+    "rating": 4,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:33.953Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 18,
+  "fields": {
+    "user": 11,
+    "product": 25,
+    "rating": 4,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:33.961Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 19,
+  "fields": {
+    "user": 11,
+    "product": 12,
+    "rating": 4,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:33.966Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 20,
+  "fields": {
+    "user": 12,
+    "product": 19,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:33.971Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 21,
+  "fields": {
+    "user": 12,
+    "product": 26,
+    "rating": 4,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:33.976Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 22,
+  "fields": {
+    "user": 12,
+    "product": 18,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:33.980Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 23,
+  "fields": {
+    "user": 12,
+    "product": 21,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:33.985Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 24,
+  "fields": {
+    "user": 13,
+    "product": 13,
+    "rating": 4,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:33.989Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 25,
+  "fields": {
+    "user": 13,
+    "product": 19,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:33.998Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 26,
+  "fields": {
+    "user": 13,
+    "product": 34,
+    "rating": 4,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:34.002Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 27,
+  "fields": {
+    "user": 13,
+    "product": 9,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:34.007Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 28,
+  "fields": {
+    "user": 14,
+    "product": 19,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:34.012Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 29,
+  "fields": {
+    "user": 14,
+    "product": 32,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:34.017Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 30,
+  "fields": {
+    "user": 14,
+    "product": 11,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:34.022Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 31,
+  "fields": {
+    "user": 14,
+    "product": 33,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:34.026Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 32,
+  "fields": {
+    "user": 14,
+    "product": 20,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:34.033Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 33,
+  "fields": {
+    "user": 15,
+    "product": 17,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:34.038Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 34,
+  "fields": {
+    "user": 15,
+    "product": 22,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:34.043Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 35,
+  "fields": {
+    "user": 15,
+    "product": 23,
+    "rating": 4,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:34.048Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 36,
+  "fields": {
+    "user": 15,
+    "product": 29,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:34.053Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 37,
+  "fields": {
+    "user": 16,
+    "product": 32,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:34.058Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 38,
+  "fields": {
+    "user": 16,
+    "product": 8,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:34.063Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 39,
+  "fields": {
+    "user": 16,
+    "product": 1,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:34.072Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 40,
+  "fields": {
+    "user": 16,
+    "product": 9,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:34.077Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 41,
+  "fields": {
+    "user": 17,
+    "product": 28,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:34.082Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 42,
+  "fields": {
+    "user": 17,
+    "product": 7,
+    "rating": 4,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:34.086Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 43,
+  "fields": {
+    "user": 18,
+    "product": 4,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:34.091Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 44,
+  "fields": {
+    "user": 18,
+    "product": 27,
+    "rating": 4,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:34.096Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 45,
+  "fields": {
+    "user": 18,
+    "product": 8,
+    "rating": 4,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:34.102Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 46,
+  "fields": {
+    "user": 18,
+    "product": 5,
+    "rating": 4,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:34.111Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 47,
+  "fields": {
+    "user": 19,
+    "product": 24,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:34.115Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 48,
+  "fields": {
+    "user": 19,
+    "product": 6,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:34.120Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 49,
+  "fields": {
+    "user": 20,
+    "product": 33,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:34.125Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 50,
+  "fields": {
+    "user": 20,
+    "product": 6,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:34.130Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 51,
+  "fields": {
+    "user": 20,
+    "product": 23,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:34.135Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 52,
+  "fields": {
+    "user": 21,
+    "product": 13,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:34.140Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 53,
+  "fields": {
+    "user": 21,
+    "product": 22,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:34.148Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 54,
+  "fields": {
+    "user": 21,
+    "product": 24,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:34.152Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 55,
+  "fields": {
+    "user": 21,
+    "product": 5,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is very good.",
+    "created_at": "2026-05-12T22:04:34.157Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 56,
+  "fields": {
+    "user": 21,
+    "product": 6,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:34.162Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 57,
+  "fields": {
+    "user": 22,
+    "product": 15,
+    "rating": 5,
+    "comment": "Great product! Highly recommended. Quality is good.",
+    "created_at": "2026-05-12T22:04:34.168Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 58,
+  "fields": {
+    "user": 22,
+    "product": 25,
+    "rating": 3,
+    "comment": "Great product! Highly recommended. Quality is excellent.",
+    "created_at": "2026-05-12T22:04:34.173Z"
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 1,
+  "fields": {
+    "user": 7,
+    "created_at": "2026-05-12T22:04:34.180Z",
+    "products": [
+      21,
+      17,
+      10,
+      8,
+      3,
+      2,
+      1
+    ]
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 2,
+  "fields": {
+    "user": 8,
+    "created_at": "2026-05-12T22:04:34.191Z",
+    "products": [
+      28,
+      25,
+      23,
+      15,
+      11,
+      2
+    ]
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 3,
+  "fields": {
+    "user": 9,
+    "created_at": "2026-05-12T22:04:34.201Z",
+    "products": [
+      33,
+      24,
+      21,
+      18,
+      15,
+      9,
+      2
+    ]
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 4,
+  "fields": {
+    "user": 10,
+    "created_at": "2026-05-12T22:04:34.210Z",
+    "products": [
+      35,
+      31,
+      30,
+      24,
+      4
+    ]
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 5,
+  "fields": {
+    "user": 11,
+    "created_at": "2026-05-12T22:04:34.224Z",
+    "products": [
+      30,
+      27,
+      21,
+      13,
+      11,
+      9,
+      2
+    ]
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 6,
+  "fields": {
+    "user": 12,
+    "created_at": "2026-05-12T22:04:34.233Z",
+    "products": [
+      28,
+      18,
+      13
+    ]
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 7,
+  "fields": {
+    "user": 13,
+    "created_at": "2026-05-12T22:04:34.243Z",
+    "products": [
+      34,
+      32,
+      24,
+      18,
+      3,
+      1
+    ]
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 8,
+  "fields": {
+    "user": 14,
+    "created_at": "2026-05-12T22:04:34.253Z",
+    "products": [
+      35,
+      26,
+      21,
+      17,
+      15,
+      11,
+      10
+    ]
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 9,
+  "fields": {
+    "user": 15,
+    "created_at": "2026-05-12T22:04:34.266Z",
+    "products": [
+      25,
+      20,
+      18,
+      16,
+      10,
+      7
+    ]
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 10,
+  "fields": {
+    "user": 16,
+    "created_at": "2026-05-12T22:04:34.275Z",
+    "products": [
+      29,
+      26,
+      14,
+      8
+    ]
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 11,
+  "fields": {
+    "user": 17,
+    "created_at": "2026-05-12T22:04:34.284Z",
+    "products": [
+      31,
+      24,
+      19,
+      18,
+      9,
+      5
+    ]
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 12,
+  "fields": {
+    "user": 18,
+    "created_at": "2026-05-12T22:04:34.293Z",
+    "products": [
+      23,
+      20,
+      13,
+      11,
+      2
+    ]
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 13,
+  "fields": {
+    "user": 19,
+    "created_at": "2026-05-12T22:04:34.305Z",
+    "products": [
+      35,
+      23,
+      20,
+      3
+    ]
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 14,
+  "fields": {
+    "user": 20,
+    "created_at": "2026-05-12T22:04:34.315Z",
+    "products": [
+      33,
+      31,
+      15,
+      8,
+      3
+    ]
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 15,
+  "fields": {
+    "user": 21,
+    "created_at": "2026-05-12T22:04:34.324Z",
+    "products": [
+      10,
+      2,
+      1
+    ]
+  }
+},
+{
+  "model": "wishlist.wishlist",
+  "pk": 16,
+  "fields": {
+    "user": 22,
+    "created_at": "2026-05-12T22:04:34.334Z",
+    "products": [
+      29,
+      22,
+      7,
+      2
+    ]
+  }
+}
+]
