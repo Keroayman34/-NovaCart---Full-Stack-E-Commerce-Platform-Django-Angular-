@@ -29,7 +29,6 @@ export class ProfilePageComponent implements OnInit {
     this.loadProfile();
   }
 
-  // fetch user profile
   loadProfile(): void {
     this.isLoading = true;
     this.errorMessage = "";
@@ -51,7 +50,6 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
-  // update profile data
   onSubmit(): void {
     this.successMessage = "";
     this.errorMessage = "";

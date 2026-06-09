@@ -1,0 +1,119 @@
+<div class="admin-products">
+  <div class="page-header">
+    <div class="header-content">
+      <h1>Product Management</h1>
+      <p class="subtitle">Manage products, edit inventory, and control availability</p>
+    </div>
+    <button (click)="openAddForm()" class="btn-add-product">+ Add Product</button>
+  </div>
+
+  <!-- Alert Messages -->
+  <div *ngIf="errorMessage" class="alert alert-error">
+    <span>{{ errorMessage }}</span>
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success">
+    <span>{{ successMessage }}</span>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading products...</p>
+  </div>
+
+  <!-- Products Table -->
+  <div *ngIf="!isLoading && products.length > 0" class="table-container">
+    <table class="products-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Seller</th>
+          <th>Created</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td class="image-cell">
+            <img [src]="getImageUrl(product)" [alt]="product.name" class="product-image" />
+          </td>
+          <td class="name-cell">{{ product.name }}</td>
+          <td class="category-cell">{{ product.category }}</td>
+          <td class="price-cell">{{ product.price | currency }}</td>
+          <td class="stock-cell">
+            <span class="stock-badge" [ngClass]="product.stock > 0 ? 'in-stock' : 'out-of-stock'">
+              {{ product.stock }} units
+            </span>
+          </td>
+          <td class="seller-cell">{{ product.seller || "Admin" }}</td>
+          <td class="date-cell">{{ product.created_at | date : "short" }}</td>
+          <td class="actions-cell">
+            <button (click)="openEditForm(product)" class="btn-action btn-edit" title="Edit product">
+              ✏️ Edit
+            </button>
+            <button (click)="deleteProduct(product)" class="btn-action btn-delete" title="Delete product">
+              🗑️ Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!isLoading && products.length === 0" class="empty-state">
+    <p>No products found. Click "Add Product" to create one.</p>
+  </div>
+
+  <!-- Pagination -->
+  <div *ngIf="!isLoading && getTotalPages() > 1" class="pagination-section">
+    <button
+      (click)="goToPage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+      class="btn-pagination"
+    >
+      ← Previous
+    </button>
+
+    <div class="page-buttons">
+      <button
+        *ngFor="let page of getPageNumbers()"
+        (click)="goToPage(page)"
+        [class.active]="page === currentPage"
+        class="btn-page"
+      >
+        {{ page }}
+      </button>
+    </div>
+
+    <button
+      (click)="goToPage(currentPage + 1)"
+      [disabled]="currentPage === getTotalPages()"
+      class="btn-pagination"
+    >
+      Next →
+    </button>
+
+    <span class="page-info">
+      Page {{ currentPage }} of {{ getTotalPages() }} ({{ totalCount }} total products)
+    </span>
+  </div>
+
+  <!-- Product Form Modal -->
+  <div *ngIf="showForm" class="modal-overlay" (click)="closeForm()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button (click)="closeForm()" class="btn-close">✕</button>
+      <app-product-form
+        [mode]="formMode"
+        [product]="selectedProduct"
+        (formSubmitted)="onFormSubmit()"
+        (formCancelled)="closeForm()"
+      ></app-product-form>
+    </div>
+  </div>
+</div>

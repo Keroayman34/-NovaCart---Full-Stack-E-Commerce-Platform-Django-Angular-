@@ -1,0 +1,139 @@
+<div class="seller-dashboard">
+  <!-- Loading State -->
+  <div class="loading-state" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>Loading dashboard...</p>
+  </div>
+
+  <!-- Dashboard Content -->
+  <div *ngIf="!loading" class="dashboard-content">
+    <!-- Header -->
+    <div class="dashboard-header">
+      <h1>Dashboard</h1>
+      <p class="subtitle">Welcome back! Here's your sales overview.</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <div *ngFor="let stat of stats" [ngClass]="getStatCardClass(stat)" class="stat-card">
+        <div class="stat-icon">{{ stat.icon }}</div>
+        <div class="stat-content">
+          <p class="stat-label">{{ stat.label }}</p>
+          <p class="stat-value">{{ stat.value }}</p>
+          <p class="stat-trend" *ngIf="stat.trend">{{ stat.trend }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="charts-section">
+      <div class="chart-container">
+        <h2>Sales Overview (This Month)</h2>
+        <div class="chart-placeholder">
+          <svg viewBox="0 0 400 200" class="simple-chart">
+            <!-- Simple bar chart visualization -->
+            <rect x="20" y="100" width="30" height="60" fill="#667eea" />
+            <rect x="60" y="80" width="30" height="80" fill="#667eea" />
+            <rect x="100" y="60" width="30" height="100" fill="#667eea" />
+            <rect x="140" y="40" width="30" height="120" fill="#667eea" />
+            <rect x="180" y="80" width="30" height="80" fill="#667eea" />
+            <rect x="220" y="50" width="30" height="110" fill="#667eea" />
+            <rect x="260" y="70" width="30" height="90" fill="#667eea" />
+            <rect x="300" y="30" width="30" height="130" fill="#667eea" />
+            <!-- Axis -->
+            <line x1="20" y1="160" x2="350" y2="160" stroke="#e5e7eb" stroke-width="2" />
+            <line x1="20" y1="20" x2="20" y2="160" stroke="#e5e7eb" stroke-width="2" />
+          </svg>
+        </div>
+        <p class="chart-note">Sales are trending up this month. Keep up the great work!</p>
+      </div>
+
+      <div class="chart-container">
+        <h2>Order Status Distribution</h2>
+        <div class="chart-placeholder">
+          <svg viewBox="0 0 200 200" class="pie-chart">
+            <!-- Simplified pie chart -->
+            <circle cx="100" cy="100" r="60" fill="none" stroke="#667eea" stroke-width="40" stroke-dasharray="94.2 314" stroke-dashoffset="0" />
+            <circle cx="100" cy="100" r="60" fill="none" stroke="#764ba2" stroke-width="40" stroke-dasharray="47.1 314" stroke-dashoffset="-94.2" />
+            <circle cx="100" cy="100" r="60" fill="none" stroke="#ffc107" stroke-width="40" stroke-dasharray="62.8 314" stroke-dashoffset="-141.3" />
+            <circle cx="100" cy="100" r="60" fill="none" stroke="#28a745" stroke-width="40" stroke-dasharray="109.9 314" stroke-dashoffset="-204.1" />
+            <circle cx="100" cy="100" r="30" fill="white" />
+            <text x="100" y="105" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">
+              4.8★
+            </text>
+          </svg>
+        </div>
+        <div class="legend">
+          <span><span class="legend-color" style="background: #667eea"></span>Delivered</span>
+          <span><span class="legend-color" style="background: #764ba2"></span>Shipped</span>
+          <span><span class="legend-color" style="background: #ffc107"></span>Processing</span>
+          <span><span class="legend-color" style="background: #28a745"></span>Pending</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Orders -->
+    <div class="recent-orders">
+      <div class="section-header">
+        <h2>Recent Orders</h2>
+        <a href="/seller/orders" class="view-all">View All →</a>
+      </div>
+
+      <div class="table-container">
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of recentOrders">
+              <td class="order-id">#{{ order.id }}</td>
+              <td>{{ order.customer }}</td>
+              <td class="amount">{{ formatCurrency(order.amount) }}</td>
+              <td>
+                <span [ngClass]="getStatusBadgeClass(order.status)">
+                  {{ getStatusLabel(order.status) }}
+                </span>
+              </td>
+              <td class="date">{{ order.date }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Top Products -->
+    <div class="top-products">
+      <div class="section-header">
+        <h2>Top Products</h2>
+        <a href="/seller/products" class="view-all">View All →</a>
+      </div>
+
+      <div class="products-grid">
+        <div *ngFor="let product of topProducts" class="product-card">
+          <div class="product-image">
+            <span class="image-placeholder">📦</span>
+          </div>
+          <div class="product-info">
+            <h3>{{ product.name }}</h3>
+            <div class="product-stats">
+              <div class="stat">
+                <span class="stat-value">{{ product.sales }}</span>
+                <span class="stat-label">Sales</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">{{ formatCurrency(product.revenue) }}</span>
+                <span class="stat-label">Revenue</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

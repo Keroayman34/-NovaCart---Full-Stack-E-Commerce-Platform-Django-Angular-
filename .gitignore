@@ -1,0 +1,39 @@
+# ===== Python / Django =====
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Django migrations (uncomment if you want to ignore)
+# *migrations/
+
+# Django static/media
+media/
+
+# ===== Node / Angular =====
+node_modules/
+Frontend/node_modules/
+
+# Angular build artifacts
+dist/
+Frontend/dist/
+.angular/
+
+# ===== IDE / Editor =====
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# ===== OS files =====
+.DS_Store
+Thumbs.db
+
+# ===== Misc =====
+my-tasks.md

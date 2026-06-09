@@ -1,0 +1,46 @@
+<section class="payment-method">
+  <h3>Payment Method</h3>
+
+  <form [formGroup]="paymentForm" novalidate>
+    <div class="method-list">
+      <label class="method-option" *ngFor="let method of methods">
+        <input
+          type="radio"
+          formControlName="method"
+          [value]="method.value"
+        />
+        <span>{{ method.label }}</span>
+      </label>
+    </div>
+
+    <div class="card-form" *ngIf="showCardForm">
+      <p class="card-hint">Mock card input (Stripe Elements placeholder)</p>
+
+      <label>
+        <span>Card Number</span>
+        <input
+          type="text"
+          formControlName="cardNumber"
+          placeholder="4242424242424242"
+        />
+        <small *ngIf="controlInvalid('cardNumber')">
+          Enter a valid card number (12–19 digits).
+        </small>
+      </label>
+
+      <div class="card-row">
+        <label>
+          <span>Expiry</span>
+          <input type="text" formControlName="expiry" placeholder="MM/YY" />
+          <small *ngIf="controlInvalid('expiry')">Format must be MM/YY.</small>
+        </label>
+
+        <label>
+          <span>CVV</span>
+          <input type="text" formControlName="cvv" placeholder="123" />
+          <small *ngIf="controlInvalid('cvv')">Enter 3 or 4 digits.</small>
+        </label>
+      </div>
+    </div>
+  </form>
+</section>

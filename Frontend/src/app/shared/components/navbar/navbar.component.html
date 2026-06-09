@@ -2,18 +2,19 @@
   <a class="logo" routerLink="/products">Shop</a>
 
   <div class="links">
-    <a routerLink="/products">Products</a>
-    <a *ngIf="authService.isLoggedIn()" routerLink="/profile">Profile</a>
+    <a routerLink="/products" routerLinkActive="active">Products</a>
+    <a *ngIf="authService.isLoggedIn()" routerLink="/profile" routerLinkActive="active">Profile</a>
     <a
       *ngIf="authService.isLoggedIn() && authService.getRole() === 'admin'"
       routerLink="/admin"
+      routerLinkActive="active"
       >Admin</a
     >
   </div>
 
   <div class="actions">
-    <a *ngIf="!authService.isLoggedIn()" routerLink="/login">Login</a>
-    <a *ngIf="!authService.isLoggedIn()" routerLink="/register">Register</a>
+    <a *ngIf="!authService.isLoggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
+    <a *ngIf="!authService.isLoggedIn()" routerLink="/register" routerLinkActive="active">Register</a>
     <button *ngIf="authService.isLoggedIn()" (click)="onLogout()">
       Logout
     </button>

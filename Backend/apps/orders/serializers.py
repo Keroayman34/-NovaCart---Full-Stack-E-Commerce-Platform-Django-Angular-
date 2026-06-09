@@ -1,6 +1,26 @@
+from decimal import Decimal
+
+from django.db import transaction
 from rest_framework import serializers
+
+from apps.cart.models import Cart
+
 from .models import Order, OrderItem
-from apps.products.models import Product
+
+
+def _get_product_stock_field(product):
+    for attribute_name in ('stock', 'quantity_in_stock', 'stock_quantity', 'available_stock'):
+        if hasattr(product, attribute_name):
+            return attribute_name
+    return None
+
+
+def _get_product_price(product):
+    for attribute_name in ('price', 'current_price', 'sale_price'):
+        price_value = getattr(product, attribute_name, None)
+        if price_value is not None:
+            return Decimal(str(price_value))
+    raise serializers.ValidationError('Product price is not available.')
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -32,30 +52,43 @@ class CreateOrderSerializer(serializers.ModelSerializer):
         fields = ['address']
 
     def create(self, validated_data):
-        user = self.context['request'].user
-        cart = user.cart
+        request = self.context['request']
+        cart, _ = Cart.objects.get_or_create(user=request.user)
+        cart_items = list(cart.items.select_related('product'))
 
-        if not cart.items.exists():
-            raise serializers.ValidationError("السلة فاضية.")
+        if not cart_items:
+            raise serializers.ValidationError('Your cart is empty.')
 
-        order = Order.objects.create(
-            user=user,
-            address=validated_data['address'],
-        )
-
-        total = 0
-        for cart_item in cart.items.all():
-            OrderItem.objects.create(
-                order=order,
-                product=cart_item.product,
-                quantity=cart_item.quantity,
-                price=cart_item.product.price,
+        with transaction.atomic():
+            order = Order.objects.create(
+                user=request.user,
+                address=validated_data['address'],
+                status=Order.Status.PENDING,
             )
-            total += cart_item.product.price * cart_item.quantity
+            total_price = Decimal('0.00')
 
-        order.total_price = total
-        order.save()
+            for cart_item in cart_items:
+                product = cart_item.product
+                stock_field = _get_product_stock_field(product)
+                if stock_field is not None:
+                    available_stock = getattr(product, stock_field)
+                    if available_stock < cart_item.quantity:
+                        raise serializers.ValidationError(f"Product '{product}' is out of stock.")
+                    setattr(product, stock_field, available_stock - cart_item.quantity)
+                    product.save(update_fields=[stock_field])
 
-        cart.items.all().delete()
+                unit_price = _get_product_price(product)
+                total_price += unit_price * cart_item.quantity
+
+                OrderItem.objects.create(
+                    order=order,
+                    product=product,
+                    quantity=cart_item.quantity,
+                    price=unit_price,
+                )
+
+            order.total_price = total_price
+            order.save(update_fields=['total_price'])
+            cart.items.all().delete()
 
         return order

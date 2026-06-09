@@ -1,0 +1,87 @@
+<div class="confirmation-page">
+  <div class="confirmation-container">
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading order details...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="errorMessage && !isLoading" class="error-state">
+      <p class="error-message">{{ errorMessage }}</p>
+      <button (click)="continueShopping()" class="btn-primary">
+        Back to Products
+      </button>
+    </div>
+
+    <!-- Success State -->
+    <div *ngIf="order && !isLoading" class="success-state">
+      <div class="confirmation-header">
+        <div class="success-icon">✓</div>
+        <h1>Order Confirmed!</h1>
+        <p class="order-number">Order #{{ order.orderNumber }}</p>
+      </div>
+
+      <div class="confirmation-content">
+        <!-- Order Details -->
+        <section class="order-details">
+          <h2>Order Details</h2>
+
+          <div class="detail-row">
+            <label>Order ID:</label>
+            <span>{{ order.id }}</span>
+          </div>
+
+          <div class="detail-row">
+            <label>Order Date:</label>
+            <span>{{ getFormattedDate(order.createdAt) }}</span>
+          </div>
+
+          <div class="detail-row">
+            <label>Status:</label>
+            <span class="status-badge" [ngClass]="'status-' + order.status">
+              {{ order.status | uppercase }}
+            </span>
+          </div>
+
+          <div *ngIf="order.shippingAddress" class="detail-row">
+            <label>Shipping Address:</label>
+            <span>{{ order.shippingAddress }}</span>
+          </div>
+        </section>
+
+        <!-- Order Items -->
+        <section class="order-items" *ngIf="order.items && order.items.length > 0">
+          <h2>Items Ordered</h2>
+
+          <div class="items-list">
+            <div *ngFor="let item of order.items" class="item-row">
+              <div class="item-name">{{ item.productName }}</div>
+              <div class="item-qty">Qty: {{ item.quantity }}</div>
+              <div class="item-price">
+                {{ item.price * item.quantity | currency }}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Order Total -->
+        <section class="order-total">
+          <div class="total-row">
+            <span class="total-label">Total Amount:</span>
+            <span class="total-value">
+              {{ order.totalPrice | currency }}
+            </span>
+          </div>
+        </section>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="confirmation-actions">
+        <button (click)="continueShopping()" class="btn-primary">
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

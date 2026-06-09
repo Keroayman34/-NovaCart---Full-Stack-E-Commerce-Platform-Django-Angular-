@@ -1,0 +1,39 @@
+<div class="admin-container">
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" [class.collapsed]="!isSidebarOpen">
+    <div class="sidebar-header">
+      <h2 class="logo">NovaCart Admin</h2>
+      <button (click)="toggleSidebar()" class="toggle-btn">☰</button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a
+        *ngFor="let item of navItems"
+        [routerLink]="['/admin', item.route]"
+        [class.active]="isActive(item.route)"
+        class="nav-item"
+      >
+        <span class="icon">{{ item.icon }}</span>
+        <span class="label" *ngIf="isSidebarOpen">{{ item.label }}</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer" *ngIf="isSidebarOpen">
+      <div class="user-info">
+        <div class="avatar">👤</div>
+        <div class="user-details">
+          <p class="user-name">{{ userName }}</p>
+          <p class="user-role">Admin</p>
+        </div>
+      </div>
+      <button (click)="logout()" class="logout-btn">Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="admin-content">
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

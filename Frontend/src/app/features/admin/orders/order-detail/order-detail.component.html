@@ -1,0 +1,104 @@
+<div class="order-detail">
+  <div class="detail-header">
+    <div class="header-title">
+      <h2>Order #{{ order.id }}</h2>
+      <span [ngClass]="getStatusBadgeClass(order.status)">
+        {{ getStatusLabel(order.status) }}
+      </span>
+    </div>
+    <button class="btn-close" (click)="onCloseModal()" type="button">×</button>
+  </div>
+
+  <div class="detail-content">
+    <!-- Customer Information -->
+    <section class="detail-section">
+      <h3>Customer Information</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Name</label>
+          <p>{{ order.customer_name }}</p>
+        </div>
+        <div class="info-item">
+          <label>Email</label>
+          <p>{{ order.customer_email }}</p>
+        </div>
+        <div class="info-item">
+          <label>Order Date</label>
+          <p>{{ formatDate(order.created_at) }}</p>
+        </div>
+        <div class="info-item">
+          <label>Payment Method</label>
+          <p>{{ order.payment_method }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shipping Address -->
+    <section class="detail-section">
+      <h3>Shipping Address</h3>
+      <p class="address-text">{{ order.shipping_address }}</p>
+    </section>
+
+    <!-- Order Items -->
+    <section class="detail-section">
+      <h3>Order Items</h3>
+      <table class="items-table" *ngIf="order.items && order.items.length > 0">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of order.items">
+            <td>{{ item.product_name }}</td>
+            <td class="text-center">{{ item.quantity }}</td>
+            <td class="text-right">{{ formatCurrency(item.price) }}</td>
+            <td class="text-right">{{ formatCurrency(item.subtotal) }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="!order.items || order.items.length === 0" class="empty-items">
+        <p>No items in this order.</p>
+      </div>
+    </section>
+
+    <!-- Order Summary -->
+    <section class="detail-section order-summary">
+      <div class="summary-row">
+        <span>Total Amount:</span>
+        <strong>{{ formatCurrency(order.total_amount) }}</strong>
+      </div>
+    </section>
+
+    <!-- Status Update -->
+    <section class="detail-section status-section">
+      <h3>Update Status</h3>
+      <div *ngIf="!updateStatusMode" class="status-display">
+        <p class="current-status">Current Status: <strong>{{ getStatusLabel(order.status) }}</strong></p>
+        <button class="btn-edit-status" (click)="onEnableStatusUpdate()">Update Status</button>
+      </div>
+      <div *ngIf="updateStatusMode" class="status-update-form">
+        <div class="form-group">
+          <label for="status-select">New Status:</label>
+          <select
+            id="status-select"
+            [(ngModel)]="newStatus"
+            (change)="onStatusChange(newStatus)"
+            class="status-select"
+          >
+            <option *ngFor="let status of statusOptions" [value]="status">
+              {{ getStatusLabel(status) }}
+            </option>
+          </select>
+        </div>
+        <div class="status-actions">
+          <button class="btn-cancel" (click)="onStatusUpdateCancelled()">Cancel</button>
+          <button class="btn-update" (click)="onStatusUpdated()">Update Status</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

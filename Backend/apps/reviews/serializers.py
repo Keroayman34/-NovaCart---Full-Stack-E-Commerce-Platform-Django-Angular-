@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from .models import Review
 
 
@@ -12,12 +13,13 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     def validate_rating(self, value):
         if not 1 <= value <= 5:
-            raise serializers.ValidationError("الـ rating لازم يكون بين 1 و 5.")
+            raise serializers.ValidationError('الـ rating لازم يكون بين 1 و 5.')
         return value
 
     def validate(self, data):
-        user = self.context['request'].user
+        request = self.context.get('request')
+        user = getattr(request, 'user', None)
         product = data.get('product')
-        if Review.objects.filter(user=user, product=product).exists():
-            raise serializers.ValidationError("انت عملت review على المنتج ده قبل كده.")
+        if user and product and Review.objects.filter(user=user, product=product).exists():
+            raise serializers.ValidationError('انت عملت review على المنتج ده قبل كده.')
         return data
