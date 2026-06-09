@@ -13,10 +13,10 @@ export class RegisterComponent {
   isSubmitting = false;
 
   registerForm = this.formBuilder.group({
-    name: ["", [Validators.required]],
     email: ["", [Validators.required, Validators.email]],
-    password: ["", [Validators.required]],
-    confirmPassword: ["", [Validators.required]],
+    password: ["", [Validators.required, Validators.minLength(8)]],
+    role: ["customer"],
+    phone: [""],
   });
 
   constructor(
@@ -31,14 +31,6 @@ export class RegisterComponent {
 
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
-      return;
-    }
-
-    if (
-      this.registerForm.value.password !==
-      this.registerForm.value.confirmPassword
-    ) {
-      this.errorMessage = "Passwords do not match.";
       return;
     }
 

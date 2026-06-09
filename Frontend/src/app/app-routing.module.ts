@@ -12,6 +12,8 @@ import { OrderConfirmationComponent } from "./features/checkout/order-confirmati
 import { AuthGuard } from "./core/guards/auth.guard";
 import { AdminGuard } from "./core/guards/admin.guard";
 import { SellerGuard } from "./features/seller/seller.guard";
+import { LoginComponent } from "./features/auth/login/login.component";
+import { RegisterComponent } from "./features/auth/register/register.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "products", pathMatch: "full" },
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: "products/:id", component: ProductDetailComponent },
   { path: "checkout", component: CheckoutComponent },
   { path: "order-confirmation/:id", component: OrderConfirmationComponent },
+  { path: "login", component: LoginComponent },
+  { path: "register", component: RegisterComponent },
   {
     path: "profile",
     component: ProfilePageComponent,
@@ -55,6 +59,13 @@ const routes: Routes = [
     loadChildren: () =>
       import("./features/seller/seller.module").then((m) => m.SellerModule),
     canActivate: [SellerGuard],
+  },
+  {
+    path: "auth",
+    loadChildren: () =>
+      import("./features/auth/auth-routing.module").then(
+        (m) => m.AuthRoutingModule
+      ),
   },
   { path: "**", redirectTo: "products" },
 ];

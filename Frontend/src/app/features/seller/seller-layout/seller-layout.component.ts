@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, Router } from '@angular/router';
-import { AuthService } from '../../core/services/auth.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-seller-layout',
@@ -29,16 +29,25 @@ export class SellerLayoutComponent implements OnInit {
   }
 
   loadUserProfile(): void {
-    // In a real app, you would fetch user profile from a service
-    // For now, we'll use placeholder data that could be fetched from AuthService
-    const user = this.authService.getCurrentUser?.();
-    if (user) {
-      this.userProfile = {
-        name: user.name || 'Seller',
-        email: user.email,
-        avatar: user.avatar,
-      };
+    if (this.authService.isLoggedIn()) {
+      this.authService.getCurrentUser().subscribe({
+        next: (user) => {
+          this.userProfile = {
+            name: user.email || 'Seller', // Profile API returns email
+            email: user.email,
+            avatar: user.avatar,
+          };
+        },
+        error: () => {
+          // Fallback if API fails
+          this.userProfile = {
+            name: 'Seller',
+            email: 'seller@example.com',
+          };
+        }
+      });
     } else {
+      // Fallback if not logged in
       this.userProfile = {
         name: 'Seller',
         email: 'seller@example.com',

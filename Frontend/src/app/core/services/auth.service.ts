@@ -16,7 +16,8 @@ interface RegisterPayload {
 }
 
 interface AuthResponse {
-  token: string;
+  access: string;
+  refresh: string;
 }
 
 @Injectable({
@@ -39,10 +40,10 @@ export class AuthService {
   // login user and store token
   login(payload: Partial<LoginPayload>): Observable<AuthResponse> {
     return this.http
-      .post<AuthResponse>(`${this.apiUrl}/auth/login`, payload)
+      .post<AuthResponse>(`${this.apiUrl}/token/`, payload)
       .pipe(
         tap((response) => {
-          this.storeToken(response.token);
+          this.storeToken(response.access);
         }),
       );
   }
@@ -50,7 +51,7 @@ export class AuthService {
   // register new user
   register(payload: Partial<RegisterPayload>): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
-      `${this.apiUrl}/auth/register`,
+      `${this.apiUrl}/register/`,
       payload,
     );
   }
@@ -111,5 +112,10 @@ export class AuthService {
     } catch {
       return null;
     }
+  }
+
+  // fetch real user profile from backend API
+  getCurrentUser(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/profile/`);
   }
 }

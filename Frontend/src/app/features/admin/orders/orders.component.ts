@@ -11,7 +11,7 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
 })
-export class OrdersComponent implements OnInit {
+export class AdminOrdersComponent implements OnInit {
   orders: Order[] = [];
   loading = false;
   errorMessage = '';
