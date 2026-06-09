@@ -19,17 +19,15 @@ import { CommonModule } from '@angular/common';
         padding: 40px 20px;
         text-align: center;
         border: 1px solid #e5e7eb;
-
-        h1 {
-          font-size: 24px;
-          color: #333;
-          margin: 0 0 12px 0;
-        }
-
-        p {
-          color: #666;
-          margin: 0;
-        }
+      }
+      .placeholder-page h1 {
+        font-size: 24px;
+        color: #333;
+        margin: 0 0 12px 0;
+      }
+      .placeholder-page p {
+        color: #666;
+        margin: 0;
       }
     `,
   ],
