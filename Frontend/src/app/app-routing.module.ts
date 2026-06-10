@@ -8,6 +8,7 @@ import { WishlistComponent } from "./features/profile/wishlist/wishlist.componen
 import { OrderHistoryComponent } from "./features/profile/order-history/order-history.component";
 import { OrderDetailComponent } from "./features/profile/order-history/order-detail/order-detail.component";
 import { CheckoutComponent } from "./features/checkout/checkout.component";
+import { CartPageComponent } from "./features/cart/cart-page/cart-page.component";
 import { OrderConfirmationComponent } from "./features/checkout/order-confirmation/order-confirmation.component";
 import { AuthGuard } from "./core/guards/auth.guard";
 import { AdminGuard } from "./core/guards/admin.guard";
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: "", redirectTo: "products", pathMatch: "full" },
   { path: "products", component: ProductListComponent },
   { path: "products/:id", component: ProductDetailComponent },
+  { path: "cart", component: CartPageComponent },
   { path: "checkout", component: CheckoutComponent },
   { path: "order-confirmation/:id", component: OrderConfirmationComponent },
   { path: "login", component: LoginComponent },

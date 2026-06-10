@@ -41,7 +41,9 @@
       <input id="phone" type="tel" formControlName="phone" />
     </div>
 
-    <button type="submit" [disabled]="isSubmitting">Register</button>
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="isSubmitting">
+      {{ isSubmitting ? 'Creating account…' : 'Create Account' }}
+    </button>
 
     <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
   </form>

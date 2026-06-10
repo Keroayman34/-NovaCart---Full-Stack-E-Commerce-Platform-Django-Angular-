@@ -3,6 +3,7 @@
 
   <div class="links">
     <a routerLink="/products" routerLinkActive="active">Products</a>
+    <a routerLink="/cart" routerLinkActive="active">🛒 Cart</a>
     <a *ngIf="authService.isLoggedIn()" routerLink="/profile" routerLinkActive="active">Profile</a>
     <a
       *ngIf="authService.isLoggedIn() && authService.getRole() === 'admin'"

@@ -1,7 +1,10 @@
 export interface UserProfile {
   id?: number;
-  name: string;
   email: string;
+  phone: string;
+  role: string;
+  is_verified: boolean;
+  avatar: string | null;
 }
 
 export interface Address {

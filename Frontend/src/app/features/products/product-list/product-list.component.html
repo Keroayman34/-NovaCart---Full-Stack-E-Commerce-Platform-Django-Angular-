@@ -1,4 +1,94 @@
-<div class="page">
-  <h2>Products</h2>
-  <p>Product list will be shown here.</p>
+<div class="products-page">
+
+  <!-- Page Header -->
+  <div class="products-header">
+    <div class="header-left">
+      <h1>Products</h1>
+      <span class="product-count" *ngIf="!loading">{{ totalCount }} items</span>
+    </div>
+
+    <div class="header-controls">
+      <!-- Search -->
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          [formControl]="searchControl"
+          placeholder="Search products..."
+          class="search-input"
+        />
+      </div>
+
+      <!-- Ordering -->
+      <select [(ngModel)]="selectedOrdering" (change)="onOrderingChange()" class="sort-select">
+        <option *ngFor="let opt of orderingOptions" [value]="opt.value">{{ opt.label }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div class="alert alert-danger" *ngIf="error">
+    ⚠️ {{ error }}
+  </div>
+
+  <!-- Loading Skeleton -->
+  <div class="products-grid" *ngIf="loading">
+    <div class="skeleton-card" *ngFor="let i of [1,2,3,4,5,6,7,8]">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-body">
+        <div class="skeleton-line long"></div>
+        <div class="skeleton-line short"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="products-grid" *ngIf="!loading && products.length > 0">
+    <div
+      class="product-card"
+      *ngFor="let product of products"
+      (click)="goToDetail(product.id)"
+    >
+      <!-- Image -->
+      <div class="product-image-wrapper">
+        <img
+          *ngIf="product.primary_image"
+          [src]="product.primary_image.image"
+          [alt]="product.name"
+          class="product-img"
+        />
+        <div class="no-image" *ngIf="!product.primary_image">
+          <span>🛍️</span>
+        </div>
+        <span class="out-of-stock-badge" *ngIf="!product.is_in_stock">Out of Stock</span>
+      </div>
+
+      <!-- Info -->
+      <div class="product-info">
+        <span class="product-category">{{ product.category_name }}</span>
+        <h3 class="product-name">{{ product.name }}</h3>
+        <div class="product-footer">
+          <span class="product-price">${{ product.price }}</span>
+          <span class="stock-badge" [class.in-stock]="product.is_in_stock" [class.no-stock]="!product.is_in_stock">
+            {{ product.is_in_stock ? 'In Stock' : 'Sold Out' }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="!loading && products.length === 0">
+    <div class="empty-icon">📦</div>
+    <h3>No products found</h3>
+    <p>Try a different search term or clear the filters.</p>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination" *ngIf="totalPages > 1 && !loading">
+    <button class="btn btn-outline btn-sm" (click)="prevPage()" [disabled]="currentPage === 1">← Prev</button>
+    <span class="page-info">Page {{ currentPage }} of {{ totalPages }}</span>
+    <button class="btn btn-outline btn-sm" (click)="nextPage()" [disabled]="currentPage === totalPages">Next →</button>
+  </div>
+
 </div>

@@ -5,10 +5,20 @@ from apps.products.models import Product
 from .models import Wishlist
 
 
+from apps.products.serializers import ProductImageSerializer
+
 class ProductBriefSerializer(serializers.ModelSerializer):
+    primary_image = serializers.SerializerMethodField()
+
     class Meta:
         model = Product
-        fields = ['id', 'name', 'price']
+        fields = ['id', 'name', 'price', 'primary_image']
+
+    def get_primary_image(self, obj):
+        primary_image = obj.images.filter(is_primary=True).first()
+        if primary_image:
+            return ProductImageSerializer(primary_image, context=self.context).data
+        return None
 
 
 class WishlistSerializer(serializers.ModelSerializer):

@@ -27,7 +27,9 @@
       </small>
     </div>
 
-    <button type="submit" [disabled]="isSubmitting">Login</button>
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="isSubmitting">
+      {{ isSubmitting ? 'Logging in…' : 'Login' }}
+    </button>
 
     <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
   </form>

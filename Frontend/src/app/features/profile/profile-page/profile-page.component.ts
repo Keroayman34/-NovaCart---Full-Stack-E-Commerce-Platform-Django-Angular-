@@ -16,8 +16,8 @@ export class ProfilePageComponent implements OnInit {
   errorMessage = "";
 
   profileForm = this.formBuilder.group({
-    name: ["", [Validators.required]],
-    email: ["", [Validators.required, Validators.email]],
+    email: [{value: '', disabled: true}, [Validators.required, Validators.email]], // Email is usually read-only
+    phone: ["", []],
   });
 
   constructor(
@@ -37,8 +37,8 @@ export class ProfilePageComponent implements OnInit {
       next: (profile) => {
         this.profile = profile;
         this.profileForm.patchValue({
-          name: profile.name,
           email: profile.email,
+          phone: profile.phone,
         });
       },
       error: () => {

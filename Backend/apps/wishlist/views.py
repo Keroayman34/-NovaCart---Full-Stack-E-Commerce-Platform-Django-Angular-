@@ -17,7 +17,11 @@ class WishlistView(APIView):
 
     def get(self, request):
         wishlist = self.get_wishlist(request.user)
-        serializer = ProductBriefSerializer(wishlist.products.all(), many=True)
+        serializer = ProductBriefSerializer(
+            wishlist.products.all(), 
+            many=True, 
+            context={'request': request}
+        )
         return Response(serializer.data)
 
     def post(self, request):

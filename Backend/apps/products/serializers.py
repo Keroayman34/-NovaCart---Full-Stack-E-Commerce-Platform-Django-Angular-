@@ -107,7 +107,7 @@ class ProductListSerializer(serializers.ModelSerializer):
         """Get the primary image URL."""
         primary_image = obj.images.filter(is_primary=True).first()
         if primary_image:
-            return ProductImageSerializer(primary_image).data
+            return ProductImageSerializer(primary_image, context=self.context).data
         return None
 
     def get_url(self, obj):

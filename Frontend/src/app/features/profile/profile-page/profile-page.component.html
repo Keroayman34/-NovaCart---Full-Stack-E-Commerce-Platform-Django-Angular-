@@ -1,47 +1,82 @@
-<div class="page">
-  <div class="header">
-    <h2>Profile</h2>
-    <div class="nav-links">
-      <a routerLink="/profile/addresses">Addresses</a>
-      <a routerLink="/profile/wishlist">Wishlist</a>
-      <a routerLink="/profile/orders">Orders</a>
+<div class="page profile-layout">
+  <!-- Profile Sidebar Navigation -->
+  <aside class="profile-sidebar card">
+    <div class="user-summary" *ngIf="profile">
+      <div class="avatar">{{ profile.email.charAt(0) | uppercase }}</div>
+      <div class="info">
+        <h3 class="name" style="font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis;">{{ profile.email }}</h3>
+        <p class="role badge badge-primary">{{ profile.role | titlecase }}</p>
+      </div>
     </div>
-  </div>
+    
+    <nav class="profile-nav">
+      <a routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+        <span class="icon">👤</span> Personal Info
+      </a>
+      <a routerLink="/profile/orders" routerLinkActive="active" class="nav-item">
+        <span class="icon">📦</span> Order History
+      </a>
+      <a routerLink="/profile/wishlist" routerLinkActive="active" class="nav-item">
+        <span class="icon">❤️</span> Wishlist
+      </a>
+    </nav>
+  </aside>
 
-  <div class="card" *ngIf="isLoading">Loading profile...</div>
-
-  <div class="card" *ngIf="!isLoading">
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input id="name" type="text" formControlName="name" />
-        <small
-          *ngIf="
-            profileForm.controls.name.touched &&
-            profileForm.controls.name.invalid
-          "
-        >
-          Name is required.
-        </small>
+  <!-- Profile Content -->
+  <main class="profile-content card">
+    <div class="card-header">
+      <h3>Personal Information</h3>
+      <p class="text-muted text-sm mt-1">Update your account details and contact information.</p>
+    </div>
+    
+    <div class="card-body">
+      <!-- Loading State -->
+      <div class="loading text-center" *ngIf="isLoading">
+        <div class="spinner"></div>
+        <p class="mt-4">Loading your profile...</p>
       </div>
 
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" type="email" formControlName="email" />
-        <small
-          *ngIf="
-            profileForm.controls.email.touched &&
-            profileForm.controls.email.invalid
-          "
-        >
-          Please enter a valid email.
-        </small>
+      <!-- Content -->
+      <div *ngIf="!isLoading">
+        <!-- Alerts -->
+        <div class="alert alert-success" *ngIf="successMessage">
+          ✅ {{ successMessage }}
+        </div>
+        <div class="alert alert-danger" *ngIf="errorMessage">
+          ❌ {{ errorMessage }}
+        </div>
+
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="email">Email Address</label>
+              <input id="email" type="email" formControlName="email" placeholder="john@example.com" />
+              <small class="text-muted">Email address cannot be changed.</small>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="phone">Phone Number</label>
+              <input id="phone" type="text" formControlName="phone" placeholder="+1234567890" />
+            </div>
+          </div>
+
+          <div class="form-actions mt-6">
+            <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid || isSaving">
+              {{ isSaving ? 'Saving Changes...' : 'Save Changes' }}
+            </button>
+          </div>
+        </form>
+        
+        <hr class="divider" />
+        
+        <div class="danger-zone mt-6">
+          <h4 class="text-danger mb-2">Danger Zone</h4>
+          <p class="text-sm text-muted mb-4">Deleting your account is permanent and cannot be undone.</p>
+          <button class="btn btn-outline text-danger border-danger">Delete Account</button>
+        </div>
       </div>
-
-      <button type="submit" [disabled]="isSaving">Save Changes</button>
-    </form>
-
-    <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
-    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
-  </div>
+    </div>
+  </main>
 </div>

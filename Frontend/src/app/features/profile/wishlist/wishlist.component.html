@@ -12,15 +12,27 @@
   </div>
 
   <div class="wishlist-grid" *ngIf="!isLoading && wishlist.length">
-    <div class="card" *ngFor="let item of wishlist">
-      <img *ngIf="item.image" [src]="item.image" [alt]="item.name" />
-      <div class="content">
-        <a class="name" [routerLink]="['/products', item.id]">
-          {{ item.name }}
-        </a>
-        <p class="price">${{ item.price }}</p>
+    <div class="product-card" *ngFor="let item of wishlist">
+      <!-- Image -->
+      <div class="product-image-wrapper">
+        <img *ngIf="item.primary_image" [src]="item.primary_image.image" [alt]="item.name" class="product-img" />
+        <div class="no-image" *ngIf="!item.primary_image">
+          <span>🛍️</span>
+        </div>
       </div>
-      <button class="danger" (click)="onRemoveItem(item.id)">Remove</button>
+
+      <!-- Info -->
+      <div class="product-info">
+        <h3 class="product-name">
+          <a [routerLink]="['/products', item.id]">{{ item.name }}</a>
+        </h3>
+        <div class="product-footer">
+          <span class="product-price">${{ item.price }}</span>
+          <button class="btn btn-outline text-danger btn-sm" (click)="onRemoveItem(item.id)">
+            Remove
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

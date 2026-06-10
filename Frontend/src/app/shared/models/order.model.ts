@@ -1,16 +1,18 @@
 export interface OrderItem {
   id: number;
-  productId: number;
-  name: string;
+  product: number;
+  product_name: string;
   price: number;
   quantity: number;
-  image?: string;
+  total: number;
 }
 
 export interface Order {
   id: number;
-  total: number;
+  user: string;
   status: string;
-  date: string;
+  total_price: string;
+  address: string;
+  created_at: string;
   items: OrderItem[];
 }

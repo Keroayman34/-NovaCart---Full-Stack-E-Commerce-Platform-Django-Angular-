@@ -1,71 +1,84 @@
-<section class="checkout-page">
-  <div class="checkout-container">
-    <h1>Checkout</h1>
+<div class="page">
+  <h2 class="page-title">Checkout</h2>
 
-    <!-- Error Alert -->
-    <div *ngIf="errorMessage" class="alert alert-error">
-      <span>{{ errorMessage }}</span>
+  <!-- Loading -->
+  <div class="loading-state" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>Loading order details...</p>
+  </div>
+
+  <!-- Success -->
+  <div class="success-card" *ngIf="success">
+    <div class="success-icon">✓</div>
+    <h3>{{ success }}</h3>
+    <p>Redirecting to your orders...</p>
+  </div>
+
+  <!-- Error -->
+  <div class="error-card" *ngIf="error && !success">{{ error }}</div>
+
+  <!-- Checkout Form -->
+  <div class="checkout-layout" *ngIf="!loading && hasItems && !success">
+
+    <!-- Left: Shipping -->
+    <div class="checkout-form">
+      <div class="form-section">
+        <h3>📦 Shipping Address</h3>
+        <textarea
+          [(ngModel)]="address"
+          placeholder="Enter your full shipping address (street, city, country, zip code)"
+          rows="4"
+          class="address-input"
+        ></textarea>
+      </div>
     </div>
 
-    <!-- Success Alert -->
-    <div *ngIf="successMessage" class="alert alert-success">
-      <span>{{ successMessage }}</span>
-    </div>
+    <!-- Right: Summary -->
+    <div class="order-summary">
+      <h3>Order Summary</h3>
 
-    <div class="checkout-grid">
-      <!-- Left Panel: Forms -->
-      <div class="checkout-form-panel">
-        <!-- Guest Checkout (for non-logged-in users) -->
-        <ng-container *ngIf="!isLoggedIn">
-          <app-guest-checkout
-            (guestDataSubmitted)="onGuestDataSubmitted($event)"
-            (loginRequested)="onLoginRequested()"
-          ></app-guest-checkout>
-
-          <!-- Payment Form (only show after guest provides email/shipping) -->
-          <div *ngIf="guestData" class="form-section">
-            <h2>Payment Method</h2>
-            <app-payment-method></app-payment-method>
+      <div class="summary-items">
+        <div class="summary-item" *ngFor="let item of cart.items">
+          <div class="item-detail">
+            <span class="item-name">{{ item.product_name }}</span>
+            <span class="item-qty">× {{ item.quantity }}</span>
           </div>
-
-          <!-- Submit Button (only show after guest provides info) -->
-          <button
-            *ngIf="guestData"
-            (click)="onSubmit()"
-            [disabled]="isProcessing"
-            class="btn-submit"
-          >
-            <span *ngIf="!isProcessing">Place Order</span>
-            <span *ngIf="isProcessing">Processing...</span>
-          </button>
-        </ng-container>
-
-        <!-- Regular Checkout (for logged-in users) -->
-        <ng-container *ngIf="isLoggedIn">
-          <!-- Shipping Form -->
-          <div class="form-section">
-            <h2>Shipping Address</h2>
-            <app-shipping-form></app-shipping-form>
-          </div>
-
-          <!-- Payment Form -->
-          <div class="form-section">
-            <h2>Payment Method</h2>
-            <app-payment-method></app-payment-method>
-          </div>
-
-          <!-- Submit Button -->
-          <button (click)="onSubmit()" [disabled]="isProcessing" class="btn-submit">
-            <span *ngIf="!isProcessing">Place Order</span>
-            <span *ngIf="isProcessing">Processing...</span>
-          </button>
-        </ng-container>
+          <span class="item-total">${{ item.total }}</span>
+        </div>
       </div>
 
-      <!-- Right Panel: Order Summary -->
-      <aside class="order-summary-panel">
-        <app-order-summary></app-order-summary>
-      </aside>
+      <div class="summary-divider"></div>
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span>${{ cart.total_price }}</span>
+      </div>
+      <div class="summary-row">
+        <span>Shipping</span>
+        <span class="free">Free</span>
+      </div>
+
+      <div class="summary-divider"></div>
+
+      <div class="summary-row total">
+        <span>Total</span>
+        <span>${{ cart.total_price }}</span>
+      </div>
+
+      <button
+        class="place-order-btn"
+        (click)="placeOrder()"
+        [disabled]="placing || !address.trim()"
+      >
+        <span *ngIf="!placing">🛍️ Place Order</span>
+        <span *ngIf="placing">Placing order...</span>
+      </button>
     </div>
   </div>
-</section>
+
+  <!-- Empty cart redirect -->
+  <div class="empty-state" *ngIf="!loading && !hasItems && !success">
+    <p>Your cart is empty.</p>
+    <a routerLink="/products" class="shop-btn">Browse Products</a>
+  </div>
+</div>
