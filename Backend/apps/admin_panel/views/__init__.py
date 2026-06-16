@@ -1,1 +1,3 @@
-# Admin panel views package
+from .users import *
+from .products import *
+from .orders import *
