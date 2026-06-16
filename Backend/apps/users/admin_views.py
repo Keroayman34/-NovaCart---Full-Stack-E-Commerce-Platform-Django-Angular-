@@ -7,22 +7,27 @@ from core.permissions import IsAdminUser
 
 class AdminUserSerializer(serializers.Serializer):
 	id = serializers.IntegerField(read_only=True)
-	username = serializers.CharField(read_only=True, allow_blank=True, required=False)
 	first_name = serializers.CharField(read_only=True, allow_blank=True, required=False)
 	last_name = serializers.CharField(read_only=True, allow_blank=True, required=False)
 	email = serializers.EmailField(read_only=True, required=False)
 	role = serializers.CharField(read_only=True, allow_blank=True, required=False)
 	is_active = serializers.BooleanField(read_only=True)
+	is_verified = serializers.BooleanField(read_only=True)
+	phone = serializers.CharField(read_only=True, allow_blank=True, required=False)
+	date_joined = serializers.DateTimeField(read_only=True)
 
 	def to_representation(self, instance):
 		return {
 			"id": instance.pk,
-			"username": getattr(instance, "username", ""),
+			"name": (f"{getattr(instance, 'first_name', '')} {getattr(instance, 'last_name', '')}").strip() or getattr(instance, "email", ""),
 			"first_name": getattr(instance, "first_name", ""),
 			"last_name": getattr(instance, "last_name", ""),
 			"email": getattr(instance, "email", ""),
 			"role": getattr(instance, "role", ""),
 			"is_active": getattr(instance, "is_active", True),
+			"is_verified": getattr(instance, "is_verified", False),
+			"phone": getattr(instance, "phone", ""),
+			"created_at": getattr(instance, "date_joined", None),
 		}
 
 
@@ -33,6 +38,10 @@ class AdminUserUpdateSerializer(serializers.Serializer):
 	def validate(self, attrs):
 		if not attrs:
 			raise serializers.ValidationError("Provide at least one field to update.")
+		if attrs.get("role") == "admin":
+			raise serializers.ValidationError("Use Django admin to grant admin privileges.")
+		if "role" in attrs and attrs["role"] not in {"customer", "seller"}:
+			raise serializers.ValidationError("Role must be customer or seller.")
 		return attrs
 
 
@@ -48,10 +57,14 @@ class AdminUserListView(generics.ListAPIView):
 		if role and hasattr(User, "role"):
 			queryset = queryset.filter(role=role)
 
-		status = self.request.query_params.get("status")
+		status = self.request.query_params.get("status") or self.request.query_params.get("is_active")
 		if status == "active":
 			queryset = queryset.filter(is_active=True)
 		elif status in {"restricted", "inactive"}:
+			queryset = queryset.filter(is_active=False)
+		elif status == "true":
+			queryset = queryset.filter(is_active=True)
+		elif status == "false":
 			queryset = queryset.filter(is_active=False)
 
 		return queryset

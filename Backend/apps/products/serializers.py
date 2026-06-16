@@ -74,8 +74,11 @@ class ProductListSerializer(serializers.ModelSerializer):
     Includes only essential fields and primary image.
     """
     category_name = serializers.CharField(source="category.name", read_only=True)
+    category_id = serializers.IntegerField(source="category.id", read_only=True)
     seller_name = serializers.CharField(source="seller.email", read_only=True)
+    seller_id = serializers.IntegerField(source="seller.id", read_only=True)
     primary_image = serializers.SerializerMethodField()
+    images = ProductImageSerializer(many=True, read_only=True)
     url = serializers.SerializerMethodField()
 
     class Meta:
@@ -87,10 +90,15 @@ class ProductListSerializer(serializers.ModelSerializer):
             "sku",
             "price",
             "stock_quantity",
+            "average_rating",
+            "rating_count",
             "is_in_stock",
+            "category_id",
             "category_name",
+            "seller_id",
             "seller_name",
             "primary_image",
+            "images",
             "is_active",
             "url",
             "created_at",
@@ -98,6 +106,8 @@ class ProductListSerializer(serializers.ModelSerializer):
         read_only_fields = [
             "id",
             "slug",
+            "average_rating",
+            "rating_count",
             "is_in_stock",
             "created_at",
             "url",
@@ -105,7 +115,10 @@ class ProductListSerializer(serializers.ModelSerializer):
 
     def get_primary_image(self, obj):
         """Get the primary image URL."""
-        primary_image = obj.images.filter(is_primary=True).first()
+        prefetched_images = list(obj.images.all())
+        primary_image = next((image for image in prefetched_images if image.is_primary), None)
+        if primary_image is None and prefetched_images:
+            primary_image = prefetched_images[0]
         if primary_image:
             return ProductImageSerializer(primary_image).data
         return None
@@ -152,6 +165,8 @@ class ProductSerializer(serializers.ModelSerializer):
             "sku",
             "price",
             "stock_quantity",
+            "average_rating",
+            "rating_count",
             "is_in_stock",
             "is_active",
             "category_id",
@@ -167,6 +182,8 @@ class ProductSerializer(serializers.ModelSerializer):
         read_only_fields = [
             "id",
             "slug",
+            "average_rating",
+            "rating_count",
             "is_in_stock",
             "category_name",
             "seller_name",
