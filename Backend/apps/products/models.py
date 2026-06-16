@@ -154,6 +154,16 @@ class Product(models.Model):
         validators=[MinValueValidator(0)],
         help_text="Available stock quantity"
     )
+    average_rating = models.DecimalField(
+        max_digits=3,
+        decimal_places=2,
+        default=0,
+        help_text="Cached average review rating",
+    )
+    rating_count = models.PositiveIntegerField(
+        default=0,
+        help_text="Cached number of reviews",
+    )
     is_active = models.BooleanField(
         default=True,
         db_index=True,
