@@ -3,3 +3,6 @@ from .users import (
     AdminUserUpdateView,
     AdminUserDeleteView,
 )
+from .orders import *
+from .products import *
+from .banners import *

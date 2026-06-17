@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from .models import Banner, HomepageSection
 from apps.orders.models import Order
 
 
@@ -64,3 +65,11 @@ class AdminUpdateStatusSerializer(serializers.Serializer):
         choices=Order.Status.choices,
         required=True
     )
+
+class BannerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Banner
+        fields = "__all__"
+    
+
+
