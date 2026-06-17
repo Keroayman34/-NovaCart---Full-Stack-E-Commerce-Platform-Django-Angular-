@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from apps.orders.models import Order
+from rest_framework import serializers
 
 
 class AdminUserSerializer(serializers.Serializer):
@@ -64,3 +65,30 @@ class AdminUpdateStatusSerializer(serializers.Serializer):
         choices=Order.Status.choices,
         required=True
     )
+
+
+
+class AdminProductUpdateSerializer(serializers.Serializer):
+    name = serializers.CharField(required=False)
+    description = serializers.CharField(required=False)
+    price = serializers.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        required=False
+    )
+    stock_quantity = serializers.IntegerField(
+        required=False
+    )
+    is_active = serializers.BooleanField(
+        required=False
+    )
+    category = serializers.IntegerField(
+        required=False
+    )
+
+    def validate(self, attrs):
+        if not attrs:
+            raise serializers.ValidationError(
+                "Provide at least one field."
+            )
+        return attrs

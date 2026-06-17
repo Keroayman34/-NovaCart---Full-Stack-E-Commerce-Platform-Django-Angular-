@@ -1,5 +1,7 @@
 from django.apps import apps
-
+from apps.admin_panel.serializers import (
+    AdminProductUpdateSerializer,
+)
 from rest_framework import generics
 from rest_framework import permissions
 from rest_framework import serializers
@@ -42,7 +44,66 @@ class AdminCategoryListView(generics.ListAPIView):
 
         return Response(data)
 
+class AdminProductApproveView(generics.GenericAPIView):
+    permission_classes = [IsAdminUser]
 
+    def patch(self, request, *args, **kwargs):
+        Product = apps.get_model("products", "Product")
+
+        product = Product.objects.filter(
+            pk=kwargs["pk"]
+        ).first()
+
+        if not product:
+            raise serializers.ValidationError(
+                "Product not found."
+            )
+
+        product.approval_status = (
+            Product.ApprovalStatus.APPROVED
+        )
+
+        product.save(
+            update_fields=["approval_status"]
+        )
+
+        return Response(
+            {
+                "message": "Product approved successfully."
+            },
+            status=status.HTTP_200_OK,
+        )
+
+
+class AdminProductRejectView(generics.GenericAPIView):
+    permission_classes = [IsAdminUser]
+
+    def patch(self, request, *args, **kwargs):
+        Product = apps.get_model("products", "Product")
+
+        product = Product.objects.filter(
+            pk=kwargs["pk"]
+        ).first()
+
+        if not product:
+            raise serializers.ValidationError(
+                "Product not found."
+            )
+
+        product.approval_status = (
+            Product.ApprovalStatus.REJECTED
+        )
+
+        product.save(
+            update_fields=["approval_status"]
+        )
+
+        return Response(
+            {
+                "message": "Product rejected successfully."
+            },
+            status=status.HTTP_200_OK,
+        )
 class AdminCategoryCreateView(generics.GenericAPIView):
     permission_classes = [IsAdminUser]
     serializer_class = CategoryInputSerializer
@@ -182,7 +243,79 @@ class AdminCategoryDetailView(generics.GenericAPIView):
             }
         )
 
+class AdminProductCreateView(generics.GenericAPIView):
+    permission_classes = [IsAdminUser]
 
+    def post(self, request, *args, **kwargs):
+        Product = apps.get_model("products", "Product")
+
+        incoming = request.data or {}
+
+        writable_fields = {
+            field.name
+            for field in Product._meta.fields
+            if field.name not in {
+                "id",
+                "pk",
+                "created_at",
+                "updated_at",
+                "slug",
+            }
+        }
+
+        payload = {
+            key: value
+            for key, value in incoming.items()
+            if key in writable_fields
+        }
+
+        if not payload:
+            raise serializers.ValidationError(
+                "No valid product fields provided."
+            )
+
+        product = Product.objects.create(
+            category_id=payload["category"],
+            seller_id=payload["seller"],
+            name=payload["name"],
+            description=payload.get("description"),
+            sku=payload["sku"],
+            price=payload["price"],
+            stock_quantity=payload["stock_quantity"],
+        )
+
+        return Response(
+            {
+                "id": product.pk,
+                "message": "Product created successfully."
+            },
+            status=status.HTTP_201_CREATED
+        )
+    
+class AdminProductRestoreView(generics.GenericAPIView):
+    permission_classes = [IsAdminUser]
+
+    def patch(self, request, *args, **kwargs):
+        Product = apps.get_model("products", "Product")
+
+        product = Product.objects.filter(
+            pk=kwargs["pk"]
+        ).first()
+
+        if not product:
+            raise serializers.ValidationError(
+                "Product not found."
+            )
+
+        product.is_deleted = False
+        product.save(update_fields=["is_deleted"])
+
+        return Response(
+            {
+                "message": "Product restored successfully."
+            },
+            status=status.HTTP_200_OK
+        )
 class AdminProductListView(generics.ListAPIView):
     permission_classes = [IsAdminUser]
 
@@ -287,3 +420,89 @@ class AdminProductSoftDeleteView(
                 "Product soft deleted successfully"
             }
         )
+    
+
+class AdminProductUpdateView(
+    generics.GenericAPIView
+):
+    permission_classes = [IsAdminUser]
+    serializer_class = (
+        AdminProductUpdateSerializer
+    )
+
+    def patch(
+        self,
+        request,
+        *args,
+        **kwargs
+    ):
+        Product = apps.get_model(
+            "products",
+            "Product"
+        )
+
+        Category = apps.get_model(
+            "products",
+            "Category"
+        )
+
+        product = Product.objects.filter(
+            pk=kwargs.get("pk"),
+            is_deleted=False
+        ).first()
+
+        if not product:
+            raise serializers.ValidationError(
+                "Product not found."
+            )
+
+        serializer = self.get_serializer(
+            data=request.data
+        )
+
+        serializer.is_valid(
+            raise_exception=True
+        )
+
+        data = serializer.validated_data
+
+        if "name" in data:
+            product.name = data["name"]
+
+        if "description" in data:
+            product.description = data[
+                "description"
+            ]
+
+        if "price" in data:
+            product.price = data["price"]
+
+        if "stock_quantity" in data:
+            product.stock_quantity = data[
+                "stock_quantity"
+            ]
+
+        if "is_active" in data:
+            product.is_active = data[
+                "is_active"
+            ]
+
+        if "category" in data:
+            category = Category.objects.filter(
+                pk=data["category"]
+            ).first()
+
+            if not category:
+                raise serializers.ValidationError(
+                    "Category not found."
+                )
+
+            product.category = category
+
+        product.full_clean()
+        product.save()
+
+        return Response({
+            "message":
+            "Product updated successfully"
+        })

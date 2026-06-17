@@ -12,6 +12,11 @@ from .views.products import (
     AdminCategoryDetailView,
     AdminProductListView,
     AdminProductSoftDeleteView,
+    AdminProductUpdateView,
+    AdminProductCreateView,
+    AdminProductRestoreView,
+    AdminProductApproveView,
+    AdminProductRejectView,
 )
 
 from .views.orders import (
@@ -77,6 +82,33 @@ urlpatterns = [
         name="admin-product-delete"
     ),
 
+    path(
+        "products/<int:pk>/update/",
+        AdminProductUpdateView.as_view(),
+        name="admin-product-update"
+    ),
+    
+    path(
+    "products/create/",
+    AdminProductCreateView.as_view(),
+    name="admin-product-create"
+    ),
+    path(
+        "products/<int:pk>/restore/",
+        AdminProductRestoreView.as_view(),
+        name="admin-product-restore"
+    ),
+    path(
+    "products/<int:pk>/approve/",
+    AdminProductApproveView.as_view(),
+    name="admin-product-approve"
+    ),
+
+    path(
+        "products/<int:pk>/reject/",
+        AdminProductRejectView.as_view(),
+        name="admin-product-reject"
+    ),
     # Orders
 
     path(
