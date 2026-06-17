@@ -1,5 +1,4 @@
-from django_db import models
-
+from django.db import models
 
 class Banner(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True, help_text="Main title of the banner")

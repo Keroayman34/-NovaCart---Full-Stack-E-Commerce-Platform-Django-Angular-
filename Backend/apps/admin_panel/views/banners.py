@@ -1,10 +1,9 @@
-from .models import Banner, HomepageSection
+from ..models import Banner
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from ..serializers import BannerSerializer, HomepageSectionSerializer
+from ..serializers import BannerSerializer
 from django.views import generic
-from rest_framework import IsAdminUser
 
 class BannerListView(APIView):
     def get(self, request):
