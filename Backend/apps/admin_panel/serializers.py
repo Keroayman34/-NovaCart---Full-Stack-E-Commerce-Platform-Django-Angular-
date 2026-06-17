@@ -61,6 +61,6 @@ class AdminUserUpdateSerializer(serializers.Serializer):
 class AdminUpdateStatusSerializer(serializers.Serializer):
 
     status = serializers.ChoiceField(
-        choices=Order.STATUS_CHOICES,
+        choices=Order.Status.choices,
         required=True
     )

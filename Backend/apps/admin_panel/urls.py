@@ -6,6 +6,14 @@ from .views.users import (
     AdminUserDeleteView,
 )
 
+from .views.products import (
+    AdminCategoryListView,
+    AdminCategoryCreateView,
+    AdminCategoryDetailView,
+    AdminProductListView,
+    AdminProductSoftDeleteView,
+)
+
 from .views.orders import (
     AdminOrderListView,
     AdminOrderDetailView,
@@ -14,6 +22,8 @@ from .views.orders import (
 )
 
 urlpatterns = [
+
+    # Users
 
     path(
         "users/",
@@ -33,6 +43,42 @@ urlpatterns = [
         name="admin-user-delete"
     ),
 
+    # Categories
+
+    path(
+        "categories/",
+        AdminCategoryListView.as_view(),
+        name="admin-category-list"
+    ),
+
+    path(
+        "categories/create/",
+        AdminCategoryCreateView.as_view(),
+        name="admin-category-create"
+    ),
+
+    path(
+        "categories/<int:pk>/",
+        AdminCategoryDetailView.as_view(),
+        name="admin-category-detail"
+    ),
+
+    # Products
+
+    path(
+        "products/",
+        AdminProductListView.as_view(),
+        name="admin-product-list"
+    ),
+
+    path(
+        "products/<int:pk>/delete/",
+        AdminProductSoftDeleteView.as_view(),
+        name="admin-product-delete"
+    ),
+
+    # Orders
+
     path(
         "orders/",
         AdminOrderListView.as_view(),
@@ -44,7 +90,7 @@ urlpatterns = [
         AdminOrderDetailView.as_view(),
         name="admin-order-detail"
     ),
-    
+
     path(
         "orders/<int:order_id>/update-status/",
         AdminOrderStatusUpdateView.as_view(),
@@ -56,6 +102,5 @@ urlpatterns = [
         AdminCancelOrderView.as_view(),
         name="admin-order-cancel"
     ),
-
 
 ]
