@@ -4,11 +4,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from ..serializers import BannerSerializer, HomepageSectionSerializer
 from django.views import generic
-from rest_framework import permissions
+from rest_framework import IsAdminUser
 
 class BannerListView(APIView):
-    permissions_classes = [permissions.IsAdminUser]
-
     def get(self, request):
         banners = Banner.objects.all()
         serializer = BannerSerializer(banners, many=True)

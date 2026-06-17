@@ -136,4 +136,5 @@ urlpatterns = [
         BannerDeleteView.as_view(),
         name="admin-banner-delete"
     ),
+    
 ]
