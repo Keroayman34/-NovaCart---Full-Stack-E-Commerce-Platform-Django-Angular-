@@ -5,9 +5,9 @@
 /* ── 1. CSS Custom Properties ─────────────────────── */
 :root {
   /* Brand palette */
-  --clr-primary:        #6c63ff;
-  --clr-primary-dark:   #5548e0;
-  --clr-primary-light:  #ede9ff;
+  --clr-primary:        #7c3aed;
+  --clr-primary-dark:   #6d28d9;
+  --clr-primary-light:  #ede9fe;
   --clr-secondary:      #ff6584;
   --clr-accent:         #43d9ad;
 
@@ -121,55 +121,87 @@ app-root {
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--sp-8);
-  background: var(--clr-surface);
-  border-bottom: 1px solid var(--clr-border);
-  box-shadow: var(--shadow-sm);
+  background: rgba(255, 255, 255, 0.85); /* Frosted glass background */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   z-index: 1000;
+  transition: all var(--transition);
 
   .logo {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 800;
     background: linear-gradient(135deg, var(--clr-primary), var(--clr-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     letter-spacing: -0.5px;
-  }
-
-  .links, .actions {
     display: flex;
     align-items: center;
-    gap: var(--sp-2);
+    gap: 0.5rem;
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-6);
 
     a {
-      padding: var(--sp-2) var(--sp-4);
-      border-radius: var(--radius-full);
-      font-size: 0.9rem;
-      font-weight: 500;
+      position: relative;
+      font-size: 0.95rem;
+      font-weight: 600;
       color: var(--clr-text-secondary);
-      transition: all var(--transition);
+      transition: color var(--transition);
+      padding: 0.5rem 0;
 
       &:hover, &.active {
-        background: var(--clr-primary-light);
         color: var(--clr-primary);
+      }
+
+      /* Animated underline */
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--clr-primary);
+        transition: width 0.3s ease;
+        border-radius: 2px;
+      }
+
+      &:hover::after, &.active::after {
+        width: 100%;
       }
     }
   }
 
-  button {
-    padding: var(--sp-2) var(--sp-5);
-    border-radius: var(--radius-full);
-    border: 1.5px solid var(--clr-danger);
-    background: transparent;
-    color: var(--clr-danger);
-    font-size: 0.875rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all var(--transition);
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
 
-    &:hover {
-      background: var(--clr-danger);
-      color: #fff;
+    a {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--clr-text);
+      transition: color var(--transition);
+      &:hover { color: var(--clr-primary); }
+    }
+
+    .register-btn {
+      padding: 0.5rem 1.25rem;
+      background: var(--clr-primary);
+      color: white;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
+      &:hover {
+        background: var(--clr-primary-dark);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 15px rgba(108, 99, 255, 0.4);
+      }
     }
   }
 }

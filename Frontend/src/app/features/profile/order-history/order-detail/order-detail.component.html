@@ -1,31 +1,59 @@
-<div class="page">
-  <h2>Order Details</h2>
+<div class="glass-body">
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
 
-  <div class="card" *ngIf="isLoading">Loading order...</div>
-
-  <div class="card" *ngIf="!isLoading && errorMessage">
-    <p class="error">{{ errorMessage }}</p>
-  </div>
-
-  <div class="card" *ngIf="!isLoading && order">
-    <div class="summary">
-      <p><strong>Order #</strong> {{ order.id }}</p>
-      <p><strong>Status</strong> {{ order.status }}</p>
-      <p><strong>Total</strong> ${{ order.total }}</p>
-      <p><strong>Date</strong> {{ order.date | date: "mediumDate" }}</p>
+  <div class="order-detail-page">
+    <div class="header">
+      <h2>🧾 Order Details</h2>
+      <a routerLink="/profile/orders" class="glass-btn back-btn">
+        <span style="font-size: 1.2rem;">←</span> Back to Orders
+      </a>
     </div>
 
-    <div class="items">
-      <h3>Items</h3>
-      <div class="item" *ngFor="let item of order.items">
-        <div>
-          <p class="name">{{ item.name }}</p>
-          <p>Qty: {{ item.quantity }}</p>
+    <div class="glass-container" *ngIf="isLoading">
+      <p style="color: rgba(255,255,255,0.7); text-align: center;">Loading order details...</p>
+    </div>
+
+    <div class="glass-container" *ngIf="!isLoading && errorMessage">
+      <p class="error">❌ {{ errorMessage }}</p>
+    </div>
+
+    <div class="glass-container details-container" *ngIf="!isLoading && order">
+      <!-- Summary Section -->
+      <div class="order-summary">
+        <div class="summary-item">
+          <span class="label">Order Number</span>
+          <span class="value">#{{ order.id }}</span>
         </div>
-        <p>${{ item.price }}</p>
+        <div class="summary-item">
+          <span class="label">Date Placed</span>
+          <span class="value">{{ order.created_at | date: "mediumDate" }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="label">Status</span>
+          <span class="status-badge" [ngClass]="order.status.toLowerCase()">{{ order.status | titlecase }}</span>
+        </div>
+      </div>
+
+      <!-- Items Section -->
+      <div class="items-section">
+        <h3>Items in your order</h3>
+        <div class="items-list">
+          <div class="item-row" *ngFor="let item of order.items">
+            <div class="item-info">
+              <p class="item-name">{{ item.product_name }}</p>
+              <p class="item-qty">Qty: {{ item.quantity }}</p>
+            </div>
+            <p class="item-price">${{ item.price }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Total Section -->
+      <div class="order-total">
+        <span class="total-label">Total Amount</span>
+        <span class="total-amount">${{ order.total_price }}</span>
       </div>
     </div>
-
-    <a routerLink="/profile/orders">Back to orders</a>
   </div>
 </div>

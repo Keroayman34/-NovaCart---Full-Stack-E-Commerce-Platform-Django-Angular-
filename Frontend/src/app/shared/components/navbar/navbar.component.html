@@ -1,10 +1,12 @@
 <nav class="navbar">
-  <a class="logo" routerLink="/products">Shop</a>
+  <a class="logo" routerLink="/products">
+    <span style="font-size: 1.8rem; line-height: 1;">🛍️</span> NovaCart
+  </a>
 
   <div class="links">
     <a routerLink="/products" routerLinkActive="active">Products</a>
-    <a routerLink="/cart" routerLinkActive="active">🛒 Cart</a>
-    <a *ngIf="authService.isLoggedIn()" routerLink="/profile" routerLinkActive="active">Profile</a>
+    <a routerLink="/cart" routerLinkActive="active">Cart</a>
+    
     <a
       *ngIf="authService.isLoggedIn() && authService.getRole() === 'admin'"
       routerLink="/admin"
@@ -14,10 +16,30 @@
   </div>
 
   <div class="actions">
-    <a *ngIf="!authService.isLoggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
-    <a *ngIf="!authService.isLoggedIn()" routerLink="/register" routerLinkActive="active">Register</a>
-    <button *ngIf="authService.isLoggedIn()" (click)="onLogout()">
-      Logout
-    </button>
+    <!-- Non-logged in users -->
+    <ng-container *ngIf="!authService.isLoggedIn()">
+      <a routerLink="/login" routerLinkActive="active">Sign In</a>
+      <a routerLink="/register" routerLinkActive="active" class="register-btn">Create Account</a>
+    </ng-container>
+    
+    <!-- Logged in users -->
+    <ng-container *ngIf="authService.isLoggedIn()">
+      <a routerLink="/cart" class="icon-link" title="Cart">🛒</a>
+      
+      <!-- Profile Dropdown -->
+      <div class="profile-dropdown-container">
+        <button class="profile-trigger">
+          <span class="user-avatar">{{ authService.getRole() === 'admin' ? '👑' : '👤' }}</span>
+          Account <span class="caret">▼</span>
+        </button>
+        <div class="dropdown-menu">
+          <a routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">👤 Personal Info</a>
+          <a routerLink="/profile/wishlist" routerLinkActive="active">❤️ Wishlist</a>
+          <a routerLink="/profile/orders" routerLinkActive="active">📦 Order History</a>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-logout" (click)="onLogout()">🚪 Logout</button>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </nav>

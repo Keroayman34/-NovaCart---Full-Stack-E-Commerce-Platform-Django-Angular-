@@ -1,82 +1,70 @@
-<div class="page profile-layout">
-  <!-- Profile Sidebar Navigation -->
-  <aside class="profile-sidebar card">
-    <div class="user-summary" *ngIf="profile">
-      <div class="avatar">{{ profile.email.charAt(0) | uppercase }}</div>
-      <div class="info">
-        <h3 class="name" style="font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis;">{{ profile.email }}</h3>
-        <p class="role badge badge-primary">{{ profile.role | titlecase }}</p>
-      </div>
-    </div>
-    
-    <nav class="profile-nav">
-      <a routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
-        <span class="icon">👤</span> Personal Info
-      </a>
-      <a routerLink="/profile/orders" routerLinkActive="active" class="nav-item">
-        <span class="icon">📦</span> Order History
-      </a>
-      <a routerLink="/profile/wishlist" routerLinkActive="active" class="nav-item">
-        <span class="icon">❤️</span> Wishlist
-      </a>
-    </nav>
-  </aside>
+<div class="glass-body">
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
 
-  <!-- Profile Content -->
-  <main class="profile-content card">
-    <div class="card-header">
-      <h3>Personal Information</h3>
-      <p class="text-muted text-sm mt-1">Update your account details and contact information.</p>
-    </div>
-    
-    <div class="card-body">
-      <!-- Loading State -->
-      <div class="loading text-center" *ngIf="isLoading">
-        <div class="spinner"></div>
-        <p class="mt-4">Loading your profile...</p>
+  <div class="profile-layout">
+    <!-- Profile Content -->
+    <main class="profile-content glass-container">
+      <div class="card-header">
+        <h3>Personal Information</h3>
+        <p class="text-muted">Update your account details and contact information.</p>
       </div>
-
-      <!-- Content -->
-      <div *ngIf="!isLoading">
-        <!-- Alerts -->
-        <div class="alert alert-success" *ngIf="successMessage">
-          ✅ {{ successMessage }}
-        </div>
-        <div class="alert alert-danger" *ngIf="errorMessage">
-          ❌ {{ errorMessage }}
+      
+      <div class="card-body">
+        <!-- Loading State -->
+        <div class="loading text-center" *ngIf="isLoading">
+          <div class="spinner"></div>
+          <p class="mt-4" style="color: rgba(255,255,255,0.7);">Loading your profile...</p>
         </div>
 
-        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
-          <div class="form-row">
-            <div class="form-group flex-1">
-              <label for="email">Email Address</label>
-              <input id="email" type="email" formControlName="email" placeholder="john@example.com" />
-              <small class="text-muted">Email address cannot be changed.</small>
+        <!-- Content -->
+        <div *ngIf="!isLoading">
+          <!-- Alerts -->
+          <div class="alert alert-success" *ngIf="successMessage" style="background: rgba(34, 197, 94, 0.1); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 10px; padding: 1rem; margin-bottom: 1.5rem;">
+            ✅ {{ successMessage }}
+          </div>
+          <div class="alert alert-danger" *ngIf="errorMessage" style="background: rgba(239, 68, 68, 0.1); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 10px; padding: 1rem; margin-bottom: 1.5rem;">
+            ❌ {{ errorMessage }}
+          </div>
+
+          <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label for="email">Email Address</label>
+                <div class="glass-input-group">
+                  <span class="input-icon">✉️</span>
+                  <input class="glass-input" id="email" type="email" formControlName="email" placeholder="john@example.com" readonly />
+                </div>
+                <small class="text-muted">Email address cannot be changed.</small>
+              </div>
             </div>
-          </div>
 
-          <div class="form-row">
-            <div class="form-group flex-1">
-              <label for="phone">Phone Number</label>
-              <input id="phone" type="text" formControlName="phone" placeholder="+1234567890" />
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label for="phone">Phone Number</label>
+                <div class="glass-input-group">
+                  <span class="input-icon">📱</span>
+                  <input class="glass-input" id="phone" type="text" formControlName="phone" placeholder="+1234567890" />
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div class="form-actions mt-6">
-            <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid || isSaving">
-              {{ isSaving ? 'Saving Changes...' : 'Save Changes' }}
-            </button>
+            <div class="form-actions mt-6">
+              <button type="submit" class="glass-btn" [disabled]="profileForm.invalid || isSaving">
+                {{ isSaving ? 'Saving Changes...' : 'Save Changes' }}
+              </button>
+            </div>
+          </form>
+          
+          <hr class="divider" />
+          
+          <div class="danger-zone mt-6">
+            <h4 class="text-danger mb-2">Danger Zone</h4>
+            <p class="text-sm text-muted mb-4">Deleting your account is permanent and cannot be undone.</p>
+            <button class="glass-btn danger-btn">Delete Account</button>
           </div>
-        </form>
-        
-        <hr class="divider" />
-        
-        <div class="danger-zone mt-6">
-          <h4 class="text-danger mb-2">Danger Zone</h4>
-          <p class="text-sm text-muted mb-4">Deleting your account is permanent and cannot be undone.</p>
-          <button class="btn btn-outline text-danger border-danger">Delete Account</button>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
+  </div>
 </div>

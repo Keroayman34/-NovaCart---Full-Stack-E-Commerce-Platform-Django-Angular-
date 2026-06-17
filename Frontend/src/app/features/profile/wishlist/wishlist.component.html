@@ -1,36 +1,44 @@
-<div class="page">
-  <h2>Wishlist</h2>
+<div class="glass-body">
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
 
-  <div class="card" *ngIf="isLoading">Loading wishlist...</div>
+  <div class="wishlist-page">
+    <h2>❤️ My Wishlist</h2>
 
-  <div class="card" *ngIf="!isLoading && errorMessage">
-    <p class="error">{{ errorMessage }}</p>
-  </div>
+    <div class="glass-container" *ngIf="isLoading">
+      <p style="color: rgba(255,255,255,0.7);">Loading wishlist...</p>
+    </div>
 
-  <div class="card" *ngIf="!isLoading && !wishlist.length">
-    <p>No wishlist items yet.</p>
-  </div>
+    <div class="glass-container" *ngIf="!isLoading && errorMessage">
+      <p class="error">❌ {{ errorMessage }}</p>
+    </div>
 
-  <div class="wishlist-grid" *ngIf="!isLoading && wishlist.length">
-    <div class="product-card" *ngFor="let item of wishlist">
-      <!-- Image -->
-      <div class="product-image-wrapper">
-        <img *ngIf="item.primary_image" [src]="item.primary_image.image" [alt]="item.name" class="product-img" />
-        <div class="no-image" *ngIf="!item.primary_image">
-          <span>🛍️</span>
+    <div class="glass-container" *ngIf="!isLoading && !wishlist.length">
+      <span style="font-size: 3rem; margin-bottom: 1rem; display: block;">📭</span>
+      <p style="font-size: 1.1rem; color: rgba(255,255,255,0.7);">Your wishlist is empty.</p>
+    </div>
+
+    <div class="wishlist-grid" *ngIf="!isLoading && wishlist.length">
+      <div class="glass-product-card" *ngFor="let item of wishlist">
+        <!-- Image -->
+        <div class="product-image-wrapper">
+          <img *ngIf="item.primary_image" [src]="item.primary_image.image" [alt]="item.name" class="product-img" />
+          <div class="no-image" *ngIf="!item.primary_image">
+            <span>🛍️</span>
+          </div>
         </div>
-      </div>
 
-      <!-- Info -->
-      <div class="product-info">
-        <h3 class="product-name">
-          <a [routerLink]="['/products', item.id]">{{ item.name }}</a>
-        </h3>
-        <div class="product-footer">
-          <span class="product-price">${{ item.price }}</span>
-          <button class="btn btn-outline text-danger btn-sm" (click)="onRemoveItem(item.id)">
-            Remove
-          </button>
+        <!-- Info -->
+        <div class="product-info">
+          <h3 class="product-name">
+            <a [routerLink]="['/products', item.id]">{{ item.name }}</a>
+          </h3>
+          <div class="product-footer">
+            <span class="product-price">${{ item.price }}</span>
+            <button class="glass-btn-danger" (click)="onRemoveItem(item.id)">
+              Remove
+            </button>
+          </div>
         </div>
       </div>
     </div>
