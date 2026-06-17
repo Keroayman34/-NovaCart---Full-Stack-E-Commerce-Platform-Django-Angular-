@@ -1,5 +1,4 @@
 from django.urls import path
-from .admin_views import AdminUserListView, AdminUserUpdateView
 from .views import (
     ChangePasswordView,
     CustomTokenObtainPairView,
@@ -22,6 +21,4 @@ urlpatterns = [
     path('auth/reset-password/', ResetPasswordView.as_view(), name='reset-password'),
     path('profile/', ProfileView.as_view(), name='profile'),
     path('profile/change-password/', ChangePasswordView.as_view(), name='change-password'),
-    path('admin/users/', AdminUserListView.as_view(), name='admin-user-list'),
-    path('admin/users/<int:pk>/', AdminUserUpdateView.as_view(), name='admin-user-update'),
 ]

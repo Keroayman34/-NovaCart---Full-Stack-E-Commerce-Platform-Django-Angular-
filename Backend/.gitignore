@@ -8,3 +8,6 @@ media/
 staticfiles/
 .vscode/
 *.log
+.gitignore
+summary.md
+migrations/

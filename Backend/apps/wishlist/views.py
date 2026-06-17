@@ -35,7 +35,7 @@ class WishlistView(APIView):
             return Response({'error': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
 
         wishlist.products.add(product)
-        return Response({'message': 'المنتج اتضاف للـ wishlist.'}, status=status.HTTP_201_CREATED)
+        return Response({'message': 'Product added to wishlist.'}, status=status.HTTP_201_CREATED)
 
     def delete(self, request, product_id=None):
         serializer = WishlistAddRemoveSerializer(data={'product_id': product_id or request.data.get('product_id')})
@@ -48,4 +48,4 @@ class WishlistView(APIView):
             return Response({'error': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
 
         wishlist.products.remove(product)
-        return Response({'message': 'المنتج اتحذف من الـ wishlist.'}, status=status.HTTP_200_OK)
+        return Response({'message': 'Product removed from wishlist.'}, status=status.HTTP_200_OK)
