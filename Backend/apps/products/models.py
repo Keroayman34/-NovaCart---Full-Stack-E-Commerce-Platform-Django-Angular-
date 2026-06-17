@@ -73,9 +73,17 @@ class Category(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        """Auto-generate slug from name if not provided."""
         if not self.slug:
-            self.slug = slugify(self.name)
+            base_slug = slugify(self.name)
+            slug = base_slug
+            counter = 1
+
+            while Category.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+
+            self.slug = slug
+
         super().save(*args, **kwargs)
 
     def clean(self):
@@ -89,7 +97,14 @@ class Category(models.Model):
             )
 
 
+
+
+
 class Product(models.Model):
+    class ApprovalStatus(models.TextChoices):
+        PENDING = "pending", "Pending"
+        APPROVED = "approved", "Approved"
+        REJECTED = "rejected", "Rejected"
     """
     Product model.
     
@@ -107,6 +122,7 @@ class Product(models.Model):
         created_at: Creation timestamp
         updated_at: Last update timestamp
     """
+    
     category = models.ForeignKey(
         Category,
         on_delete=models.PROTECT,
@@ -143,6 +159,13 @@ class Product(models.Model):
         db_index=True,
         help_text="Stock Keeping Unit"
     )
+    approval_status = models.CharField(
+        max_length=20,
+        choices=ApprovalStatus.choices,
+        default=ApprovalStatus.PENDING,
+        db_index=True,
+        help_text="Admin approval status"
+    )
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -178,11 +201,12 @@ class Product(models.Model):
     class Meta:
         ordering = ["-created_at"]
         indexes = [
-            models.Index(fields=["slug"]),
-            models.Index(fields=["sku"]),
-            models.Index(fields=["seller", "is_deleted"]),
-            models.Index(fields=["is_active", "is_deleted", "-created_at"]),
-            models.Index(fields=["category", "is_active", "is_deleted"]),
+        models.Index(fields=["slug"]),
+        models.Index(fields=["sku"]),
+        models.Index(fields=["approval_status"]),
+        models.Index(fields=["seller", "is_deleted"]),
+        models.Index(fields=["is_active", "is_deleted", "-created_at"]),
+        models.Index(fields=["category", "is_active", "is_deleted"]),
         ]
         constraints = [
             models.UniqueConstraint(
