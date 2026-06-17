@@ -23,8 +23,10 @@ from .views.orders import (
     AdminOrderListView,
     AdminOrderDetailView,
     AdminOrderStatusUpdateView,
-    AdminCancelOrderView,
+    AdminCancelOrderView
 )
+
+from .views.banners import *
 
 urlpatterns = [
 
@@ -135,4 +137,36 @@ urlpatterns = [
         name="admin-order-cancel"
     ),
 
+    path(
+        "banners/",
+        BannerListView.as_view(),
+        name="admin-banners-list"
+    ),
+
+
+    path(
+        "banners/<int:banner_id>/",
+        BannerDetailView.as_view(),
+        name="admin-banner-detail"
+    ),
+
+
+    path(
+        "banners/create/",
+        BannerCreateView.as_view(),
+        name="admin-banner-create"
+    ),
+
+    path(
+        "banners/<int:banner_id>/update/",
+        BannerUpdateView.as_view(),
+        name="admin-banner-update"
+    ),
+
+    path(
+        "banners/<int:banner_id>/delete/",
+        BannerDeleteView.as_view(),
+        name="admin-banner-delete"
+    ),
+    
 ]

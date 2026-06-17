@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from .models import Banner
 from apps.orders.models import Order
 from rest_framework import serializers
 
@@ -66,8 +67,6 @@ class AdminUpdateStatusSerializer(serializers.Serializer):
         required=True
     )
 
-
-
 class AdminProductUpdateSerializer(serializers.Serializer):
     name = serializers.CharField(required=False)
     description = serializers.CharField(required=False)
@@ -92,3 +91,7 @@ class AdminProductUpdateSerializer(serializers.Serializer):
                 "Provide at least one field."
             )
         return attrs
+class BannerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Banner
+        fields = "__all__"
