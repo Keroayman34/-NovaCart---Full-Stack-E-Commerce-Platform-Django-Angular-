@@ -36,8 +36,13 @@ export class LoginComponent {
 
     this.authService.login(this.loginForm.value).subscribe({
       next: () => {
-        // redirect after login
-        this.router.navigate(["/products"]);
+        // redirect after login based on role
+        const role = this.authService.getRole();
+        if (role === 'seller' || role === 'admin') {
+          this.router.navigate(["/seller/dashboard"]);
+        } else {
+          this.router.navigate(["/products"]);
+        }
       },
       error: (err) => {
         // extract specific error message if available

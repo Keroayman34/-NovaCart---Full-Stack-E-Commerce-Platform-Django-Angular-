@@ -6,27 +6,43 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="placeholder-page">
+    <div class="glass-placeholder-page">
+      <div class="icon">🛒</div>
       <h1>My Orders</h1>
       <p>Seller orders management page - Coming soon</p>
     </div>
   `,
   styles: [
     `
-      .placeholder-page {
-        background: white;
-        border-radius: 8px;
-        padding: 40px 20px;
+      .glass-placeholder-page {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 16px;
+        padding: 60px 20px;
         text-align: center;
-        border: 1px solid #e5e7eb;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
       }
-      .placeholder-page h1 {
-        font-size: 24px;
-        color: #333;
-        margin: 0 0 12px 0;
+      .glass-placeholder-page .icon {
+        font-size: 64px;
+        margin-bottom: 24px;
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
       }
-      .placeholder-page p {
-        color: #666;
+      .glass-placeholder-page h1 {
+        font-size: 28px;
+        color: white;
+        margin: 0 0 16px 0;
+        font-weight: 700;
+      }
+      .glass-placeholder-page p {
+        color: #cbd5e1;
+        font-size: 16px;
         margin: 0;
       }
     `,

@@ -1,0 +1,30 @@
+<div class="top-products animated-element" style="animation-delay: 0.7s">
+  <div class="section-header">
+    <h2>Top Products</h2>
+    <a href="/seller/products" class="view-all">View All →</a>
+  </div>
+
+  <div class="products-grid">
+    <div *ngFor="let product of products; let i = index" class="product-card animated-element" [style.animation-delay]="0.7 + (i * 0.1) + 's'">
+      <div class="product-image">
+        <span class="image-placeholder">📦</span>
+        <div class="product-overlay">
+          <button class="btn-view">View Details</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <div class="product-stats">
+          <div class="stat">
+            <span class="stat-value">{{ product.sales }}</span>
+            <span class="stat-label">Sales</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">{{ formatCurrency(product.revenue) }}</span>
+            <span class="stat-label">Revenue</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,8 @@
-<div class="seller-layout">
-  <!-- Sidebar -->
+<div class="glass-body">
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
+  <div class="seller-layout">
+    <!-- Sidebar -->
   <aside class="sidebar" [class.open]="sidebarOpen">
     <div class="sidebar-header">
       <h2 class="logo">
@@ -10,7 +13,7 @@
     </div>
 
     <nav class="sidebar-nav">
-      <a class="nav-item" (click)="closeSidebar()" *ngFor="let item of navItems" routerLink="item.route" routerLinkActive="active">
+      <a class="nav-item" (click)="closeSidebar()" *ngFor="let item of navItems" [routerLink]="item.route" routerLinkActive="active">
         <span class="nav-icon">{{ item.icon }}</span>
         <span class="nav-label">{{ item.label }}</span>
       </a>
@@ -54,4 +57,5 @@
       <router-outlet></router-outlet>
     </div>
   </main>
+</div>
 </div>

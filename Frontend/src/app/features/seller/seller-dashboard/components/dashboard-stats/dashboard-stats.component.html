@@ -1,0 +1,10 @@
+<div class="stats-grid">
+  <div *ngFor="let stat of stats; let i = index" [ngClass]="getStatCardClass(stat)" class="stat-card animated-element" [style.animation-delay]="(i * 0.1) + 's'">
+    <div class="stat-icon">{{ stat.icon }}</div>
+    <div class="stat-content">
+      <p class="stat-label">{{ stat.label }}</p>
+      <p class="stat-value">{{ stat.value }}</p>
+      <p class="stat-trend" *ngIf="stat.trend">{{ stat.trend }}</p>
+    </div>
+  </div>
+</div>

@@ -36,6 +36,12 @@ export interface ApiListResponse<T> {
   };
 }
 
+export interface Category {
+  id: number;
+  name: string;
+  slug: string;
+}
+
 export interface ProductFilters {
   search?: string;
   category?: number;
@@ -43,11 +49,13 @@ export interface ProductFilters {
   max_price?: number;
   ordering?: string;
   page?: number;
+  page_size?: number;
 }
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
   private apiUrl = `${environment.apiUrl}/products`;
+  private categoriesUrl = `${environment.apiUrl}/categories`;
 
   constructor(private http: HttpClient) {}
 
@@ -59,11 +67,16 @@ export class ProductsService {
     if (filters.max_price) params = params.set('max_price', filters.max_price.toString());
     if (filters.ordering)  params = params.set('ordering', filters.ordering);
     if (filters.page)      params = params.set('page', filters.page.toString());
+    if (filters.page_size) params = params.set('page_size', filters.page_size.toString());
 
     return this.http.get<ApiListResponse<Product>>(this.apiUrl + '/', { params });
   }
 
   getProduct(id: number): Observable<ProductDetail> {
     return this.http.get<ProductDetail>(`${this.apiUrl}/${id}/`);
+  }
+
+  getCategories(): Observable<ApiListResponse<Category>> {
+    return this.http.get<ApiListResponse<Category>>(this.categoriesUrl + '/');
   }
 }

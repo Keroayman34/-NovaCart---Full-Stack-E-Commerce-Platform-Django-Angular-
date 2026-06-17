@@ -1,87 +1,102 @@
-<div class="page">
-  <button class="back-btn" (click)="goBack()">← Back to Products</button>
+<div class="glass-body">
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
 
-  <!-- Error -->
-  <div class="error-card" *ngIf="error">
-    <p>{{ error }}</p>
-  </div>
+  <div class="product-detail-page">
+    <button class="glass-btn back-btn" (click)="goBack()">← Back to Products</button>
 
-  <!-- Loading -->
-  <div class="loading-state" *ngIf="loading">
-    <div class="spinner"></div>
-    <p>Loading product details...</p>
-  </div>
-
-  <!-- Product -->
-  <div class="detail-grid" *ngIf="product && !loading">
-
-    <!-- Gallery -->
-    <div class="gallery">
-      <div class="main-img-box">
-        <img *ngIf="selectedImage" [src]="selectedImage" [alt]="product.name" />
-        <div class="placeholder" *ngIf="!selectedImage">🛍️</div>
-        <span class="oos-badge" *ngIf="!product.is_in_stock">Out of Stock</span>
-      </div>
-      <div class="thumb-row" *ngIf="product.images && product.images.length > 1">
-        <div
-          class="thumb"
-          *ngFor="let img of product.images"
-          [class.selected]="selectedImage === img.image"
-          (click)="selectImage(img.image)"
-        >
-          <img [src]="img.image" [alt]="img.alt_text || product.name" />
-        </div>
-      </div>
+    <!-- Error -->
+    <div class="glass-container error-state" *ngIf="error">
+      <p class="error">❌ {{ error }}</p>
     </div>
 
-    <!-- Info -->
-    <div class="info">
-      <div class="breadcrumb">
-        <span class="muted">Products / </span>
-        <span class="cat-name">{{ product.category?.name || product.category_name }}</span>
+    <!-- Loading -->
+    <div class="glass-container loading-state" *ngIf="loading">
+      <div class="spinner"></div>
+      <p style="color: rgba(255,255,255,0.7);">Loading product details...</p>
+    </div>
+
+    <!-- Product -->
+    <div class="glass-container detail-grid" *ngIf="product && !loading">
+
+      <!-- Gallery -->
+      <div class="gallery">
+        <div class="main-img-box">
+          <img *ngIf="selectedImage" [src]="selectedImage" [alt]="product.name" />
+          <div class="placeholder" *ngIf="!selectedImage">🛍️</div>
+          <span class="oos-badge" *ngIf="!product.is_in_stock">Out of Stock</span>
+        </div>
+        <div class="thumb-row" *ngIf="product.images && product.images.length > 1">
+          <div
+            class="thumb"
+            *ngFor="let img of product.images"
+            [class.selected]="selectedImage === img.image"
+            (click)="selectImage(img.image)"
+          >
+            <img [src]="img.image" [alt]="img.alt_text || product.name" />
+          </div>
+        </div>
       </div>
 
-      <h1 class="title">{{ product.name }}</h1>
+      <!-- Info -->
+      <div class="info">
+        <div class="breadcrumb">
+          <span class="muted">Products / </span>
+          <span class="cat-name">{{ product.category?.name || product.category_name }}</span>
+        </div>
 
-      <div class="meta">
-        <span class="sku">SKU: {{ product.sku }}</span>
-        <span class="stock-badge" [class.in-stock]="product.is_in_stock" [class.out]="!product.is_in_stock">
-          {{ product.is_in_stock ? 'In Stock' : 'Out of Stock' }}
-        </span>
+        <h1 class="title">{{ product.name }}</h1>
+
+        <div class="meta">
+          <span class="sku">SKU: {{ product.sku }}</span>
+          <ng-container *ngIf="product.is_in_stock; else outOfStock">
+            <span class="stock-badge in-stock" *ngIf="product.stock_quantity > 3">
+              In Stock ({{ product.stock_quantity }} available)
+            </span>
+            <span class="stock-badge low-stock" *ngIf="product.stock_quantity <= 3">
+              ⚠️ Hurry! Only {{ product.stock_quantity }} left in stock!
+            </span>
+          </ng-container>
+          <ng-template #outOfStock>
+            <span class="stock-badge out">
+              ❌ Out of Stock
+            </span>
+          </ng-template>
+        </div>
+
+        <div class="price">${{ product.price }}</div>
+
+        <div class="desc">
+          <h3>Description</h3>
+          <p>{{ product.description || 'No description available for this product.' }}</p>
+        </div>
+
+        <div class="seller">
+          Sold by: <strong>{{ product.seller_name }}</strong>
+        </div>
+
+        <!-- Quantity -->
+        <div class="qty-row" *ngIf="product.is_in_stock">
+          <span class="qty-label">Quantity:</span>
+          <button class="glass-btn qty-btn" (click)="decreaseQty()" [disabled]="quantity <= 1">−</button>
+          <span class="qty-value">{{ quantity }}</span>
+          <button class="glass-btn qty-btn" (click)="increaseQty()" [disabled]="quantity >= product.stock_quantity">+</button>
+        </div>
+
+        <!-- Cart message -->
+        <div class="cart-msg success" *ngIf="cartMessage && cartMessage.startsWith('✓')">{{ cartMessage }}</div>
+        <div class="cart-msg fail" *ngIf="cartMessage && cartMessage.startsWith('✗')">{{ cartMessage }}</div>
+
+        <!-- Add to Cart -->
+        <button
+          class="glass-btn primary-glass-btn add-to-cart-btn"
+          [disabled]="!product.is_in_stock || addingToCart"
+          (click)="addToCart()"
+        >
+          <span *ngIf="!addingToCart">🛒 {{ product.is_in_stock ? 'Add to Cart' : 'Currently Unavailable' }}</span>
+          <span *ngIf="addingToCart">Adding...</span>
+        </button>
       </div>
-
-      <div class="price">${{ product.price }}</div>
-
-      <div class="desc">
-        <h3>Description</h3>
-        <p>{{ product.description || 'No description available for this product.' }}</p>
-      </div>
-
-      <div class="seller">
-        Sold by: <strong>{{ product.seller_name }}</strong>
-      </div>
-
-      <!-- Quantity -->
-      <div class="qty-row" *ngIf="product.is_in_stock">
-        <span class="qty-label">Quantity:</span>
-        <button class="qty-btn" (click)="decreaseQty()" [disabled]="quantity <= 1">−</button>
-        <span class="qty-value">{{ quantity }}</span>
-        <button class="qty-btn" (click)="increaseQty()" [disabled]="quantity >= product.stock_quantity">+</button>
-      </div>
-
-      <!-- Cart message -->
-      <div class="cart-msg success" *ngIf="cartMessage && cartMessage.startsWith('✓')">{{ cartMessage }}</div>
-      <div class="cart-msg fail" *ngIf="cartMessage && cartMessage.startsWith('✗')">{{ cartMessage }}</div>
-
-      <!-- Add to Cart -->
-      <button
-        class="add-to-cart-btn"
-        [disabled]="!product.is_in_stock || addingToCart"
-        (click)="addToCart()"
-      >
-        <span *ngIf="!addingToCart">🛒 {{ product.is_in_stock ? 'Add to Cart' : 'Currently Unavailable' }}</span>
-        <span *ngIf="addingToCart">Adding...</span>
-      </button>
     </div>
   </div>
 </div>

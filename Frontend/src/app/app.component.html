@@ -1,7 +1,7 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf="showHeaderFooter"></app-navbar>
 
-<main class="app-content">
+<main [ngClass]="{'app-content': showHeaderFooter}">
   <router-outlet></router-outlet>
 </main>
 
-<app-footer></app-footer>
+<app-footer *ngIf="showHeaderFooter"></app-footer>

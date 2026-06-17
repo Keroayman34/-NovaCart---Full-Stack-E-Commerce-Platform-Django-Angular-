@@ -1,0 +1,220 @@
+/* Glassmorphism Common Class */
+.glass-container {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-25deg);
+  transition: all 0.5s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.glass-container:hover::after {
+  left: 200%;
+  transition: all 0.7s ease;
+}
+
+@keyframes fadeSlideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animated-element {
+  opacity: 0;
+  animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.recent-orders {
+  @extend .glass-container;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    transition: all 0.5s ease;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    left: 200%;
+    transition: all 0.7s ease;
+  }
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .view-all {
+    font-size: 14px;
+    color: #a5b4fc;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    transition: all 0.2s;
+
+    &:hover {
+      background: rgba(99, 102, 241, 0.2);
+      color: #fff;
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+  
+  &::-webkit-scrollbar { height: 6px; }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+  }
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  thead {
+    th {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+      &:first-child { border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
+      &:last-child { border-top-right-radius: 10px; border-bottom-right-radius: 10px; }
+    }
+  }
+
+  tbody td {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 14px;
+    color: #e2e8f0;
+    transition: background 0.2s;
+  }
+
+  tbody tr {
+    transition: all 0.2s;
+    &:hover td {
+      background: rgba(255, 255, 255, 0.03);
+    }
+    
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+
+  .order-id {
+    font-weight: 600;
+    color: #a5b4fc;
+  }
+
+  .amount {
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .date {
+    color: #94a3b8;
+    font-size: 13px;
+  }
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  &.status-pending {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fcd34d;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  &.status-processing {
+    background: rgba(59, 130, 246, 0.2);
+    color: #93c5fd;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+  }
+
+  &.status-shipped {
+    background: rgba(139, 92, 246, 0.2);
+    color: #c4b5fd;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+
+  &.status-delivered {
+    background: rgba(16, 185, 129, 0.2);
+    color: #6ee7b7;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+}
+
+@media (max-width: 768px) {
+  .orders-table {
+    font-size: 13px;
+
+    th,
+    td {
+      padding: 12px;
+    }
+  }
+
+  .section-header h2 {
+    font-size: 16px;
+  }
+}
