@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from apps.orders.models import Order
 
 
 class AdminUserSerializer(serializers.Serializer):
@@ -55,3 +56,11 @@ class AdminUserUpdateSerializer(serializers.Serializer):
             )
 
         return attrs
+    
+
+class AdminUpdateStatusSerializer(serializers.Serializer):
+
+    status = serializers.ChoiceField(
+        choices=Order.STATUS_CHOICES,
+        required=True
+    )
