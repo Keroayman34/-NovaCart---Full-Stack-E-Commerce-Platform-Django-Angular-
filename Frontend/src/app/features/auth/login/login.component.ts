@@ -39,9 +39,30 @@ export class LoginComponent {
         // redirect after login
         this.router.navigate(["/products"]);
       },
-      error: () => {
-        // show simple error
-        this.errorMessage = "Invalid email or password.";
+      error: (err) => {
+        // extract specific error message if available
+        if (err.error && typeof err.error === 'object') {
+          const firstKey = Object.keys(err.error)[0];
+          if (firstKey && Array.isArray(err.error[firstKey])) {
+            const msg = err.error[firstKey][0];
+            if (msg.toLowerCase().includes('no active account')) {
+              this.errorMessage = "Account not verified. Please check your email for the verification link.";
+            } else {
+              this.errorMessage = msg;
+            }
+          } else if (firstKey && typeof err.error[firstKey] === 'string') {
+            const msg = err.error[firstKey];
+            if (msg.toLowerCase().includes('no active account')) {
+              this.errorMessage = "Account not verified. Please check your email for the verification link.";
+            } else {
+              this.errorMessage = msg;
+            }
+          } else {
+            this.errorMessage = "Invalid email or password.";
+          }
+        } else {
+          this.errorMessage = "Invalid email or password.";
+        }
         this.isSubmitting = false;
       },
       complete: () => {

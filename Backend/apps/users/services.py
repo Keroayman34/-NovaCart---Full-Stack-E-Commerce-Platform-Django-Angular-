@@ -4,6 +4,8 @@ from django.core.mail import send_mail
 from django.urls import reverse
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 from .tokens import email_verification_token
 
@@ -26,12 +28,17 @@ class UserEmailService:
             "/auth/verify-email",
             f"uid={uid}&token={token}",
         )
+        
+        html_message = render_to_string('emails/verification.html', {'frontend_url': frontend_url})
+        plain_message = strip_tags(html_message)
+
         send_mail(
-            "Verify your NovaCart email",
-            f"Verify your email using this link: {frontend_url}\nAPI link: {api_url}",
+            "Welcome to NovaCart - Please verify your email",
+            plain_message,
             getattr(settings, "DEFAULT_FROM_EMAIL", "noreply@novacart.local"),
             [user.email],
             fail_silently=False,
+            html_message=html_message,
         )
         return {"uid": uid, "token": token}
 

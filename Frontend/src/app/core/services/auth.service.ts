@@ -56,6 +56,11 @@ export class AuthService {
     );
   }
 
+  // verify email with backend
+  verifyEmail(uid: string, token: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/verify-email/`, { uid, token });
+  }
+
   // clear token and reset state
   logout(): void {
     localStorage.removeItem(this.tokenKey);

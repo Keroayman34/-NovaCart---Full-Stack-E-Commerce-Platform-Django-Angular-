@@ -1,50 +1,85 @@
-<div class="auth-container">
-  <h2>Create Account</h2>
-
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input id="email" type="email" formControlName="email" />
-      <small
-        *ngIf="
-          registerForm.controls.email.touched &&
-          registerForm.controls.email.invalid
-        "
-      >
-        Please enter a valid email.
-      </small>
+<div class="glass-body">
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
+  <div class="glass-container auth-container">
+    <div class="auth-header">
+      <h2>Create Account</h2>
+      <p>Join NovaCart today</p>
     </div>
 
-    <div class="form-group">
-      <label for="password">Password (min 8 chars)</label>
-      <input id="password" type="password" formControlName="password" />
-      <small
-        *ngIf="
-          registerForm.controls.password.touched &&
-          registerForm.controls.password.invalid
-        "
-      >
-        Password must be at least 8 characters.
-      </small>
+    <form *ngIf="!registrationSuccess" [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-wrapper">
+          <input id="email" type="email" formControlName="email" placeholder="Enter your email" />
+        </div>
+        <small class="error-text" *ngIf="registerForm.controls.email.touched && registerForm.controls.email.invalid">
+          Please enter a valid email.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <input id="password" type="password" formControlName="password" placeholder="Min 8 characters" />
+        </div>
+        <small class="error-text" *ngIf="registerForm.controls.password.touched && registerForm.controls.password.invalid">
+          Password must be at least 8 characters.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="input-wrapper">
+          <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirm your password" />
+        </div>
+        <small class="error-text" *ngIf="registerForm.controls.confirmPassword.touched && registerForm.controls.confirmPassword.invalid && !registerForm.errors?.['mismatch']">
+          Please confirm your password.
+        </small>
+        <small class="error-text" *ngIf="registerForm.controls.confirmPassword.touched && registerForm.errors?.['mismatch']">
+          Passwords do not match.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="role">Account Type</label>
+        <div class="input-wrapper select-wrapper">
+          <select id="role" formControlName="role">
+            <option value="customer">Customer</option>
+            <option value="seller">Seller</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone <span class="optional">(optional)</span></label>
+        <div class="input-wrapper">
+          <input id="phone" type="tel" formControlName="phone" placeholder="Your phone number" />
+        </div>
+      </div>
+
+      <button type="submit" class="btn-glass" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Creating account…' : 'Create Account' }}
+      </button>
+
+      <p class="global-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <div class="auth-footer">
+        <p>Already have an account? <a routerLink="/login">Log in</a></p>
+      </div>
+    </form>
+
+    <div *ngIf="registrationSuccess" class="success-message">
+      <div class="success-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <h3>Account Created!</h3>
+      <p>We've sent a verification link to your email address.</p>
+      <p class="sub-text">Please click the link in that email to activate your account before logging in.</p>
+      <a routerLink="/login" class="btn-glass outline">Go to Login</a>
     </div>
-
-    <div class="form-group">
-      <label for="role">Role</label>
-      <select id="role" formControlName="role">
-        <option value="customer">Customer</option>
-        <option value="seller">Seller</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="phone">Phone (optional)</label>
-      <input id="phone" type="tel" formControlName="phone" />
-    </div>
-
-    <button type="submit" class="btn btn-primary btn-block" [disabled]="isSubmitting">
-      {{ isSubmitting ? 'Creating account…' : 'Create Account' }}
-    </button>
-
-    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
-  </form>
+  </div>
 </div>

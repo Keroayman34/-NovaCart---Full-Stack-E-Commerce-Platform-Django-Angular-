@@ -1,0 +1,46 @@
+<div class="glass-body">
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
+  <div class="glass-container verify-container">
+    <div class="verify-content">
+      
+      <!-- Loading State -->
+      <div *ngIf="isVerifying" class="loading-state">
+        <div class="spinner"></div>
+        <h2>Verifying your email...</h2>
+        <p>Please wait a moment while we verify your account.</p>
+      </div>
+
+      <!-- Success State -->
+      <div *ngIf="successMessage" class="success-state">
+        <div class="success-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <h2>Verified!</h2>
+        <p>{{ successMessage }}</p>
+        <p class="sub-text">Redirecting you to login...</p>
+        <a routerLink="/login" class="btn-glass outline">Go to Login</a>
+      </div>
+
+      <!-- Error State -->
+      <div *ngIf="errorMessage" class="error-state">
+        <div class="error-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <h2>Verification Failed</h2>
+        <p>{{ errorMessage }}</p>
+        <div class="actions">
+          <a routerLink="/login" class="btn-glass outline">Go to Login</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

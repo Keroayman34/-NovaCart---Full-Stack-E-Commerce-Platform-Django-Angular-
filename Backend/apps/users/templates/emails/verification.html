@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+            padding: 30px;
+            color: #333333;
+            line-height: 1.6;
+            text-align: center;
+        }
+        .content p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 14px 28px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            background-color: #f4f7f6;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to NovaCart!</h1>
+        </div>
+        <div class="content">
+            <p>Hi there,</p>
+            <p>Thank you for registering with NovaCart. We're excited to have you on board!</p>
+            <p>To get started, please verify your email address by clicking the button below:</p>
+            <a href="{{ frontend_url }}" class="button" style="color: #ffffff;">Verify My Email</a>
+            <p style="margin-top: 30px; font-size: 14px; color: #666;">
+                If the button doesn't work, you can copy and paste this link into your browser:<br>
+                <a href="{{ frontend_url }}" style="color: #4CAF50;">{{ frontend_url }}</a>
+            </p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2026 NovaCart. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

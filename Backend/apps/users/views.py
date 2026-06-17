@@ -29,8 +29,9 @@ class RegisterView(APIView):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
+            UserEmailService.send_verification_email(request, user)
             return Response({
-                "message": "User created successfully",
+                "message": "Account created successfully! Please check your inbox to verify your email address.",
                 "user": ProfileSerializer(user, context={"request": request}).data
             }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -89,7 +90,8 @@ class VerifyEmailView(APIView):
         user = serializer.validated_data["user"]
         if not user.is_verified:
             user.is_verified = True
-            user.save(update_fields=["is_verified"])
+            user.is_active = True
+            user.save(update_fields=["is_verified", "is_active"])
         return Response({"message": "Email verified successfully."})
 
     def post(self, request):
@@ -98,7 +100,8 @@ class VerifyEmailView(APIView):
         user = serializer.validated_data["user"]
         if not user.is_verified:
             user.is_verified = True
-            user.save(update_fields=["is_verified"])
+            user.is_active = True
+            user.save(update_fields=["is_verified", "is_active"])
         return Response({"message": "Email verified successfully."})
 
 

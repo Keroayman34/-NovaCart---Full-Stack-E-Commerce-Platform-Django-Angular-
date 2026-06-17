@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <!-- Left Leg Gradient (Deep Indigo to Bright Indigo) -->
+    <linearGradient id="gradLeft" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#312e81" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+    
+    <!-- Diagonal Gradient (Bright Indigo to Bright Pink) -->
+    <linearGradient id="gradDiag" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#d946ef" />
+    </linearGradient>
+    
+    <!-- Right Leg Gradient (Deep Pink to Bright Pink) -->
+    <linearGradient id="gradRight" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#86198f" />
+      <stop offset="100%" stop-color="#d946ef" />
+    </linearGradient>
+    
+    <!-- Drop shadow for the folded 3D effect -->
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="3" dy="5" stdDeviation="4" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Right Leg -->
+  <path d="M 75 75 L 75 25" fill="none" stroke="url(#gradRight)" stroke-width="22" stroke-linecap="round" />
+
+  <!-- Left Leg -->
+  <path d="M 25 75 L 25 25" fill="none" stroke="url(#gradLeft)" stroke-width="22" stroke-linecap="round" />
+
+  <!-- Diagonal (overlaps the legs with a shadow to create a fold effect) -->
+  <path d="M 25 25 L 75 75" fill="none" stroke="url(#gradDiag)" stroke-width="22" stroke-linecap="round" filter="url(#shadow)" />
+</svg>

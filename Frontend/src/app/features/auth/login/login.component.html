@@ -1,36 +1,42 @@
-<div class="auth-container">
-  <h2>Login</h2>
-
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input id="email" type="email" formControlName="email" />
-      <small
-        *ngIf="
-          loginForm.controls.email.touched && loginForm.controls.email.invalid
-        "
-      >
-        Please enter a valid email.
-      </small>
+<div class="glass-body">
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
+  <div class="glass-container auth-container">
+    <div class="auth-header">
+      <h2>Welcome Back</h2>
+      <p>Log in to your NovaCart account</p>
     </div>
 
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input id="password" type="password" formControlName="password" />
-      <small
-        *ngIf="
-          loginForm.controls.password.touched &&
-          loginForm.controls.password.invalid
-        "
-      >
-        Password is required.
-      </small>
-    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-wrapper">
+          <input id="email" type="email" formControlName="email" placeholder="Enter your email" />
+        </div>
+        <small class="error-text" *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+          Please enter a valid email.
+        </small>
+      </div>
 
-    <button type="submit" class="btn btn-primary btn-block" [disabled]="isSubmitting">
-      {{ isSubmitting ? 'Logging in…' : 'Login' }}
-    </button>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <input id="password" type="password" formControlName="password" placeholder="Enter your password" />
+        </div>
+        <small class="error-text" *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+          Password is required.
+        </small>
+      </div>
 
-    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
-  </form>
+      <button type="submit" class="btn-glass" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Logging in…' : 'Login' }}
+      </button>
+
+      <p class="global-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <div class="auth-footer">
+        <p>Don't have an account? <a routerLink="/register">Sign up</a></p>
+      </div>
+    </form>
+  </div>
 </div>
