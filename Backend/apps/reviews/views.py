@@ -31,6 +31,6 @@ class ReviewDeleteView(APIView):
         try:
             review = Review.objects.get(id=pk, user=request.user)
         except Review.DoesNotExist:
-            return Response({'error': 'الـ review مش موجود.'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'error': 'Review not found.'}, status=status.HTTP_404_NOT_FOUND)
         review.delete()
-        return Response({'message': 'الـ review اتحذف.'})
+        return Response({'message': 'Review deleted.'})
