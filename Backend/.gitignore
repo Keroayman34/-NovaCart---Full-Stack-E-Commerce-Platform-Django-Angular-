@@ -10,3 +10,4 @@ staticfiles/
 *.log
 .gitignore
 summary.md
+migrations/
