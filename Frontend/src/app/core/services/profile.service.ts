@@ -14,53 +14,46 @@ export class ProfileService {
 
   constructor(private http: HttpClient) {}
 
-  // fetch user profile
   getUserProfile(): Observable<UserProfile> {
-    return this.http.get<UserProfile>(`${this.apiUrl}/profile`);
+    return this.http.get<UserProfile>(`${this.apiUrl}/profile/`);
   }
 
-  // update profile data
   updateProfile(payload: Partial<UserProfile>): Observable<UserProfile> {
-    return this.http.put<UserProfile>(`${this.apiUrl}/profile`, payload);
+    return this.http.patch<UserProfile>(`${this.apiUrl}/profile/`, payload);
   }
 
-  // load user addresses
   getAddresses(): Observable<Address[]> {
-    return this.http.get<Address[]>(`${this.apiUrl}/profile/addresses`);
+    return this.http.get<Address[]>(`${this.apiUrl}/profile/addresses/`);
   }
 
-  // add new address
   addAddress(payload: Address): Observable<Address> {
-    return this.http.post<Address>(`${this.apiUrl}/profile/addresses`, payload);
+    return this.http.post<Address>(`${this.apiUrl}/profile/addresses/`, payload);
   }
 
-  // update existing address
   updateAddress(id: number, payload: Address): Observable<Address> {
     return this.http.put<Address>(
-      `${this.apiUrl}/profile/addresses/${id}`,
+      `${this.apiUrl}/profile/addresses/${id}/`,
       payload,
     );
   }
 
-  // delete address
   deleteAddress(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/profile/addresses/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/profile/addresses/${id}/`);
   }
 
-  // load wishlist
   getWishlist(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/profile/wishlist`);
+    return this.http.get<Product[]>(`${this.apiUrl}/wishlist/`);
   }
 
-  // remove item from wishlist
   removeFromWishlist(productId: number): Observable<void> {
-    return this.http.delete<void>(
-      `${this.apiUrl}/profile/wishlist/${productId}`,
-    );
+    return this.http.delete<void>(`${this.apiUrl}/wishlist/${productId}/`);
   }
 
-  // display order list
   getOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.apiUrl}/profile/orders`);
+    return this.http.get<Order[]>(`${this.apiUrl}/orders/`);
+  }
+
+  getOrder(id: number): Observable<Order> {
+    return this.http.get<Order>(`${this.apiUrl}/orders/${id}/`);
   }
 }

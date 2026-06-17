@@ -1,5 +1,122 @@
 <div class="page">
-  <h2>Product Details</h2>
-  <p *ngIf="productId">Product #{{ productId }}</p>
-  <p>Product details will be shown here.</p>
+  <a routerLink="/products" class="back-link">&larr; Back to Products</a>
+
+  <div class="card" *ngIf="isLoading">Loading product...</div>
+
+  <div class="card" *ngIf="!isLoading && errorMessage">
+    <p class="error">{{ errorMessage }}</p>
+  </div>
+
+  <div class="product-detail" *ngIf="!isLoading && product">
+    <div class="product-images">
+      <div class="main-image">
+        <img
+          *ngIf="getImages().length > 0"
+          [src]="getImages()[activeImageIndex]"
+          [alt]="product.name"
+        />
+        <div class="no-image" *ngIf="getImages().length === 0">No Image</div>
+      </div>
+      <div class="thumbnails" *ngIf="getImages().length > 1">
+        <img
+          *ngFor="let img of getImages(); let i = index"
+          [src]="img"
+          [class.active]="i === activeImageIndex"
+          (click)="activeImageIndex = i"
+        />
+      </div>
+    </div>
+
+    <div class="product-info">
+      <h2>{{ product.name }}</h2>
+      <p class="category" *ngIf="product.category_name">
+        {{ product.category_name }}
+      </p>
+      <p class="price">${{ product.price }}</p>
+
+      <div class="rating-display" *ngIf="product.rating_count > 0">
+        <span class="stars"
+          >{{ product.average_rating }}/5 ({{ product.rating_count }}
+          reviews)</span
+        >
+      </div>
+
+      <p
+        class="stock"
+        [class.in-stock]="product.is_in_stock"
+        [class.out-of-stock]="!product.is_in_stock"
+      >
+        {{ product.is_in_stock ? "In Stock" : "Out of Stock" }}
+        <span *ngIf="product.is_in_stock"
+          >({{ product.stock_quantity }} available)</span
+        >
+      </p>
+
+      <p class="sku">SKU: {{ product.sku }}</p>
+
+      <div class="description" *ngIf="product.description">
+        <h3>Description</h3>
+        <p>{{ product.description }}</p>
+      </div>
+
+      <div class="actions">
+        <button *ngIf="authService.isLoggedIn()" (click)="addToWishlist()">
+          Add to Wishlist
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="reviews-section" *ngIf="!isLoading && product">
+    <h3>Reviews</h3>
+
+    <div class="add-review" *ngIf="authService.isLoggedIn()">
+      <h4>Write a Review</h4>
+      <div class="rating-select">
+        <label>Rating:</label>
+        <select [(ngModel)]="newRating">
+          <option value="5">5 - Excellent</option>
+          <option value="4">4 - Good</option>
+          <option value="3">3 - Average</option>
+          <option value="2">2 - Poor</option>
+          <option value="1">1 - Terrible</option>
+        </select>
+      </div>
+      <textarea
+        [(ngModel)]="newComment"
+        placeholder="Share your thoughts..."
+        rows="3"
+      ></textarea>
+      <button (click)="submitReview()" [disabled]="isSubmittingReview">
+        Submit Review
+      </button>
+      <p class="success" *ngIf="reviewSuccessMessage">
+        {{ reviewSuccessMessage }}
+      </p>
+      <p class="error" *ngIf="reviewErrorMessage">{{ reviewErrorMessage }}</p>
+    </div>
+
+    <div class="reviews-list">
+      <div class="review-card" *ngFor="let review of reviews">
+        <div class="review-header">
+          <strong>{{ review.user_email }}</strong>
+          <span class="review-rating">{{ review.rating }}/5</span>
+          <span class="review-date">{{
+            review.created_at | date : "mediumDate"
+          }}</span>
+        </div>
+        <p class="review-comment" *ngIf="review.comment">
+          {{ review.comment }}
+        </p>
+        <button
+          class="danger"
+          *ngIf="review.can_delete"
+          (click)="deleteReview(review.id)"
+        >
+          Delete
+        </button>
+      </div>
+      <p *ngIf="reviews.length === 0">No reviews yet.</p>
+    </div>
+  </div>
 </div>

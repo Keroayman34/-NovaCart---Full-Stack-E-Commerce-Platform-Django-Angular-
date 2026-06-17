@@ -64,10 +64,16 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    name = serializers.SerializerMethodField()
+
     class Meta:
         model = User
-        fields = ['id', 'email', 'phone', 'role', 'is_verified', 'avatar', 'first_name', 'last_name', 'is_active']
-        read_only_fields = ['id', 'email', 'role', 'is_verified', 'is_active']
+        fields = ['id', 'email', 'phone', 'role', 'is_verified', 'avatar', 'first_name', 'last_name', 'name', 'is_active']
+        read_only_fields = ['id', 'email', 'role', 'is_verified', 'is_active', 'name']
+
+    def get_name(self, obj):
+        full = f"{obj.first_name} {obj.last_name}".strip()
+        return full or obj.email
 
 
 class ChangePasswordSerializer(serializers.Serializer):

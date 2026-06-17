@@ -23,7 +23,6 @@ export class OrderDetailComponent implements OnInit {
     this.loadOrder();
   }
 
-  // load order details
   loadOrder(): void {
     const orderId = Number(this.route.snapshot.paramMap.get("id"));
 
@@ -35,12 +34,9 @@ export class OrderDetailComponent implements OnInit {
     this.isLoading = true;
     this.errorMessage = "";
 
-    this.profileService.getOrders().subscribe({
-      next: (orders) => {
-        this.order = orders.find((item) => item.id === orderId) || null;
-        if (!this.order) {
-          this.errorMessage = "Order not found.";
-        }
+    this.profileService.getOrder(orderId).subscribe({
+      next: (order) => {
+        this.order = order;
       },
       error: () => {
         this.errorMessage = "Unable to load order details.";

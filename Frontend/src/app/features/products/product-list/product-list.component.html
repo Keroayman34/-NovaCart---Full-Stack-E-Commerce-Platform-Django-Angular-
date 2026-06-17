@@ -1,4 +1,112 @@
 <div class="page">
   <h2>Products</h2>
-  <p>Product list will be shown here.</p>
+
+  <div class="controls">
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Search products..."
+        [(ngModel)]="searchTerm"
+        (keyup.enter)="onSearch()"
+      />
+      <button (click)="onSearch()">Search</button>
+    </div>
+
+    <div class="filters">
+      <select [(ngModel)]="selectedCategory" (change)="onFilterChange()">
+        <option value="">All Categories</option>
+        <option *ngFor="let cat of categories" [value]="cat.id">
+          {{ cat.name }}
+        </option>
+      </select>
+
+      <input
+        type="number"
+        placeholder="Min price"
+        [(ngModel)]="minPrice"
+        (change)="onFilterChange()"
+      />
+      <input
+        type="number"
+        placeholder="Max price"
+        [(ngModel)]="maxPrice"
+        (change)="onFilterChange()"
+      />
+
+      <label>
+        <input
+          type="checkbox"
+          [(ngModel)]="inStockOnly"
+          (change)="onFilterChange()"
+        />
+        In stock only
+      </label>
+
+      <select [(ngModel)]="sortBy" (change)="onFilterChange()">
+        <option value="-created_at">Newest</option>
+        <option value="created_at">Oldest</option>
+        <option value="price">Price: Low to High</option>
+        <option value="-price">Price: High to Low</option>
+        <option value="name">Name: A-Z</option>
+        <option value="-name">Name: Z-A</option>
+      </select>
+
+      <button class="clear" (click)="clearFilters()">Clear</button>
+    </div>
+  </div>
+
+  <div class="card" *ngIf="isLoading">Loading products...</div>
+
+  <div class="card error" *ngIf="!isLoading && errorMessage">
+    <p class="error">{{ errorMessage }}</p>
+  </div>
+
+  <div class="card" *ngIf="!isLoading && !errorMessage && products.length === 0">
+    <p>No products found.</p>
+  </div>
+
+  <div class="product-grid" *ngIf="!isLoading && products.length > 0">
+    <div class="product-card" *ngFor="let product of products">
+      <a [routerLink]="['/products', product.id]" class="product-link">
+        <div class="product-image">
+          <img
+            *ngIf="getPrimaryImage(product)"
+            [src]="getPrimaryImage(product)"
+            [alt]="product.name"
+          />
+          <div class="no-image" *ngIf="!getPrimaryImage(product)">No Image</div>
+        </div>
+        <div class="product-info">
+          <h3>{{ product.name }}</h3>
+          <p class="category" *ngIf="product.category_name">
+            {{ product.category_name }}
+          </p>
+          <p class="price">${{ product.price }}</p>
+          <p class="rating" *ngIf="product.rating_count > 0">
+            {{ product.average_rating }}/5 ({{ product.rating_count }})
+          </p>
+          <p
+            class="stock"
+            [class.in-stock]="product.is_in_stock"
+            [class.out-of-stock]="!product.is_in_stock"
+          >
+            {{ product.is_in_stock ? "In Stock" : "Out of Stock" }}
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="pagination" *ngIf="totalPages > 1">
+    <button [disabled]="currentPage <= 1" (click)="goToPage(currentPage - 1)">
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button
+      [disabled]="currentPage >= totalPages"
+      (click)="goToPage(currentPage + 1)"
+    >
+      Next
+    </button>
+  </div>
 </div>

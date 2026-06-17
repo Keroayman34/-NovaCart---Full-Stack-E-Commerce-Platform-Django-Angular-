@@ -17,8 +17,8 @@
         <p class="label">Order #{{ order.id }}</p>
         <p class="status">{{ order.status }}</p>
       </div>
-      <p>Total: ${{ order.total }}</p>
-      <p>Date: {{ order.date | date: "mediumDate" }}</p>
+      <p>Total: ${{ order.total_price }}</p>
+      <p>Date: {{ order.created_at | date: "mediumDate" }}</p>
       <a [routerLink]="['/profile/orders', order.id]">View details</a>
     </div>
   </div>

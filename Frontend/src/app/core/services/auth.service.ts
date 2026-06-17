@@ -9,15 +9,19 @@ interface LoginPayload {
 }
 
 interface RegisterPayload {
-  name: string;
   email: string;
   password: string;
-  confirmPassword?: string;
+  role?: string;
+  phone?: string;
 }
 
-interface AuthResponse {
+interface TokenResponse {
   access: string;
   refresh: string;
+  role?: string;
+  email?: string;
+  is_verified?: boolean;
+  user?: any;
 }
 
 @Injectable({
@@ -25,6 +29,7 @@ interface AuthResponse {
 })
 export class AuthService {
   private readonly tokenKey = "auth_token";
+  private readonly refreshTokenKey = "auth_refresh_token";
   private readonly apiUrl = environment.apiUrl || "";
 
   private loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
@@ -37,49 +42,47 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  // login user and store token
-  login(payload: Partial<LoginPayload>): Observable<AuthResponse> {
+  login(payload: Partial<LoginPayload>): Observable<TokenResponse> {
     return this.http
-      .post<AuthResponse>(`${this.apiUrl}/token/`, payload)
+      .post<TokenResponse>(`${this.apiUrl}/token/`, payload)
       .pipe(
         tap((response) => {
           this.storeToken(response.access);
+          if (response.refresh) {
+            localStorage.setItem(this.refreshTokenKey, response.refresh);
+          }
         }),
       );
   }
 
-  // register new user
-  register(payload: Partial<RegisterPayload>): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(
-      `${this.apiUrl}/register/`,
-      payload,
-    );
+  register(payload: Partial<RegisterPayload>): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register/`, payload);
   }
 
-  // clear token and reset state
   logout(): void {
     localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(this.refreshTokenKey);
     this.loggedInSubject.next(false);
     this.roleSubject.next(null);
   }
 
-  // check if user is logged in
   isLoggedIn(): boolean {
     return this.hasToken();
   }
 
-  // return stored token
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
 
-  // read role from cached value
+  getRefreshToken(): string | null {
+    return localStorage.getItem(this.refreshTokenKey);
+  }
+
   getRole(): string | null {
     return this.roleSubject.value;
   }
 
   private storeToken(token: string): void {
-    // store token after login
     localStorage.setItem(this.tokenKey, token);
     this.loggedInSubject.next(true);
     this.roleSubject.next(this.getRoleFromToken());
@@ -94,9 +97,8 @@ export class AuthService {
     if (!token) {
       return null;
     }
-
     const payload = this.decodeToken(token);
-    return payload?.role || payload?.user?.role || null;
+    return payload?.role || null;
   }
 
   private decodeToken(token: string): any {
@@ -105,7 +107,6 @@ export class AuthService {
       if (!payload) {
         return null;
       }
-
       const normalized = payload.replace(/-/g, "+").replace(/_/g, "/");
       const decoded = atob(normalized);
       return JSON.parse(decoded);
@@ -114,7 +115,6 @@ export class AuthService {
     }
   }
 
-  // fetch real user profile from backend API
   getCurrentUser(): Observable<any> {
     return this.http.get(`${this.apiUrl}/profile/`);
   }
