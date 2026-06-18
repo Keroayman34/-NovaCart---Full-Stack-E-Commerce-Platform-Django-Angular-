@@ -1,0 +1,68 @@
+<div class="seller-orders">
+  <div class="page-header">
+    <div>
+      <h1>My Orders</h1>
+      <p class="subtitle">Manage customer orders containing your products</p>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading orders...</p>
+  </div>
+
+  <div *ngIf="!loading && orders.length === 0" class="empty-state">
+    <div class="empty-icon">🛒</div>
+    <h2>No orders yet</h2>
+    <p>When customers buy your products, the orders will appear here.</p>
+  </div>
+
+  <div *ngIf="!loading && orders.length > 0" class="orders-list">
+    <div *ngFor="let order of orders" class="order-card">
+      <div class="order-header">
+        <div class="order-info">
+          <span class="order-id">Order #{{ order.id }}</span>
+          <span class="order-date">{{ formatDate(order.date) }}</span>
+        </div>
+        <div class="order-status-control">
+          <select 
+            [value]="order.status" 
+            (change)="updateStatus(order, $event)"
+            [disabled]="updatingOrderId === order.id"
+            [class]="'status-select ' + order.status.toLowerCase()">
+            <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+          </select>
+          <div *ngIf="updatingOrderId === order.id" class="update-spinner"></div>
+        </div>
+      </div>
+
+      <div class="order-customer">
+        <span class="label">Customer:</span>
+        <span class="value">{{ order.customer }}</span>
+        <span class="divider">•</span>
+        <span class="label">Delivery:</span>
+        <span class="value">{{ order.address }}</span>
+      </div>
+
+      <div class="order-items">
+        <div class="items-header">
+          <span>Product</span>
+          <span>Qty</span>
+          <span>Price</span>
+          <span>Total</span>
+        </div>
+        <div *ngFor="let item of order.items" class="item-row">
+          <span class="item-name">{{ item.product_name }}</span>
+          <span class="item-qty">x{{ item.quantity }}</span>
+          <span class="item-price">${{ item.price }}</span>
+          <span class="item-total">${{ item.total }}</span>
+        </div>
+      </div>
+
+      <div class="order-footer">
+        <span class="total-label">Your Revenue from this Order:</span>
+        <span class="total-amount">${{ order.total_amount }}</span>
+      </div>
+    </div>
+  </div>
+</div>

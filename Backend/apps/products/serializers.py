@@ -152,6 +152,7 @@ class ProductSerializer(serializers.ModelSerializer):
         required=False,
     )
     images = ProductImageSerializer(many=True, read_only=True)
+    image = serializers.ImageField(write_only=True, required=False)
     url = serializers.SerializerMethodField()
     is_owned_by_user = serializers.SerializerMethodField()
 
@@ -174,6 +175,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "seller_id",
             "seller_name",
             "images",
+            "image",
             "is_owned_by_user",
             "url",
             "created_at",
@@ -237,6 +239,8 @@ class ProductSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """Create a new product."""
+        image = validated_data.pop("image", None)
+        
         # If seller is not provided, use the current user
         if "seller" not in validated_data:
             request = self.context.get("request")
@@ -244,13 +248,23 @@ class ProductSerializer(serializers.ModelSerializer):
                 validated_data["seller"] = request.user
         
         product = Product.objects.create(**validated_data)
+        
+        if image:
+            ProductImage.objects.create(product=product, image=image, is_primary=True)
+            
         return product
 
     def update(self, instance, validated_data):
         """Update a product."""
+        image = validated_data.pop("image", None)
+        
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
         instance.save()
+        
+        if image:
+            ProductImage.objects.create(product=instance, image=image, is_primary=True)
+            
         return instance
 
 

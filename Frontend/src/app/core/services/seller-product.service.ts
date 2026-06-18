@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 export interface ProductImage {
@@ -66,6 +67,8 @@ export class SellerProductService {
   }
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${environment.apiUrl}/categories/`);
+    return this.http.get<any>(`${environment.apiUrl}/categories/`).pipe(
+      map(response => response.data?.results || response.results || response)
+    );
   }
 }

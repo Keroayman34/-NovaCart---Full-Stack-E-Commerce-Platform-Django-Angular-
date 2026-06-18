@@ -1,11 +1,12 @@
 /* Glassmorphism Common Class */
 .glass-container {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   border-radius: 16px;
-  color: #fff;
+  color: #1e293b;
   position: relative;
   overflow: hidden;
 }
@@ -61,12 +62,12 @@
 
   /* Note: @extend is handled differently in modern SCSS, 
      but copying properties directly for standalone scoping */
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 16px;
-  color: #fff;
+  color: #1e293b;
   position: relative;
   overflow: hidden;
 
@@ -119,7 +120,7 @@
     .stat-label {
       margin: 0;
       font-size: 13px;
-      color: #94a3b8;
+      color: #64748b;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -128,7 +129,7 @@
     .stat-value {
       margin: 6px 0;
       font-size: 26px;
-      color: #fff;
+      color: #1e293b;
       font-weight: 700;
       line-height: 1;
     }

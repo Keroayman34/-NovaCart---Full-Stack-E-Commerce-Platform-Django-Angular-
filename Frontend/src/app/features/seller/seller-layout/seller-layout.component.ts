@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterLink, Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { SellerProfileService } from '../../../core/services/seller-profile.service';
 
 @Component({
   selector: 'app-seller-layout',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink],
+  imports: [CommonModule, RouterModule],
   templateUrl: './seller-layout.component.html',
   styleUrls: ['./seller-layout.component.scss'],
 })
@@ -70,9 +70,7 @@ export class SellerLayoutComponent implements OnInit {
   }
 
   logout(): void {
-    if (confirm('Are you sure you want to logout?')) {
-      this.authService.logout();
-      this.router.navigate(['/login']);
-    }
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

@@ -136,6 +136,55 @@ class SellerOwnerProductDeleteView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class SellerOrderListView(APIView):
+    permission_classes = [IsAuthenticated, IsSeller]
+
+    def get(self, request):
+        seller = request.user
+        
+        # Get all order items for this seller's products
+        seller_order_items = OrderItem.objects.filter(
+            product__seller=seller
+        ).select_related('order', 'order__user', 'product')
+        
+        # Get distinct orders that contain these items
+        order_ids = seller_order_items.values_list('order_id', flat=True).distinct()
+        orders = Order.objects.filter(id__in=order_ids).prefetch_related('items__product').order_by('-created_at')
+        
+        # Construct response data
+        orders_data = []
+        for order in orders:
+            seller_items = [
+                item for item in order.items.all()
+                if item.product.seller_id == seller.id
+            ]
+            
+            # Calculate total for this seller's items in the order
+            seller_total = sum((item.price * item.quantity) for item in seller_items)
+            
+            orders_data.append({
+                'id': order.id,
+                'customer': order.user.email if order.user else 'N/A',
+                'address': order.address,
+                'status': order.status,
+                'date': order.created_at.isoformat(),
+                'total_amount': str(seller_total),
+                'items': [
+                    {
+                        'id': item.id,
+                        'product_id': item.product.id,
+                        'product_name': item.product.name,
+                        'quantity': item.quantity,
+                        'price': str(item.price),
+                        'total': str(item.price * item.quantity)
+                    }
+                    for item in seller_items
+                ]
+            })
+            
+        return Response(orders_data)
+
+
 class SellerDashboardView(APIView):
     permission_classes = [IsAuthenticated, IsSeller]
 

@@ -1,11 +1,12 @@
 /* Glassmorphism Common Class */
 .glass-container {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   border-radius: 16px;
-  color: #fff;
+  color: #1e293b;
   position: relative;
   overflow: hidden;
 }
@@ -42,12 +43,13 @@
 .recent-orders {
   @extend .glass-container;
   padding: 24px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   border-radius: 16px;
-  color: #fff;
+  color: #1e293b;
   position: relative;
   overflow: hidden;
 
@@ -80,13 +82,13 @@
   h2 {
     margin: 0;
     font-size: 18px;
-    color: #fff;
+    color: #1e293b;
     font-weight: 600;
   }
 
   .view-all {
     font-size: 14px;
-    color: #a5b4fc;
+    color: #4338ca;
     text-decoration: none;
     font-weight: 600;
     padding: 6px 12px;
@@ -120,15 +122,15 @@
 
   thead {
     th {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(0, 0, 0, 0.02);
       padding: 14px 16px;
       text-align: left;
       font-size: 13px;
       font-weight: 600;
-      color: #94a3b8;
+      color: #64748b;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 
       &:first-child { border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
       &:last-child { border-top-right-radius: 10px; border-bottom-right-radius: 10px; }
@@ -137,16 +139,16 @@
 
   tbody td {
     padding: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     font-size: 14px;
-    color: #e2e8f0;
+    color: #334155;
     transition: background 0.2s;
   }
 
   tbody tr {
     transition: all 0.2s;
     &:hover td {
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(0, 0, 0, 0.02);
     }
     
     &:last-child td {
@@ -156,16 +158,16 @@
 
   .order-id {
     font-weight: 600;
-    color: #a5b4fc;
+    color: #4338ca;
   }
 
   .amount {
     font-weight: 600;
-    color: #fff;
+    color: #1e293b;
   }
 
   .date {
-    color: #94a3b8;
+    color: #64748b;
     font-size: 13px;
   }
 }

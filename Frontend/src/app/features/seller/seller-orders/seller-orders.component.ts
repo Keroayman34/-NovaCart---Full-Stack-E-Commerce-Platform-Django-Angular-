@@ -1,51 +1,71 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { SellerOrderService, SellerOrder } from '../../../core/services/seller-order.service';
 
 @Component({
   selector: 'app-seller-orders',
   standalone: true,
-  imports: [CommonModule],
-  template: `
-    <div class="glass-placeholder-page">
-      <div class="icon">🛒</div>
-      <h1>My Orders</h1>
-      <p>Seller orders management page - Coming soon</p>
-    </div>
-  `,
-  styles: [
-    `
-      .glass-placeholder-page {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 16px;
-        padding: 60px 20px;
-        text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 400px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      }
-      .glass-placeholder-page .icon {
-        font-size: 64px;
-        margin-bottom: 24px;
-        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-      }
-      .glass-placeholder-page h1 {
-        font-size: 28px;
-        color: white;
-        margin: 0 0 16px 0;
-        font-weight: 700;
-      }
-      .glass-placeholder-page p {
-        color: #cbd5e1;
-        font-size: 16px;
-        margin: 0;
-      }
-    `,
-  ],
+  imports: [CommonModule, FormsModule],
+  templateUrl: './seller-orders.component.html',
+  styleUrls: ['./seller-orders.component.scss']
 })
-export class SellerOrdersComponent {}
+export class SellerOrdersComponent implements OnInit {
+  orders: SellerOrder[] = [];
+  loading = true;
+  error = '';
+  updatingOrderId: number | null = null;
+  
+  statusOptions = ['PENDING', 'PROCESSING', 'SHIPPED', 'DELIVERED', 'CANCELLED'];
+
+  constructor(private sellerOrderService: SellerOrderService) {}
+
+  ngOnInit(): void {
+    this.loadOrders();
+  }
+
+  loadOrders(): void {
+    this.loading = true;
+    this.sellerOrderService.getOrders().subscribe({
+      next: (data) => {
+        this.orders = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error loading orders', err);
+        this.error = 'Failed to load orders.';
+        this.loading = false;
+      }
+    });
+  }
+
+  updateStatus(order: SellerOrder, event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const newStatus = selectElement.value;
+    
+    if (order.status === newStatus) return;
+    
+    this.updatingOrderId = order.id;
+    this.sellerOrderService.updateOrderStatus(order.id, newStatus).subscribe({
+      next: (res) => {
+        order.status = newStatus;
+        this.updatingOrderId = null;
+      },
+      error: (err) => {
+        console.error('Failed to update status', err);
+        // Revert select visually if failed
+        selectElement.value = order.status;
+        this.updatingOrderId = null;
+        alert('Failed to update order status. Please try again.');
+      }
+    });
+  }
+
+  formatDate(dateString: string): string {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric', month: 'short', day: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    });
+  }
+}
+// Trigger recompile

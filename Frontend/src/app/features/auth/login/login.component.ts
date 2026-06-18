@@ -51,14 +51,14 @@ export class LoginComponent {
           if (firstKey && Array.isArray(err.error[firstKey])) {
             const msg = err.error[firstKey][0];
             if (msg.toLowerCase().includes('no active account')) {
-              this.errorMessage = "Account not verified. Please check your email for the verification link.";
+              this.errorMessage = "Invalid email or password. If you just registered, please verify your email.";
             } else {
               this.errorMessage = msg;
             }
           } else if (firstKey && typeof err.error[firstKey] === 'string') {
             const msg = err.error[firstKey];
             if (msg.toLowerCase().includes('no active account')) {
-              this.errorMessage = "Account not verified. Please check your email for the verification link.";
+              this.errorMessage = "Invalid email or password. If you just registered, please verify your email.";
             } else {
               this.errorMessage = msg;
             }
