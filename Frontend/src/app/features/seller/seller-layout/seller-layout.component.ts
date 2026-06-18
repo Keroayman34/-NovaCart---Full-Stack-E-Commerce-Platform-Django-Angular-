@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { SellerProfileService } from '../../../core/services/seller-profile.service';
 
 @Component({
   selector: 'app-seller-layout',
@@ -22,37 +23,42 @@ export class SellerLayoutComponent implements OnInit {
     { label: 'Settings', route: '/seller/settings', icon: '⚙️' },
   ];
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private sellerProfileService: SellerProfileService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
-    this.loadUserProfile();
+    this.loadSellerProfile();
   }
 
-  loadUserProfile(): void {
-    if (this.authService.isLoggedIn()) {
-      this.authService.getCurrentUser().subscribe({
-        next: (user) => {
-          this.userProfile = {
-            name: user.email || 'Seller', // Profile API returns email
-            email: user.email,
-            avatar: user.avatar,
-          };
-        },
-        error: () => {
-          // Fallback if API fails
-          this.userProfile = {
-            name: 'Seller',
-            email: 'seller@example.com',
-          };
-        }
-      });
-    } else {
-      // Fallback if not logged in
-      this.userProfile = {
-        name: 'Seller',
-        email: 'seller@example.com',
-      };
-    }
+  loadSellerProfile(): void {
+    if (!this.authService.isLoggedIn()) return;
+    this.sellerProfileService.getProfile().subscribe({
+      next: (profile) => {
+        const email = profile.user?.email || '';
+        this.userProfile = {
+          name: profile.shop_name || email,
+          email: email,
+          avatar: profile.shop_logo || undefined,
+        };
+      },
+      error: () => {
+        this.authService.getCurrentUser().subscribe({
+          next: (user) => {
+            this.userProfile = {
+              name: user.email || 'Seller',
+              email: user.email,
+              avatar: user.avatar,
+            };
+          },
+          error: () => {
+            this.userProfile = { name: 'Seller', email: 'seller@example.com' };
+          },
+        });
+      },
+    });
   }
 
   toggleSidebar(): void {

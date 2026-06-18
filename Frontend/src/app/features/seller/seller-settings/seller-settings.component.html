@@ -1,0 +1,66 @@
+<div class="seller-settings">
+  <div class="page-header">
+    <div>
+      <h1>Shop Settings</h1>
+      <p class="subtitle">Manage your shop profile and preferences</p>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading settings...</p>
+  </div>
+
+  <div *ngIf="!loading" class="settings-card">
+    <div class="card-header">
+      <h2>Shop Information</h2>
+      <p>Update your shop details visible to customers</p>
+    </div>
+
+    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="alert alert-error">{{ errorMessage }}</div>
+
+    <div class="card-body">
+      <div class="form-group">
+        <label>Shop Name *</label>
+        <input type="text" [(ngModel)]="formData.shop_name" placeholder="Enter your shop name" />
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea [(ngModel)]="formData.shop_description" placeholder="Describe your shop and what you sell" rows="5"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Address</label>
+        <input type="text" [(ngModel)]="formData.address" placeholder="Shop address" />
+      </div>
+
+      <div class="form-group">
+        <label>Shop Logo</label>
+        <div class="logo-section">
+          <div class="logo-preview" *ngIf="currentLogo && !previewUrl">
+            <img [src]="currentLogo" alt="Current logo" />
+          </div>
+          <div class="logo-preview" *ngIf="previewUrl">
+            <img [src]="previewUrl" alt="New logo preview" />
+          </div>
+          <div class="logo-actions">
+            <label class="btn btn-outline">
+              {{ currentLogo || previewUrl ? 'Change Logo' : 'Upload Logo' }}
+              <input type="file" accept="image/*" (change)="onFileSelected($event)" hidden />
+            </label>
+            <button *ngIf="previewUrl" class="btn btn-outline btn-remove" (click)="removeLogo()">Remove</button>
+          </div>
+          <p class="logo-hint" *ngIf="!currentLogo && !previewUrl">Recommended size: 400x400px. PNG or JPG.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button class="btn btn-primary" (click)="saveSettings()" [disabled]="saving">
+        {{ saving ? 'Saving...' : hasProfile ? 'Update Settings' : 'Create Shop' }}
+      </button>
+    </div>
+  </div>
+</div>
