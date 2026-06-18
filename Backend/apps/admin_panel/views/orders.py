@@ -1,12 +1,15 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from ..serializers import *
 from apps.orders.models import Order
 from apps.orders.serializers import OrderSerializer
+from core.permissions import IsAdmin
 
 
 class AdminOrderListView(APIView):
+    permission_classes = [IsAuthenticated, IsAdmin]
     def get(self, request):
         try:
             orders = Order.objects.all()
@@ -16,6 +19,8 @@ class AdminOrderListView(APIView):
             return Response({'error': str(e)}, status=status.HTTP_404_NOT_FOUND)    
 
 class AdminOrderDetailView(APIView):
+    permission_classes = [IsAuthenticated, IsAdmin]
+
     def get(self, request, order_id):
         try:
             order = Order.objects.get(id=order_id)
@@ -25,6 +30,7 @@ class AdminOrderDetailView(APIView):
             return Response({'error': str(e)}, status=status.HTTP_404_NOT_FOUND)
         
 class AdminOrderStatusUpdateView(APIView):
+    permission_classes = [IsAuthenticated, IsAdmin]
 
     def patch(self, request, order_id):
         try:
@@ -50,6 +56,8 @@ class AdminOrderStatusUpdateView(APIView):
         
 
 class AdminCancelOrderView(APIView):
+    permission_classes = [IsAuthenticated, IsAdmin]
+
     def patch(self, request, order_id):
         try:
             order = Order.objects.get(id=order_id)
